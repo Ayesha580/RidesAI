@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login — Rides AI</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+        body{
+            font-family:'Segoe UI',sans-serif;
+            background:linear-gradient(135deg,#1e3a8a,#2563eb);
+            min-height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+        }
+
+        .auth-card{
+            width:400px;
+            background:#fff;
+            border-radius:12px;
+            padding:35px;
+            box-shadow:0 10px 30px rgba(0,0,0,.2);
+        }
+
+        h1{
+            color:#111827;
+            margin-bottom:8px;
+        }
+
+        .subtitle{
+            color:#6b7280;
+            margin-bottom:25px;
+            font-size:14px;
+        }
+
+        label{
+            display:block;
+            margin-bottom:6px;
+            margin-top:14px;
+            font-weight:600;
+            color:#374151;
+        }
+
+        input{
+            width:100%;
+            padding:11px;
+            border:1px solid #d1d5db;
+            border-radius:8px;
+            font-size:14px;
+        }
+
+        button{
+            margin-top:22px;
+            width:100%;
+            padding:12px;
+            border:none;
+            border-radius:8px;
+            background:#2563eb;
+            color:#fff;
+            cursor:pointer;
+            font-size:15px;
+            font-weight:bold;
+        }
+
+        button:hover{
+            background:#1d4ed8;
+        }
+
+        .switch-link{
+            margin-top:20px;
+            text-align:center;
+            font-size:14px;
+        }
+
+        .switch-link a{
+            color:#2563eb;
+            text-decoration:none;
+            font-weight:bold;
+        }
+
+        .errorlist{
+            list-style:none;
+            color:red;
+            margin-top:5px;
+            margin-bottom:8px;
+        }
+
+        .message{
+            padding:10px;
+            margin-bottom:15px;
+            border-radius:8px;
+            background:#dcfce7;
+            color:#166534;
+        }
+    </style>
+
+</head>
+<body>
+
+<div class="auth-card">
+
+    <h1>Welcome Back</h1>
+
+    <p class="subtitle">
+        Login to your Rides AI Dashboard
+    </p>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="message">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        {{ form.non_field_errors }}
+
+        <label>Email Address</label>
+        {{ form.username }}
+        {{ form.username.errors }}
+
+        <label>Password</label>
+        {{ form.password }}
+        {{ form.password.errors }}
+
+        <button type="submit">
+            Login
+        </button>
+
+    </form>
+
+    <div class="switch-link">
+        Don't have an account?
+        <a href="{% url 'register' %}">
+            Register your business
+        </a>
+    </div>
+
+</div>
+
+</body>
+</html>

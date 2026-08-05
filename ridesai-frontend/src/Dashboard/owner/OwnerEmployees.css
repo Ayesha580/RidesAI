@@ -1,0 +1,81 @@
+.owner-employees-page{
+
+padding:30px;
+
+background:#f8fafc;
+
+min-height:100vh;
+
+}
+
+
+
+.owner-employees-page h2{
+
+font-size:28px;
+
+color:#0f172a;
+
+margin-bottom:25px;
+
+}
+
+
+
+.employee-table{
+
+background:white;
+
+padding:20px;
+
+border-radius:15px;
+
+box-shadow:0 5px 20px rgba(0,0,0,.08);
+
+overflow-x:auto;
+
+}
+
+
+
+.employee-table table{
+
+width:100%;
+
+border-collapse:collapse;
+
+}
+
+
+
+.employee-table th{
+
+background:#be28ee;
+
+color:white;
+
+padding:14px;
+
+text-align:left;
+
+}
+
+
+
+.employee-table td{
+
+padding:14px;
+
+border-bottom:1px solid #e5e7eb;
+
+color:#334155;
+
+}
+
+
+
+.employee-table tr:hover{
+
+background:#f8fafc;
+
+}

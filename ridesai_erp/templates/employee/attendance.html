@@ -1,0 +1,107 @@
+{% extends "dashboard/employee_base.html" %}
+
+{% block content %}
+
+<h2>
+    My Attendance
+</h2>
+
+
+<form method="POST">
+
+    {% csrf_token %}
+
+    <input
+    type="hidden"
+    name="latitude"
+    id="latitude">
+
+
+    <input
+    type="hidden"
+    name="longitude"
+    id="longitude">
+
+
+    <button
+    class="btn btn-success"
+    name="action"
+    value="clock_in">
+
+        Clock In
+
+    </button>
+
+
+    <button
+    class="btn btn-danger"
+    name="action"
+    value="clock_out">
+
+        Clock Out
+
+    </button>
+
+
+</form>
+
+
+<br>
+
+
+<a href="{% url 'hr:employee-break' %}"
+class="btn btn-warning">
+
+    Start / End Break
+
+</a>
+
+
+<hr>
+
+
+<h3>
+    Today's Record
+</h3>
+
+
+<p>
+Clock In:
+{{attendance.clock_in}}
+</p>
+
+
+<p>
+Clock Out:
+{{attendance.clock_out}}
+</p>
+
+
+<p>
+Working Hours:
+{{attendance.worked_hours}}
+</p>
+
+
+
+<script>
+
+navigator.geolocation.getCurrentPosition(
+function(position){
+
+document.getElementById("latitude").value =
+position.coords.latitude;
+
+
+document.getElementById("longitude").value =
+position.coords.longitude;
+
+
+}
+
+);
+
+</script>
+
+
+{% endblock %}

@@ -1,0 +1,145 @@
+.task-page {
+    padding: 30px;
+    background: #f5f7fb;
+    min-height: 100vh;
+}
+
+.task-card {
+    background: white;
+    max-width: 750px;
+    margin: auto;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.task-card h2 {
+    margin-bottom: 25px;
+    color: #1f2937;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 18px;
+    width: 100%;
+}
+
+label {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 7px;
+    color: #374151;
+}
+
+input,
+textarea,
+select {
+    padding: 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: #be27ee;
+    box-shadow: 0 0 0 3px rgba(190, 39, 238, 0.15);
+}
+
+.row {
+    display: flex;
+    gap: 20px;
+}
+
+.row .form-group {
+    flex: 1;
+}
+
+.assign-btn {
+    width: 100%;
+    padding: 13px;
+    border: none;
+    background: #be27ee;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: 0.3s;
+}
+
+.assign-btn:hover {
+    background: #be27ee;
+}
+.task-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+}
+
+
+.create-btn{
+    background:#be27ee;
+    color:white;
+    border:none;
+    padding:12px 22px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:600;
+}
+
+
+.close-btn{
+    background:#ef4444;
+    color:white;
+    border:none;
+    width:35px;
+    height:35px;
+    border-radius:50%;
+    cursor:pointer;
+}
+
+
+.form-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+
+.task-list-card{
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+    margin-top:25px;
+}
+
+
+.task-list-card table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+
+.task-list-card th,
+.task-list-card td{
+    padding:14px;
+    border-bottom:1px solid #eee;
+    text-align:left;
+}
+
+
+.delete-btn{
+    background:#ef4444;
+    color:white;
+    border:none;
+    padding:8px 15px;
+    border-radius:6px;
+    cursor:pointer;
+}

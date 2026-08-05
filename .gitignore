@@ -1,0 +1,28 @@
+# Environment
+ridesai_erp/.env
+
+# Python
+__pycache__/
+*.py[cod]
+*.log
+venv/
+env/
+
+# Django
+ridesai_erp/staticfiles/
+ridesai_erp/media/
+
+# React
+ridesai-frontend/node_modules/
+ridesai-frontend/dist/
+
+# IDE
+.idea/
+.vscode/
+
+# Git
+.git/
+
+# OS
+Thumbs.db
+.DS_Store

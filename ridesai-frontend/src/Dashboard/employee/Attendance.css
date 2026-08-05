@@ -1,0 +1,205 @@
+.attendance-page {
+  padding: 30px;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f0ff 0%, #fdf2ff 100%);
+}
+
+.attendance-card {
+  max-width: 720px;
+  margin: auto;
+  background: #fff;
+  border-radius: 18px;
+  padding: 35px;
+  box-shadow: 0 10px 35px rgba(190, 39, 238, 0.12);
+  border: 1px solid rgba(190, 39, 238, 0.08);
+}
+
+.attendance-card h2 {
+  margin-bottom: 25px;
+  color: #7c1fb0;
+  font-size: 26px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.attendance-card h2::before {
+  content: "";
+  width: 8px;
+  height: 26px;
+  border-radius: 4px;
+  background: linear-gradient(180deg, #be27ee, #7c1fb0);
+  display: inline-block;
+}
+
+/* Info rows grouped in a soft panel */
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 20px;
+  background: #faf5ff;
+  border: 1px solid #f1e0ff;
+  border-radius: 14px;
+  padding: 10px 20px;
+  margin-bottom: 20px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid #f0e4fa;
+}
+
+.row:last-child {
+  border-bottom: none;
+}
+
+.row span {
+  color: #7a7a8c;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.row strong {
+  color: #2d2140;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+/* Status badges */
+.late {
+  color: #dc2626;
+  font-weight: 700;
+  background: rgba(220, 38, 38, 0.08);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+}
+
+.ontime {
+  color: #16a34a;
+  font-weight: 700;
+  background: rgba(22, 163, 74, 0.08);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+}
+
+/* Buttons */
+.buttons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 25px;
+}
+
+.buttons button {
+  border: none;
+  padding: 13px 24px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #be27ee, #9333ea);
+  color: white;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+  box-shadow: 0 4px 14px rgba(190, 39, 238, 0.3);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+}
+
+.buttons button:hover {
+  opacity: 0.95;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(190, 39, 238, 0.4);
+}
+
+.buttons button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Timer */
+.timer {
+  margin: 30px 0;
+  background: linear-gradient(135deg, #be27ee, #7c1fb0);
+  color: white;
+  border-radius: 16px;
+  padding: 30px;
+  text-align: center;
+  box-shadow: 0 8px 25px rgba(190, 39, 238, 0.35);
+}
+
+.timer h1 {
+  margin: 0;
+  font-size: 46px;
+  letter-spacing: 2px;
+  font-weight: 700;
+}
+
+.timer p {
+  margin-top: 8px;
+  opacity: 0.9;
+  font-size: 14px;
+}
+
+/* Map container spacing */
+.attendance-card .leaflet-container {
+  border: 1px solid #f1e0ff;
+}
+
+/* GPS card */
+.gps-card {
+  margin-top: 25px;
+  background: #faf5ff;
+  border: 1px solid #f1e0ff;
+  padding: 20px 22px;
+  border-radius: 14px;
+}
+
+.gps-card h3 {
+  margin: 0 0 12px 0;
+  color: #7c1fb0;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.gps-card p {
+  margin: 6px 0;
+  color: #4b4b5a;
+  font-size: 14px;
+}
+
+.gps-card strong {
+  color: #2d2140;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .attendance-page {
+    padding: 15px;
+  }
+
+  .attendance-card {
+    padding: 22px;
+    border-radius: 14px;
+  }
+
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .timer h1 {
+    font-size: 36px;
+  }
+
+  .buttons {
+    flex-direction: column;
+  }
+
+  .buttons button {
+    width: 100%;
+  }
+}

@@ -1,0 +1,105 @@
+.mailbox-page{
+
+padding:30px;
+
+}
+
+.mailbox-card {
+    max-width: 650px;
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    margin: 0 auto;
+}
+
+.mailbox-row{
+
+display:flex;
+
+justify-content:space-between;
+
+margin-bottom:20px;
+
+}
+
+.connected{
+
+color:#22c55e;
+
+}
+
+.gmail-btn,
+.test-btn,
+.disconnect-btn{
+
+padding:12px 20px;
+
+border:none;
+
+border-radius:8px;
+
+cursor:pointer;
+
+margin-top:15px;
+
+margin-right:10px;
+
+}
+
+.gmail-btn{
+
+background:#BE27EE;
+
+color:white;
+
+}
+
+.test-btn{
+
+background:#2563eb;
+
+color:white;
+
+}
+
+.disconnect-btn{
+
+background:#ef4444;
+
+color:white;
+
+}
+
+.mailbox-card input{
+
+width:100%;
+
+padding:12px;
+
+margin:15px 0;
+
+border:1px solid #ddd;
+
+border-radius:8px;
+
+}
+.mailbox-success-banner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #dcfce7;
+    color: #166534;
+    padding: 10px 16px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    font-weight: 500;
+}
+
+.banner-close-btn {
+    background: none;
+    border: none;
+    color: #166534;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 0 4px;
+}

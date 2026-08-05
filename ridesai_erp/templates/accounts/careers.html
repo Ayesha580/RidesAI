@@ -1,0 +1,139 @@
+{% extends "customer_base.html" %}
+
+
+{% block content %}
+
+
+<div class="bg-dark text-white py-5">
+
+<div class="container text-center">
+
+<h1>
+Careers at Rides AI
+</h1>
+
+<p>
+Join our team and build the future of business automation.
+</p>
+
+</div>
+
+</div>
+
+
+
+<div class="container py-5">
+
+
+<h2 class="mb-4 text-center">
+Open Positions
+</h2>
+
+
+
+<div class="row g-4">
+
+
+{% for job in jobs %}
+
+
+<div class="col-md-6">
+
+
+<div class="card shadow p-4">
+
+
+<h4>
+{{job.title}}
+</h4>
+
+
+<p>
+<strong>
+Department:
+</strong>
+
+{{job.department}}
+
+</p>
+
+
+<p>
+<strong>
+Employment:
+</strong>
+
+{{job.employment_type}}
+
+</p>
+
+
+<p>
+<strong>
+Experience:
+</strong>
+
+{{job.experience}}
+
+</p>
+
+
+<p>
+<strong>
+Salary:
+</strong>
+
+{{job.salary}}
+
+</p>
+
+
+<p>
+{{job.description}}
+</p>
+
+
+<p>
+Deadline:
+{{job.deadline}}
+</p>
+
+
+<a href="#"
+class="btn btn-primary">
+
+Apply Now
+
+</a>
+
+
+</div>
+
+
+</div>
+
+
+
+{% empty %}
+
+
+<div class="text-center">
+
+<h4>
+No Open Positions
+</h4>
+
+</div>
+
+
+{% endfor %}
+
+
+
+</div>
+
+
+</div>
+
+
+{% endblock %}

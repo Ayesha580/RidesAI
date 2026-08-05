@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+
+<div class="card">
+    <h1>Welcome, {{ request.user.username }}</h1>
+    <p>Company: <strong>{{ company.name|default:"Not assigned" }}</strong></p>
+</div>
+
+<div class="stats-grid">
+    <div class="stat-box">
+        <div class="label">Active Leads</div>
+        <div class="value">0</div>
+    </div>
+    <div class="stat-box">
+        <div class="label">Total Employees</div>
+        <div class="value">0</div>
+    </div>
+    <div class="stat-box">
+        <div class="label">Pending Tasks</div>
+        <div class="value">0</div>
+    </div>
+    <div class="stat-box">
+        <div class="label">Monthly Revenue</div>
+        <div class="value">Rs. 0</div>
+    </div>
+</div>
+
+{% if request.user.role == 'owner' %}
+<div class="card">
+    <h3>Owner View</h3>
+    <p>Full company data will appear here — sales pipeline, HR summary, financial overview.</p>
+</div>
+{% elif request.user.role == 'employee' %}
+<div class="card">
+    <h3>My Tasks Today</h3>
+    <p>Employee-only view — your assigned leads/tasks will appear here.</p>
+</div>
+{% endif %}
+
+{% endblock %}

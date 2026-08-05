@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title>
+Employee Panel
+</title>
+
+
+<style>
+
+body{
+font-family:Arial;
+background:#f3f4f6;
+}
+
+
+.sidebar{
+
+width:220px;
+height:100vh;
+background:#111827;
+position:fixed;
+color:white;
+padding:20px;
+
+}
+
+
+.sidebar a{
+
+color:white;
+display:block;
+padding:10px;
+text-decoration:none;
+
+}
+
+
+.content{
+
+margin-left:250px;
+padding:30px;
+
+}
+
+
+.card{
+
+background:white;
+padding:20px;
+margin:10px;
+display:inline-block;
+width:200px;
+
+}
+
+
+</style>
+
+
+</head>
+
+
+<body>
+
+
+<div class="sidebar">
+
+
+<h2>
+Rides AI
+</h2>
+
+
+<p>
+Employee Panel
+</p>
+
+
+<a href="{% url 'dashboard:employee' %}">
+Dashboard
+</a>
+
+
+<a href="{% url 'hr:employee-attendance' %}">
+Attendance
+</a>
+
+
+<a href="{% url 'hr:my-tasks' %}">
+Tasks
+</a>
+
+
+<a href="#">
+Documents
+</a>
+
+
+<a href="{% url 'logout' %}">
+Logout
+</a>
+
+
+</div>
+
+
+
+<div class="content">
+
+
+{% block content %}
+
+{% endblock %}
+
+
+</div>
+
+
+</body>
+
+</html>

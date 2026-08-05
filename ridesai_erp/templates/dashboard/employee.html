@@ -1,0 +1,226 @@
+{% extends "dashboard/employee_base.html" %}
+
+
+{% block title %}
+Employee Dashboard
+{% endblock %}
+
+
+
+{% block content %}
+
+
+<h2>
+Welcome {{ request.user.get_full_name }}
+</h2>
+
+
+<br>
+
+
+<div class="cards">
+
+
+<div class="card">
+
+<h3>
+Employee ID
+</h3>
+
+<h2>
+{{ employee.employee_id }}
+</h2>
+
+</div>
+
+
+
+<div class="card">
+
+<h3>
+Department
+</h3>
+
+<h2>
+{{ employee.department }}
+</h2>
+
+</div>
+
+
+
+<div class="card">
+
+<h3>
+Designation
+</h3>
+
+<h2>
+{{ employee.designation }}
+</h2>
+
+</div>
+
+
+
+<div class="card">
+
+<h3>
+Status
+</h3>
+
+<h2>
+{{ employee.status }}
+</h2>
+
+</div>
+
+
+</div>
+
+
+
+<br><br>
+
+
+<div class="box">
+
+
+<h3>
+Today's Attendance
+</h3>
+
+
+{% if attendance %}
+
+
+<p>
+Clock In:
+{{ attendance.clock_in }}
+</p>
+
+
+<p>
+Clock Out:
+{{ attendance.clock_out }}
+</p>
+
+
+<p>
+Working Hours:
+{{ attendance.worked_hours }}
+</p>
+
+
+
+{% else %}
+
+<p>
+No attendance record today
+</p>
+
+{% endif %}
+
+
+
+</div>
+
+
+
+<br>
+
+
+
+<div class="box">
+
+
+<h3>
+My Tasks
+</h3>
+
+
+<table class="table">
+
+
+<tr>
+
+<th>
+Task
+</th>
+
+
+<th>
+Priority
+</th>
+
+
+<th>
+Status
+</th>
+
+
+<th>
+Due Date
+</th>
+
+
+</tr>
+
+
+
+{% for task in tasks %}
+
+
+<tr>
+
+
+<td>
+{{task.title}}
+</td>
+
+
+<td>
+{{task.priority}}
+</td>
+
+
+<td>
+{{task.status}}
+</td>
+
+
+<td>
+{{task.due_date}}
+</td>
+
+
+
+</tr>
+
+
+{% empty %}
+
+
+<tr>
+
+<td colspan="4">
+
+No Tasks Assigned
+
+</td>
+
+</tr>
+
+
+{% endfor %}
+
+
+
+</table>
+
+
+</div>
+
+
+
+{% endblock %}

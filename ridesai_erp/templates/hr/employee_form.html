@@ -1,0 +1,27 @@
+{% extends "dashboard/hr_base.html" %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <h3>Add Employee</h3>
+
+    <form method="post">
+
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button type="submit" class="btn btn-primary">
+            Create Employee
+        </button>
+
+        <a href="{% url 'hr:employee-list' %}" class="btn btn-secondary">
+            Cancel
+        </a>
+
+    </form>
+
+</div>
+
+{% endblock %}

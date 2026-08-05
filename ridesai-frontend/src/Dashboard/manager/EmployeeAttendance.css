@@ -1,0 +1,115 @@
+.owner-attendance-page{
+
+    padding:30px;
+
+    background:#f8fafc;
+
+    min-height:100vh;
+
+}
+
+
+
+.owner-attendance-page h2{
+
+    font-size:28px;
+
+    color:#0f172a;
+
+    margin-bottom:25px;
+
+}
+
+
+
+.attendance-table{
+
+    background:white;
+
+    padding:20px;
+
+    border-radius:15px;
+
+    box-shadow:0 5px 20px rgba(0,0,0,0.08);
+
+    overflow-x:auto;
+
+}
+
+
+
+.attendance-table table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+
+
+.attendance-table th{
+
+    background:#be28ee;
+
+    color:white;
+
+    padding:14px 16px;
+
+    text-align:left;
+
+    font-size:14px;
+
+}
+
+
+
+.attendance-table td{
+
+    padding:14px 16px;
+
+    border-bottom:1px solid #e5e7eb;
+
+    color:#334155;
+
+    font-size:14px;
+
+}
+
+
+
+.attendance-table tr:hover{
+
+    background:#f8fafc;
+
+}
+
+
+
+.attendance-table td:first-child{
+
+    font-weight:600;
+
+    color:#111827;
+
+}
+
+
+
+.attendance-table td:nth-child(5){
+
+    font-weight:600;
+
+}
+
+
+
+.attendance-table p{
+
+    text-align:center;
+
+    padding:30px;
+
+    color:#64748b;
+
+}

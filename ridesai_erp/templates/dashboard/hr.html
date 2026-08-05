@@ -1,0 +1,104 @@
+{% extends "dashboard/hr_base.html" %}
+
+{% block title %}HR Dashboard{% endblock %}
+
+{% block content %}
+
+<h2>HR Dashboard</h2>
+
+<br>
+
+<div class="cards">
+
+    <div class="card">
+        <h3>Total Employees</h3>
+        <h1>{{ employees }}</h1>
+    </div>
+
+    <div class="card">
+        <h3>Attendance</h3>
+        <h1>{{ attendance }}</h1>
+    </div>
+
+    <div class="card">
+        <h3>Tasks</h3>
+        <h1>{{ tasks }}</h1>
+    </div>
+
+    <div class="card">
+        <h3>Pending Leave</h3>
+        <h1>0</h1>
+    </div>
+
+</div>
+
+<br><br>
+
+<div class="row">
+
+    <div class="box">
+
+        <h3>Recent Employees</h3>
+
+        <table>
+
+            <tr>
+                <th>Name</th>
+                <th>Department</th>
+            </tr>
+
+            {% for employee in recent_employees %}
+
+            <tr>
+
+                <td>{{ employee.user.get_full_name }}</td>
+
+                <td>{{ employee.department }}</td>
+
+            </tr>
+
+            {% empty %}
+
+            <tr>
+
+                <td colspan="2">
+                    No Employees Found
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+    </div>
+
+    <div class="box">
+
+        <h3>Quick Links</h3>
+
+        <br>
+
+        <p><a href="{% url 'hr:employee-add' %}">➜ Add Employee</a></p>
+
+        <br>
+
+        <p><a href="{% url 'hr:employee-list' %}">➜ Employee List</a></p>
+
+        <br>
+
+        <p><a href="#">➜ Attendance</a></p>
+
+        <br>
+
+        <p><a href="#">➜ Leave Requests</a></p>
+
+        <br>
+
+        <p><a href="#">➜ Recruitment</a></p>
+
+    </div>
+
+</div>
+
+{% endblock %}

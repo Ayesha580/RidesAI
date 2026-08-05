@@ -1,0 +1,21 @@
+{% extends "customer_base.html" %}
+{% block content %}
+<div class="container py-5 text-center">
+  <h2>Registration Submitted</h2>
+
+  <p class="lead">
+    Thanks for registering{% if company %} <strong>{{ company.name }}</strong>{% endif %}!
+    Your business is currently <strong>Pending Approval</strong>.
+  </p>
+
+  <p>
+    A Super Admin will review your details and payment proof shortly.
+    You'll be able to log in once your business is approved — there's
+    nothing else you need to do right now.
+  </p>
+
+  <a href="{% url 'check-status' %}" class="btn btn-outline-primary mt-3">
+    Check Approval Status
+  </a>
+</div>
+{% endblock %}

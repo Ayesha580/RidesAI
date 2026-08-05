@@ -1,0 +1,171 @@
+{% extends "dashboard/base.html" %}
+
+{% block title %}
+Owner Dashboard
+{% endblock %}
+
+{% block content %}
+
+<div class="cards">
+
+    <div class="card">
+        <h2>{{ employees }}</h2>
+        <p>Total Employees</p>
+    </div>
+
+    <div class="card">
+        <h2>{{ attendance }}</h2>
+        <p>Attendance Records</p>
+    </div>
+
+    <div class="card">
+        <h2>{{ tasks }}</h2>
+        <p>Pending Tasks</p>
+    </div>
+
+    <div class="card">
+        <h2>{{ leads }}</h2>
+        <p>Total Leads</p>
+    </div>
+
+</div>
+
+
+<div class="dashboard-grid">
+
+    <div class="panel">
+
+        <h3>Recent Employees</h3>
+
+        <table>
+
+            <tr>
+                <th>Name</th>
+                <th>Department</th>
+            </tr>
+
+            {% for employee in recent_employees %}
+
+            <tr>
+
+                <td>{{ employee.user.get_full_name }}</td>
+
+                <td>{{ employee.department }}</td>
+
+            </tr>
+
+            {% empty %}
+
+            <tr>
+
+                <td colspan="2">
+                    No Employees
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+    </div>
+
+
+    <div class="panel">
+
+        <h3>Recent Tasks</h3>
+
+        <table>
+
+            <tr>
+
+                <th>Task</th>
+
+                <th>Status</th>
+
+            </tr>
+
+            {% for task in recent_tasks %}
+
+            <tr>
+
+                <td>{{ task.title }}</td>
+
+                <td>{{ task.status }}</td>
+
+            </tr>
+
+            {% empty %}
+
+            <tr>
+
+                <td colspan="2">
+                    No Tasks
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+    </div>
+
+</div>
+
+<div class="charts">
+
+    <div class="chart-card">
+
+        <h3>Business Overview</h3>
+
+        <canvas id="dashboardChart"></canvas>
+
+    </div>
+
+</div>
+{% block js %}
+
+<script>
+
+const ctx = document.getElementById('dashboardChart');
+
+new Chart(ctx, {
+
+    type:'bar',
+
+    data:{
+
+        labels:[
+            {% for item in chart_labels %}
+                "{{ item }}",
+            {% endfor %}
+        ],
+
+        datasets:[{
+
+            label:"Company Statistics",
+
+            data:[
+                {% for item in chart_values %}
+                    {{ item }},
+                {% endfor %}
+            ],
+
+            backgroundColor:[
+                "#2563eb",
+                "#10b981",
+                "#f59e0b",
+                "#ef4444"
+            ]
+
+        }]
+
+    }
+
+});
+
+</script>
+
+{% endblock %}
+{% endblock %}

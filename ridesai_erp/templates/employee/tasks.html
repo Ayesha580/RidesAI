@@ -1,0 +1,80 @@
+<h2>
+My Tasks
+</h2>
+
+
+<table border="1">
+
+
+<tr>
+
+<th>
+Task
+</th>
+
+
+<th>
+Priority
+</th>
+
+
+<th>
+Due Date
+</th>
+
+
+<th>
+Status
+</th>
+
+</tr>
+
+
+
+{% for task in tasks %}
+
+
+<tr>
+
+<td>
+{{task.title}}
+</td>
+
+
+<td>
+{{task.priority}}
+</td>
+
+
+<td>
+{{task.due_date}}
+</td>
+
+
+<td>
+{{task.status}}
+</td>
+
+
+</tr>
+
+
+
+{% empty %}
+
+
+<tr>
+
+<td>
+No Tasks
+
+</td>
+
+</tr>
+
+
+{% endfor %}
+
+
+
+</table>

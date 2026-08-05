@@ -1,0 +1,304 @@
+.employee-task-page{
+
+    padding:30px;
+
+    background:#f8fafc;
+
+    min-height:100vh;
+
+}
+
+
+
+.employee-task-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:30px;
+
+}
+
+
+
+.employee-task-header h2{
+
+    margin:0;
+
+    font-size:28px;
+
+    color:#0f172a;
+
+}
+
+
+.employee-task-header p{
+
+    color:#64748b;
+
+    margin-top:6px;
+
+}
+
+
+
+.task-count{
+
+    background:#be28ee;
+
+    color:white;
+
+    padding:12px 22px;
+
+    border-radius:12px;
+
+    font-weight:600;
+
+}
+
+
+
+
+
+.employee-task-grid{
+
+    display:grid;
+
+    grid-template-columns:
+
+    repeat(auto-fill,minmax(320px,1fr));
+
+    gap:25px;
+
+}
+
+
+
+
+
+.employee-task-card{
+
+    background:white;
+
+    border-radius:18px;
+
+    padding:22px;
+
+    box-shadow:0 5px 20px rgba(0,0,0,0.08);
+
+    transition:.3s;
+
+}
+
+
+
+.employee-task-card:hover{
+
+    transform:translateY(-5px);
+
+}
+
+
+
+
+
+.task-card-top{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+
+
+.task-card-top h3{
+
+    margin:0;
+
+    color:#111827;
+
+    font-size:20px;
+
+}
+
+
+
+
+
+.priority{
+
+    padding:6px 14px;
+
+    border-radius:20px;
+
+    font-size:13px;
+
+    font-weight:600;
+
+}
+
+
+
+.high{
+
+    background:#fee2e2;
+
+    color:#dc2626;
+
+}
+
+
+.medium{
+
+    background:#fef3c7;
+
+    color:#d97706;
+
+}
+
+
+.low{
+
+    background:#dcfce7;
+
+    color:#16a34a;
+
+}
+
+
+
+
+
+.description{
+
+    margin:20px 0;
+
+    color:#475569;
+
+    line-height:1.6;
+
+}
+
+
+
+
+
+.task-info{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    border-top:1px solid #e5e7eb;
+
+    padding-top:15px;
+
+}
+
+
+
+
+
+.task-info div{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:5px;
+
+}
+
+
+
+.task-info label{
+
+    font-size:13px;
+
+    color:#64748b;
+
+}
+
+
+
+.task-info span{
+
+    font-weight:600;
+
+    color:#1e293b;
+
+}
+
+
+
+
+
+.status{
+
+    background:#e0f2fe;
+
+    padding:5px 12px;
+
+    border-radius:15px;
+
+    font-size:13px;
+
+}
+
+
+
+
+
+.complete-btn{
+
+    width:100%;
+
+    margin-top:20px;
+
+    padding:12px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#be27ee;
+
+    color:white;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+}
+
+
+
+.complete-btn:hover{
+
+    background:#be27ee;
+
+}
+
+
+
+
+
+.empty-task{
+
+    background:white;
+
+    padding:40px;
+
+    text-align:center;
+
+    border-radius:15px;
+
+    color:#64748b;
+
+}

@@ -1,0 +1,151 @@
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    padding-bottom: 25px;
+    margin-bottom: 35px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.profile-image {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #dbe3ec;
+}
+
+.profile-header input[type="file"] {
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.profile-header h2 {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 700;
+    color: #222;
+}
+
+.profile-header p {
+    margin: 8px 0 6px;
+    color: #555;
+    font-size: 16px;
+}
+
+.profile-header span {
+    display: inline-block;
+    color: #666;
+    font-size: 14px;
+}
+
+/* ===========================
+   Form Grid
+=========================== */
+
+.profile-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px 30px;
+}
+
+.profile-grid div {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-grid label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 8px;
+}
+
+.profile-grid input,
+.profile-grid select,
+.profile-grid textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 15px;
+    color: #222;
+    background: #fff;
+    transition: border-color .2s ease;
+    box-sizing: border-box;
+}
+
+.profile-grid textarea {
+    resize: vertical;
+    min-height: 110px;
+}
+
+.profile-grid input:focus,
+.profile-grid select:focus,
+.profile-grid textarea:focus {
+    outline: none;
+    border-color: #2563eb;
+}
+
+.profile-grid input[readonly] {
+    background: #f8f9fb;
+    color: #666;
+    cursor: not-allowed;
+}
+
+/* ===========================
+   Button
+=========================== */
+
+.profile-actions {
+    margin-top: 35px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.save-btn {
+    background: #be27eb;
+    color: #fff;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background .2s ease;
+}
+
+.save-btn:hover {
+    background: #be27ee;
+}
+
+/* ===========================
+   Responsive
+=========================== */
+
+@media (max-width: 768px) {
+
+    .employee-dashboard {
+        padding: 20px;
+    }
+
+    .profile-header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .profile-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .profile-actions {
+        justify-content: center;
+    }
+
+    .save-btn {
+        width: 100%;
+    }
+
+}

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}Lead Form{% endblock %}
+{% block content %}
+
+<div class="card" style="max-width:500px;">
+    <h2 style="margin-bottom:20px;">Lead Details</h2>
+    <form method="post">
+        {% csrf_token %}
+        {% for field in form %}
+        <div style="margin-bottom:14px;">
+            <label style="display:block; font-size:13px; font-weight:600; margin-bottom:6px; color:#374151;">{{ field.label }}</label>
+            {{ field }}
+            {{ field.errors }}
+        </div>
+        {% endfor %}
+        <button type="submit" style="background:#2563eb; color:#fff; border:none; padding:12px 24px; border-radius:8px; font-size:14px; font-weight:600; cursor:pointer;">Save</button>
+    </form>
+</div>
+
+<style>
+    input, select, textarea {
+        width: 100%;
+        padding: 10px 12px;
+        border: 1px solid #d1d5db;
+        border-radius: 8px;
+        font-size: 14px;
+        font-family: inherit;
+    }
+</style>
+
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "dashboard/base.html" %}
+
+{% block title %}HR List{% endblock %}
+
+{% block content %}
+
+<h2>HR List</h2>
+
+<table border="1" cellpadding="10" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Designation</th>
+            <th>Department</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+    {% for hr in hrs %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ hr.get_full_name }}</td>
+            <td>{{ hr.email }}</td>
+            <td>{{ hr.phone }}</td>
+            <td>{{ hr.employee.designation }}</td>
+            <td>{{ hr.employee.department }}</td>
+        </tr>
+    {% empty %}
+        <tr>
+            <td colspan="6">
+                No HR found.
+            </td>
+        </tr>
+    {% endfor %}
+
+    </tbody>
+
+</table>
+
+{% endblock %}

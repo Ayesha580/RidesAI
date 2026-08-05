@@ -1,0 +1,53 @@
+.notifications-page{
+    padding:25px;
+    background:#f7f8fc;
+    min-height:100vh;
+}
+
+.notifications-page h2{
+    margin-bottom:20px;
+}
+
+.notification-card{
+    background:#fff;
+    border-radius:10px;
+    padding:20px;
+    margin-bottom:18px;
+    border-left:5px solid #be27ee;
+    box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
+
+.notification-card.unread{
+    background:#faf5ff;
+}
+
+.notification-header{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:12px;
+}
+
+.notification-header h3{
+    margin:0;
+    color:#222;
+}
+
+.notification-header span{
+    color:#888;
+    font-size:13px;
+}
+
+.notification-footer{
+    display:flex;
+    gap:25px;
+    margin-top:18px;
+    flex-wrap:wrap;
+    font-size:14px;
+}
+
+.badge{
+    background:#be27ee;
+    color:#fff;
+    padding:5px 12px;
+    border-radius:20px;
+}

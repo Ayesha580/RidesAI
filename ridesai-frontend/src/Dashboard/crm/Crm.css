@@ -1,0 +1,293 @@
+.crm-page{
+    width:100%;
+    height:calc(100vh - 70px);
+    padding:24px 28px;
+    overflow-y:auto;
+    box-sizing:border-box;
+}
+
+.crm-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:22px;
+}
+
+.crm-header h2{
+    margin:0;
+    font-size:24px;
+    color:#7a1a99;
+}
+
+.crm-header span{
+    color:#b98fd1;
+    font-size:13px;
+}
+
+.crm-upload-btn{
+    padding:10px 20px;
+    border:none;
+    border-radius:10px;
+    background:linear-gradient(135deg,#e79bff,#BE27EE);
+    color:white;
+    font-size:14px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.crm-upload-btn:hover{
+    background:linear-gradient(135deg,#d97dff,#9c19c8);
+}
+
+.crm-table-wrapper{
+    background:#fff;
+    border-radius:16px;
+    box-shadow:0 4px 20px rgba(190,39,238,.06);
+    overflow:hidden;
+}
+
+.crm-loading,
+.crm-empty{
+    padding:60px 20px;
+    text-align:center;
+    color:#c48ede;
+    font-size:15px;
+}
+
+.crm-table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.crm-table thead{
+    background:#fdf1ff;
+}
+
+.crm-table th{
+    text-align:left;
+    padding:14px 18px;
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:.5px;
+    color:#a06bb8;
+    font-weight:700;
+    border-bottom:1px solid #f2e0fa;
+}
+
+.crm-table td{
+    padding:14px 18px;
+    font-size:14px;
+    color:#5a2670;
+    border-bottom:1px solid #f9eefc;
+    vertical-align:middle;
+}
+
+.crm-table tbody tr{
+    cursor:pointer;
+    transition:.2s;
+}
+
+.crm-table tbody tr:hover{
+    background:#fdf1ff;
+}
+
+.lead-name{
+    font-weight:600;
+    color:#4a1d5c;
+}
+
+.lead-business{
+    font-size:12px;
+    color:#c9a3da;
+    margin-top:2px;
+}
+
+.lead-phone{
+    font-size:12px;
+    color:#b48fc4;
+    margin-top:2px;
+}
+
+.score-bar-wrapper{
+    position:relative;
+    width:90px;
+    height:20px;
+    background:#f6e6ff;
+    border-radius:20px;
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+}
+
+.score-bar{
+    position:absolute;
+    left:0;
+    top:0;
+    height:100%;
+    background:linear-gradient(90deg,#e79bff,#BE27EE);
+    border-radius:20px;
+    transition:.3s;
+}
+
+.score-bar-wrapper span{
+    position:relative;
+    z-index:1;
+    margin:0 auto;
+    font-size:11px;
+    font-weight:700;
+    color:#5a2670;
+}
+
+.status-badge{
+    display:inline-block;
+    padding:5px 12px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:600;
+    text-transform:capitalize;
+}
+.lead-delete-btn{
+    width:32px;
+    height:32px;
+    border:none;
+    border-radius:50%;
+    background:#ffe4f2;
+    color:#d63384;
+    font-size:14px;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:.2s;
+}
+
+.lead-delete-btn:hover{
+    background:#ffb8d6;
+    transform:scale(1.08);
+}
+
+.crm-pagination{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:16px;
+    margin-top:18px;
+}
+
+.crm-pagination button{
+    padding:8px 16px;
+    border:1px solid #eeccf7;
+    background:white;
+    color:#7a1a99;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:13px;
+    font-weight:600;
+    transition:.2s;
+}
+
+.crm-pagination button:hover:not(:disabled){
+    background:#fdf1ff;
+}
+
+.crm-pagination button:disabled{
+    opacity:.4;
+    cursor:not-allowed;
+}
+
+.crm-pagination span{
+    font-size:13px;
+    color:#a06bb8;
+}
+
+/* Confirm popup — chat wale jaisa hi reuse kiya */
+.confirm-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(120,40,150,.25);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:1100;
+}
+
+.confirm-box{
+    width:340px;
+    background:#fffafd;
+    border-radius:16px;
+    box-shadow:0 10px 40px rgba(190,39,238,.2);
+    padding:22px 24px;
+}
+
+.confirm-box h4{
+    margin:0 0 10px;
+    color:#7a1a99;
+    font-size:17px;
+}
+
+.confirm-box p{
+    margin:0 0 20px;
+    color:#7a5a8c;
+    font-size:14px;
+    line-height:1.5;
+}
+
+.confirm-box p strong{
+    color:#5a2670;
+}
+
+.confirm-actions{
+    display:flex;
+    justify-content:flex-end;
+    gap:10px;
+}
+
+.confirm-cancel{
+    padding:9px 16px;
+    border:1px solid #eeccf7;
+    background:white;
+    color:#a06bb8;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:14px;
+}
+
+.confirm-cancel:hover{
+    background:#fdf1ff;
+}
+
+.confirm-delete{
+    padding:9px 18px;
+    border:none;
+    background:linear-gradient(135deg,#ff8fb3,#d63384);
+    color:white;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:14px;
+    font-weight:600;
+}
+
+.confirm-delete:hover{
+    background:linear-gradient(135deg,#ff7aa3,#c02171);
+}
+
+.confirm-delete:disabled,
+.confirm-cancel:disabled{
+    opacity:.5;
+    cursor:not-allowed;
+}
+.crm-mailbox-banner {
+    background: #fef3c7;
+    color: #92400e;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    margin-bottom: 16px;
+}
+
+.crm-mailbox-banner a {
+    color: #92400e;
+    font-weight: 600;
+    text-decoration: underline;
+}

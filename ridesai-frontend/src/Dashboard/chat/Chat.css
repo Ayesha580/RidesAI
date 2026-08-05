@@ -1,0 +1,7 @@
+.chat-page{
+    width:100%;
+    height:calc(100vh - 70px);
+    display:flex;
+    background:#fdf5ff;
+    overflow:hidden;
+}

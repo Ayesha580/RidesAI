@@ -1,0 +1,287 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@600&display=swap");
+
+.plans-page {
+  min-height: 100vh;
+  background: #f6f8fb;
+  padding: 88px 20px 100px;
+  font-family: "Inter", -apple-system, sans-serif;
+}
+
+.plans-shell {
+  max-width: 1160px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.plans-eyebrow {
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #7a46e0;
+  margin: 0 0 14px;
+}
+
+.plans-title {
+  font-family: "Manrope", sans-serif;
+  font-weight: 800;
+  font-size: clamp(32px, 4vw, 46px);
+  line-height: 1.15;
+  color: #101828;
+  margin: 0 0 16px;
+  letter-spacing: -0.02em;
+}
+
+.plans-subtitle {
+  font-size: 17px;
+  color: #667085;
+  margin: 0 0 56px;
+}
+
+.plans-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 28px;
+  align-items: stretch;
+}
+
+.plan-card {
+  position: relative;
+  background: #ffffff;
+  border: 1px solid #e4e7ec;
+  border-radius: 20px;
+  padding: 40px 32px 32px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.plan-card:hover {
+  transform: translateY(-6px);
+  border-color: color-mix(in srgb, var(--accent) 35%, #e4e7ec);
+  box-shadow: 0 20px 40px -12px color-mix(in srgb, var(--accent) 25%, transparent);
+}
+
+.plan-card--featured {
+  border: 1.5px solid var(--accent);
+  box-shadow: 0 24px 48px -16px color-mix(in srgb, var(--accent) 35%, transparent);
+}
+
+@media (min-width: 860px) {
+  .plan-card--featured {
+    transform: translateY(-14px);
+  }
+  .plan-card--featured:hover {
+    transform: translateY(-20px);
+  }
+}
+
+.plan-ribbon {
+  position: absolute;
+  top: -14px;
+  left: 32px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 6px 14px;
+  border-radius: 999px;
+}
+
+.plan-badge {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Manrope", sans-serif;
+  font-weight: 800;
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.plan-name {
+  font-family: "Manrope", sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: #101828;
+  margin: 0 0 6px;
+}
+
+.plan-tagline {
+  font-size: 14px;
+  color: #667085;
+  margin: 0 0 26px;
+  min-height: 40px;
+}
+
+.plan-price {
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+  margin-bottom: 26px;
+  font-family: "JetBrains Mono", monospace;
+  color: #101828;
+}
+
+.plan-price-currency {
+  font-size: 20px;
+  font-weight: 600;
+  align-self: flex-start;
+  margin-top: 6px;
+  color: var(--accent);
+}
+
+.plan-price-value {
+  font-size: 48px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.plan-price-period {
+  font-size: 15px;
+  color: #98a2b3;
+  font-family: "Inter", sans-serif;
+  margin-left: 4px;
+}
+
+.plan-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 32px;
+  flex-grow: 1;
+}
+
+.plan-features li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 0;
+  border-bottom: 1px solid #f0f2f5;
+  font-size: 14.5px;
+  color: #344054;
+}
+
+.plan-features li:last-child {
+  border-bottom: none;
+}
+
+.plan-check {
+  flex-shrink: 0;
+  color: var(--accent);
+}
+
+.plan-cta {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: "Inter", sans-serif;
+  cursor: pointer;
+  transition: filter 0.2s ease, transform 0.15s ease;
+}
+
+.plan-cta:hover {
+  filter: brightness(1.08);
+}
+
+.plan-cta:active {
+  transform: scale(0.98);
+}
+
+.plan-cta:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--accent) 45%, transparent);
+  outline-offset: 2px;
+}
+
+.billing-switch{
+    width:max-content;
+    margin:35px auto 25px;
+    background:#fff;
+    border:1px solid #e5e7eb;
+    border-radius:999px;
+    padding:5px;
+    display:flex;
+    gap:6px;
+    box-shadow:0 8px 30px rgba(0,0,0,.06);
+}
+.billing-switch button{
+    border:none;
+    background:transparent;
+    padding:12px 30px;
+    border-radius:40px;
+    cursor:pointer;
+    font-weight:600;
+    transition:.3s;
+    color:#555;
+    position:relative;
+}
+.plan-old-price {
+  font-size: 18px;
+  color: #9ca3af;
+  text-decoration: line-through;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.billing-switch button.active{
+    background:#be27ee;
+    color:#fff;
+    box-shadow:0 8px 20px rgba(190,39,238,.25);
+}
+
+.billing-switch span{
+    position:absolute;
+    top:-10px;
+    right:-8px;
+    background:#16a34a;
+    color:#fff;
+    padding:2px 8px;
+    font-size:11px;
+    border-radius:20px;
+}
+
+.pricing-note{
+    max-width:700px;
+    margin:0 auto 45px;
+    background:#f7f3ff;
+    border-left:4px solid #be27ee;
+    padding:18px 24px;
+    border-radius:12px;
+    color:#555;
+    line-height:1.6;
+}
+
+.save-badge{
+    display:inline-block;
+    margin-top:10px;
+    background:#dcfce7;
+    color:#15803d;
+    padding:5px 14px;
+    border-radius:20px;
+    font-size:13px;
+    font-weight:600;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .plan-card,
+  .plan-cta {
+    transition: none;
+  }
+  .plan-card--featured,
+  .plan-card:hover,
+  .plan-card--featured:hover {
+    transform: none;
+  }
+}
