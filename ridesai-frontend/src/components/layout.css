@@ -155,38 +155,7 @@
 
 /* Responsive */
 
-@media(max-width:900px){
 
-.site-header{
-  padding:16px 20px;
-  flex-direction:column;
-  gap:18px;
-}
-
-.site-nav{
-  flex-wrap:wrap;
-  justify-content:center;
-}
-
-}
-
-@media(max-width:600px){
-
-.brand{
-  font-size:18px;
-}
-
-.brand-logo{
-  width:42px;
-  height:42px;
-}
-
-.site-nav a{
-  padding:8px 14px;
-  font-size:14px;
-}
-
-}
 
 
 /* =========================
@@ -265,6 +234,139 @@
 .footer-bottom a:hover{
   color:var(--primary);
 }
+/* Hamburger hidden on desktop */
+
+.menu-toggle{
+    display:none;
+    background:none;
+    border:none;
+    color:#fff;
+    font-size:30px;
+    cursor:pointer;
+    padding:4px 8px;
+}
+
+/* Mobile */
+
+@media (max-width:900px){
+
+.menu-toggle{
+    display:block;
+}
+
+.site-header{
+    padding:14px 18px;
+    position:relative;
+}
+
+.site-nav{
+    position:absolute;
+    top:100%;
+    left:0;
+    width:100%;
+    background:var(--ink);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:8px;
+    padding:0 18px;
+
+    max-height:0;
+    overflow:hidden;
+    opacity:0;
+
+    transition:all .35s ease;
+    border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.site-nav.show{
+    max-height:450px;
+    opacity:1;
+    padding:18px;
+}
+
+.site-nav a{
+    width:100%;
+    text-align:center;
+    padding:14px;
+}
+
+.nav-cta{
+    margin:10px 0 0;
+    width:100%;
+}
+}
+@media (max-width:900px){
+
+.site-header{
+    padding:14px 16px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:12px;
+}
+
+.brand{
+    font-size:20px;
+}
+
+.brand-logo{
+    width:42px;
+    height:42px;
+}
+
+.site-nav{
+    width:100%;
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:8px;
+}
+
+.site-nav a{
+    padding:10px 14px;
+    font-size:14px;
+}
+
+.nav-cta{
+    margin-left:0;
+}
+
+}
+@media (max-width:600px){
+
+.site-header{
+    padding:12px;
+}
+
+.brand{
+    font-size:18px;
+}
+
+.brand-logo{
+    width:38px;
+    height:38px;
+}
+
+.site-nav{
+    gap:8px;
+}
+
+.site-nav a{
+    flex:1 1 calc(50% - 8px);
+    text-align:center;
+    padding:10px;
+    font-size:13px;
+}
+
+.nav-cta{
+    flex:1 1 100%;
+}
+
+}
+
 
 /* Responsive */
 
