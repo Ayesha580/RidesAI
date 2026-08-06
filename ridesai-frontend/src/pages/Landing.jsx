@@ -12,8 +12,8 @@ const stackModules = [
 ];
 
 const allModules = [
-  { icon: "🧑‍💼", title: "HR", text: "Employee records, onboarding and documents in one place." },
-  { icon: "⏱️", title: "Attendance", text: "Clock-ins, leave requests and shift tracking, automated." },
+  { icon: "🧑‍💼", title: "HRMS", text: "Employee records, onboarding and documents in one place." },
+  { icon: "⏱️", title: "Employee management software EMS", text: "Clock-ins, leave requests and shift tracking, automated." },
   // { icon: "💳", title: "Payroll", text: "Salaries, taxes and payslips calculated without spreadsheets." },
   { icon: "📇", title: "CRM", text: "Every lead, deal and follow-up tracked from first contact." },
   // { icon: "📊", title: "Accounting", text: "Invoices, expenses and ledgers that stay reconciled." },
