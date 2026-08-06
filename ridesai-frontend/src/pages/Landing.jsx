@@ -4,8 +4,8 @@ import Footer from "../components/Footer";
 import "./landing.css";
 
 const stackModules = [
-  { icon: "🧑‍💼", bg: "#E7D8FB", title: "HR", text: "Onboarding & records" },
-  { icon: "⏱️", bg: "#F3E7FB", title: "Attendance", text: "Clock-ins, leaves" },
+  { icon: "🧑‍💼", bg: "#E7D8FB", title: "HRMS", text: "Onboarding & records" },
+  { icon: "⏱️", bg: "#F3E7FB", title: "Employee management software EMS", text: "Clock-ins, leaves" },
   // { icon: "💳", bg: "#E7D8FB", title: "Payroll", text: "Runs itself monthly" },
   { icon: "📇", bg: "#F3E7FB", title: "CRM", text: "Leads & deals in one view" },
   { icon: "📦", bg: "#E7D8FB", title: "Dashboard", text: "Display All data" },
