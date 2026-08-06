@@ -11,7 +11,7 @@ export default function Footer() {
             Rides AI
           </Link>
           <p>
-            Rides AI helps businesses streamline HR, attendance, and workforce management with an intelligent, easy-to-use platform.
+            Rides AI helps businesses streamline HRMS, attendance, and workforce management with an intelligent, easy-to-use platform.
           </p>
         </div>
 
