@@ -4,18 +4,18 @@ import Footer from "../components/Footer";
 import "./landing.css";
 
 const stackModules = [
-  { icon: "🧑‍💼", bg: "#E7D8FB", title: "HRMS", text: "Onboarding & records" },
-  { icon: "⏱️", bg: "#F3E7FB", title: "Employee management software EMS", text: "Clock-ins, leaves" },
+  { icon: "🧑‍💼", bg: "#E7D8FB", title: "Human Resource Management System", text: "Onboarding & records" },
+  { icon: "⏱️", bg: "#F3E7FB", title: "Employee management software", text: "Clock-ins, leaves" },
   // { icon: "💳", bg: "#E7D8FB", title: "Payroll", text: "Runs itself monthly" },
-  { icon: "📇", bg: "#F3E7FB", title: "CRM", text: "Leads & deals in one view" },
+  { icon: "📇", bg: "#F3E7FB", title: "Customer Relationship Management", text: "Leads & deals in one view" },
   { icon: "📦", bg: "#E7D8FB", title: "Dashboard", text: "Display All data" },
 ];
 
 const allModules = [
-  { icon: "🧑‍💼", title: "HRMS", text: "Employee records, onboarding and documents in one place." },
-  { icon: "⏱️", title: "Employee management software EMS", text: "Clock-ins, leave requests and shift tracking, automated." },
+  { icon: "🧑‍💼", title: "Human Resource Management System", text: "Employee records, onboarding and documents in one place." },
+  { icon: "⏱️", title: "Employee management software", text: "Clock-ins, leave requests and shift tracking, automated." },
   // { icon: "💳", title: "Payroll", text: "Salaries, taxes and payslips calculated without spreadsheets." },
-  { icon: "📇", title: "CRM", text: "Every lead, deal and follow-up tracked from first contact." },
+  { icon: "📇", title: "Customer Relationship Management", text: "Every lead, deal and follow-up tracked from first contact." },
   // { icon: "📊", title: "Accounting", text: "Invoices, expenses and ledgers that stay reconciled." },
   // { icon: "📦", title: "Inventory", text: "Stock levels and orders synced across every location." },
   // { icon: "🤖", title: "AI Assistant", text: "Asks your data questions and gets a straight answer back." },
