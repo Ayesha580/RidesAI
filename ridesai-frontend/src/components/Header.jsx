@@ -24,6 +24,7 @@ export default function Header() {
         <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
         <a href="#modules" onClick={() => setMenuOpen(false)}>Modules</a>
         <Link to="/work" onClick={() => setMenuOpen(false)}>How it works</Link>
+        <Link to="/pricing">Pricing</Link>
         <Link
           to="/register"
           className="nav-cta"
