@@ -50,7 +50,7 @@ export default function Landing() {
 
           <div className="hero-ctas">
             <button className="btn-primary" onClick={() => navigate("/register")}>
-              Register your business
+              Get Started
             </button>
             <a href="#features" className="btn-ghost">
               See how it works
@@ -136,7 +136,7 @@ export default function Landing() {
           <p>Set up takes minutes. Cancel anytime.</p>
         </div>
         <button className="btn-primary" onClick={() => navigate("/register")}>
-          Register your business
+          Get Started
         </button>
       </div>
 
