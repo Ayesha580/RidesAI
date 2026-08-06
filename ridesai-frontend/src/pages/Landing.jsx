@@ -44,7 +44,7 @@ export default function Landing() {
             from <span className="accent">one dashboard</span>
           </h1>
           <p className="lede">
-              Simplify your business with HR, attendance and CRM — all managed
+              Simplify your business with HRMS, attendance and CRM — all managed
               from one intuitive dashboard, so your team can work faster and more efficiently.
             </p>
 
