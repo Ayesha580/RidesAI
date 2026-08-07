@@ -29,14 +29,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv("DEBUG", "False") == "True"
-
+DEBUG = True
 ALLOWED_HOSTS = []
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'daphne',
     'corsheaders',
     'django.contrib.admin',
@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-'rest_framework_simplejwt.token_blacklist',
+    'rest_framework_simplejwt.token_blacklist',
     'rest_framework',
     'companies',
     'accounts',
@@ -56,7 +56,7 @@ INSTALLED_APPS = [
     'hr',
     'billing',
     'employees',
-'chat.apps.ChatConfig',
+    'chat.apps.ChatConfig',
     'channels',
     'integrations'
 
@@ -203,17 +203,53 @@ ALLOWED_HOSTS = [
     "ridesai.cloud",
     "www.ridesai.cloud",
     "187.127.217.78",
+    "127.0.0.1"
 ]
 CSRF_TRUSTED_ORIGINS = [
     "https://ridesai.cloud",
     "https://www.ridesai.cloud",
-    "http://localhost:5173",   
+    "http://localhost:5173",
+"http://127.0.0.1:8000",
+
 ]
 
 CORS_ALLOWED_ORIGINS = [
     "https://ridesai.cloud",
     "https://www.ridesai.cloud",
     "http://localhost:5173",   # agar local testing bhi karni hai
+    "http://127.0.0.1:8000"
 ]
 ROTATE_REFRESH_TOKENS = True,
 BLACKLIST_AFTER_ROTATION =  True,
+JAZZMIN_SETTINGS = {
+    "site_title": "Rides AI Admin",
+    "site_header": "Rides AI",
+    "site_brand": "Rides AI",
+    "welcome_sign": "Welcome to Rides AI Management Portal",
+    "copyright": "Rides Technologies",
+
+    "show_ui_builder": True,
+
+    "login_logo": "images/rides-logo.png",
+    "site_logo": "images/rides-logo.png",
+
+    "icons": {
+        "accounts.User": "fas fa-users",
+        "companies.Company": "fas fa-building",
+        "billing.Plan": "fas fa-credit-card",
+        "hr.Task": "fas fa-tasks",
+        "chat.Conversation": "fas fa-robot",
+    },
+
+    "navigation_expanded": True,
+
+    "hide_apps": [],
+
+    "order_with_respect_to": [
+        "companies",
+        "accounts",
+        "chat",
+        "hr",
+        "billing",
+    ],
+}

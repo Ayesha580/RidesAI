@@ -84,16 +84,22 @@ path(
         ),
         path("employee/screenshots/upload/", views.UploadScreenshotAPIView.as_view()),
         path("screenshots/", views.ScreenshotListAPIView.as_view()),
-        path("company/office-hours/", views.OfficeHoursAPIView.as_view(), name="office-hours"),    
-    path(
-
-        "documents/",
-
-        views.EmployeeDocumentAPIView.as_view(),
-
-        name="employee-documents"
-
-    ),
+        path("company/office-hours/", views.OfficeHoursAPIView.as_view(), name="office-hours"),
+        path(
+            "employees/<int:employee_id>/documents/",
+            views.HREmployeeDocumentListAPIView.as_view(),
+            name="hr-employee-documents",
+        ),
+        path(
+            "documents/upload/",
+            views.HRDocumentUploadAPIView.as_view(),
+            name="hr-document-upload",
+        ),
+        path(
+            "documents/<int:pk>/delete/",
+            views.HRDocumentDeleteAPIView.as_view(),
+            name="hr-document-delete",
+        ),
     path(
             "attendance/check-in/",
             views.CheckInAPIView.as_view()

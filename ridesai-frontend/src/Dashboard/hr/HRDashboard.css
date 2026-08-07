@@ -613,3 +613,8 @@ body{
 
 }
 
+.sidebar{ width:260px; }
+@media(max-width:900px){
+    .sidebar{ display:none; }   /* alag breakpoint, alag strategy, koi toggle nahi */
+}
+

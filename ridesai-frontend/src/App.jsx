@@ -63,9 +63,21 @@ import OwnerTasks from "./dashboard/owner/OwnerTasks";
 import OwnerEmployees from "./dashboard/owner/EmployeesList"
 import OwnerAllAttendance from "./dashboard/owner/Attendanceall"
 import OwnerProfile from "./dashboard/owner/Profile"
+<<<<<<< HEAD
 import PrivacyPolicy from "./pages/PrivacyPolicy"
 import RefundPolicy from "./pages/RefundPolicy"
 import TermofServices from "./pages/TermofServices"
+=======
+import AdminDashboard from "./admin/AdminDashboard";
+import AdminLogin from "./admin/AdminLogin"
+import AdminBusinesses from "./admin/Businesses"
+import AdminUsers from "./admin/Users"
+import AdminPayments from "./admin/Payments"
+import PrivacyPolicy from "./pages/PrivacyPolicy"
+import RefundPolicy from "./pages/RefundPolicy"
+import TermofServices from "./pages/TermofServices"
+
+>>>>>>> 5fcabad (Update frontend and dashboard)
 
 export default function App() {
 
@@ -93,8 +105,6 @@ element={<Register />}
 path="/login"
 element={<Login />}
 />
-
-
 
 <Route
 path="/select-plan"
@@ -136,8 +146,16 @@ element={<TermofServices />}
 path="/refundpolicy"
 element={<RefundPolicy />}
 />
+<<<<<<< HEAD
+=======
 
-{/* Manager Dashboard Routes */}
+<Route path="/admin" element={<AdminLogin />} />
+<Route path="/admin/dashboard" element={<AdminDashboard />} />
+<Route path="/admin/businesses" element={<AdminBusinesses />} />
+<Route path="/admin/users" element={<AdminUsers />} />
+<Route path="/admin/payments" element={<AdminPayments />} />
+>>>>>>> 5fcabad (Update frontend and dashboard)
+
 <Route element={<ManagerLayout />}>
 
     <Route

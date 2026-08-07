@@ -1,21 +1,22 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import { hasFeature } from "../../utils/planAccess";
+import "../../components/sidebar.css";
 
 const menu = [
   { title: "Dashboard", path: "/hr/dashboard", icon: "📊" },
   { title: "Employees", path: "/hr/employees", icon: "👨‍💻" },
   { title: "Attendance", path: "/hr/attendance", icon: "🕒" },
   { title: "Tasks", path: "/hr/tasks", icon: "📋" },
-    { title: "Announcements", path: "/hr/announcements", icon: "📋" },
+  { title: "Announcements", path: "/hr/announcements", icon: "📋" },
   { title: "Leaves", path: "/hr/leaves", icon: "📋" },
   { title: "Applications", path: "/hr/applications", icon: "📄" },
   {
-  title: "Chat",
-  path: "/hr/chat",
-  icon: "💬",
-  feature:"team_chat"
-},
+    title: "Chat",
+    path: "/hr/chat",
+    icon: "💬",
+    feature: "team_chat",
+  },
 ];
 
 export default function HRSidebar() {
@@ -30,9 +31,14 @@ export default function HRSidebar() {
   };
 
   return (
-    <aside className="sidebar">
-      <div className="logo">
-        <img src={logo} alt="Rides AI Logo" className="logo-img" />
+    <aside className="ridesai-side">
+
+      <div className="ridesai-side-logo">
+        <img
+          src={logo}
+          alt="Rides AI Logo"
+          className="ridesai-side-logo-img"
+        />
 
         <div>
           <h2>Rides AI</h2>
@@ -40,28 +46,33 @@ export default function HRSidebar() {
         </div>
       </div>
 
-      <ul className="menu">
+      <ul className="ridesai-side-menu">
         {menu
-        .filter((item)=> !item.feature || hasFeature(item.feature))
-        .map((item) => (
-          <li key={item.path}>
-            <NavLink
-              to={item.path}
-              className={({ isActive }) => (isActive ? "active" : "")}
-            >
-              <span>{item.icon}</span>
-              {item.title}
-            </NavLink>
-          </li>
-        ))}
+          .filter((item) => !item.feature || hasFeature(item.feature))
+          .map((item) => (
+            <li key={item.path}>
+              <NavLink
+                to={item.path}
+                className={({ isActive }) =>
+                  isActive ? "ridesai-side-active" : ""
+                }
+              >
+                <span>{item.icon}</span>
+                {item.title}
+              </NavLink>
+            </li>
+          ))}
       </ul>
 
-      {/* Logout */}
-      <div className="sidebar-footer">
-        <button className="logout-btn" onClick={handleLogout}>
+      <div className="ridesai-side-footer">
+        <button
+          className="ridesai-side-logout-btn"
+          onClick={handleLogout}
+        >
           🚪 Logout
         </button>
       </div>
+
     </aside>
   );
 }

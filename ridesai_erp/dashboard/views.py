@@ -7,6 +7,61 @@ from crm.models import Lead
 from hr.models import Employee, Attendance, Task
 from accounts.models import User
 from accounts.permissions import IsAccountant, IsOwner,IsHR,IsEmployee,IsManager
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework.permissions import IsAdminUser
+from rest_framework.permissions import AllowAny
+from accounts.models import User
+from companies.models import Company
+from crm.models import Lead
+from chat.models import Conversation
+from hr.models import Employee, Task
+
+
+class AdminDashboardAPIView(APIView):
+    permission_classes = [AllowAny]
+
+    def get(self, request):
+        data = {
+            "stats": {
+                "total_users": User.objects.exclude(is_superuser=True).count(),
+                "total_companies": Company.objects.count(),
+                "total_leads": Lead.objects.count(),
+                "total_conversations": Conversation.objects.count(),
+                "total_tasks": Task.objects.count(),
+
+                # Role Counts
+                "total_owners": User.objects.filter(role=User.ROLE_OWNER).count(),
+                "total_managers": User.objects.filter(role=User.ROLE_MANAGER).count(),
+                "total_hr": User.objects.filter(role=User.ROLE_HR).count(),
+                "total_employees": User.objects.filter(role=User.ROLE_EMPLOYEE).count(),
+                "total_accountants": User.objects.filter(role=User.ROLE_ACCOUNTANT).count(),
+                "total_superadmins": User.objects.filter(is_superuser=True).count(),
+            },
+
+            "recent_companies": list(
+                Company.objects.order_by("-id").values(
+                    "id",
+                    "name",
+                )[:5]
+            ),
+
+            "recent_leads": list(
+                Lead.objects.order_by("-id").values(
+                    "id",
+                    "full_name",
+                    "business_name",
+                    "email",
+                    "phone",
+                    "status",
+                )[:5]
+            ),
+        }
+
+        return Response(data)
+
+
+
 
 
 class OwnerDashboardAPIView(APIView):

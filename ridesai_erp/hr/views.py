@@ -671,34 +671,106 @@ class BreakEndAPIView(APIView):
 
 class EmployeeDocumentAPIView(APIView):
 
-    permission_classes = [
-
-        IsAuthenticated,
-
-        IsEmployee
-
-    ]
+    permission_classes = [IsAuthenticated, IsEmployee]
 
     def get(self, request):
-
         employee = request.user.employee_profile
-
         documents = EmployeeDocument.objects.filter(
-
             employee=employee
-
         ).order_by("-uploaded_at")
-
-        serializer = EmployeeDocumentSerializer(
-
-            documents,
-
-            many=True
-
-        )
-
+        serializer = EmployeeDocumentSerializer(documents, many=True)
         return Response(serializer.data)
 
+    def post(self, request):
+        employee = request.user.employee_profile
+        file_obj = request.FILES.get("file")
+
+        if not file_obj:
+            return Response({"error": "File is required"}, status=400)
+
+        title = request.data.get("title") or file_obj.name
+        document_type = request.data.get("document_type", "Other")
+
+        document = EmployeeDocument.objects.create(
+            employee=employee,
+            title=title,
+            document_type=document_type,
+            file=file_obj,
+        )
+
+        serializer = EmployeeDocumentSerializer(document)
+        return Response(
+            {"message": "Document uploaded successfully", "data": serializer.data},
+            status=201,
+        )
+# ---------- HR: Employee Documents ----------
+
+class HREmployeeDocumentListAPIView(APIView):
+    """HR kisi bhi employee ke documents dekh sake."""
+    permission_classes = [IsAuthenticated, IsHR]
+
+    def get(self, request, employee_id):
+        employee = get_object_or_404(
+            Employee,
+            id=employee_id,
+            company=request.user.company,
+        )
+        documents = EmployeeDocument.objects.filter(
+            employee=employee
+        ).order_by("-uploaded_at")
+        serializer = EmployeeDocumentSerializer(documents, many=True)
+        return Response(serializer.data)
+
+
+class HRDocumentUploadAPIView(APIView):
+    """HR kisi employee ke liye document upload kare (CNIC/Contract/Certificate)."""
+    permission_classes = [IsAuthenticated, IsHR]
+
+    def post(self, request):
+        employee_id = request.data.get("employee_id")
+
+        if not employee_id:
+            return Response({"error": "employee_id is required"}, status=400)
+
+        employee = get_object_or_404(
+            Employee,
+            id=employee_id,
+            company=request.user.company,
+        )
+
+        file_obj = request.FILES.get("file")
+        if not file_obj:
+            return Response({"error": "File is required"}, status=400)
+
+        title = request.data.get("title") or file_obj.name
+        document_type = request.data.get("document_type", "Other")
+
+        document = EmployeeDocument.objects.create(
+            employee=employee,
+            title=title,
+            document_type=document_type,
+            file=file_obj,
+        )
+
+        serializer = EmployeeDocumentSerializer(document)
+        return Response(
+            {"message": "Document uploaded successfully", "data": serializer.data},
+            status=201,
+        )
+
+
+class HRDocumentDeleteAPIView(APIView):
+    """HR document delete kar sake (sirf apni company ke andar)."""
+    permission_classes = [IsAuthenticated, IsHR]
+
+    def delete(self, request, pk):
+        document = get_object_or_404(
+            EmployeeDocument,
+            id=pk,
+            employee__company=request.user.company,
+        )
+        document.delete()
+        return Response({"message": "Document deleted successfully"})
 class EmployeeProfileAPIView(APIView):
 
     permission_classes = [
