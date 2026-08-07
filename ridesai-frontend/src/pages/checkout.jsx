@@ -85,7 +85,6 @@ export default function Checkout() {
   return (
     <>
       <Header />
-
       <div
         style={{
           minHeight: "100vh",
@@ -119,84 +118,73 @@ export default function Checkout() {
             </p>
 
             <div
-  style={{
-    border: "1px solid #e5e7eb",
-    borderRadius: "15px",
-    padding: "30px",
-  }}
->
-  <h2 style={{ marginBottom: "25px", color: "#111827" }}>
-    Included Features
-  </h2>
+              style={{
+                border: "1px solid #e5e7eb",
+                borderRadius: "15px",
+                padding: "30px",
+              }}
+            >
+              <h2 style={{ marginBottom: "25px", color: "#111827" }}>
+                Included Features
+              </h2>
 
-  {(plan.features || []).map((feature) => (
-    <div
-      key={feature}
-      style={{
-        display: "flex",
-        alignItems: "center",
-        marginBottom: "18px",
-        fontSize: "17px",
-      }}
-    >
-      <span
-        style={{
-          color: "#22c55e",
-          marginRight: "12px",
-          fontSize: "22px",
-        }}
-      >
-        ✔
-      </span>
+              {(plan.features || []).map((feature) => (
+                <div
+                  key={feature}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    marginBottom: "18px",
+                    fontSize: "17px",
+                  }}
+                >
+                  <span style={{ color: "#22c55e", marginRight: "12px", fontSize: "22px" }}>
+                    ✔
+                  </span>
+                  {feature}
+                </div>
+              ))}
+            </div>
 
-      {feature}
-    </div>
-  ))}
+            {/* BUTTONS - ab left side pr, ek hi line mein side by side */}
+            <div style={{ marginTop: "30px", display: "flex", gap: "15px" }}>
+              <button
+                onClick={handlePayment}
+                disabled={processing}
+                style={{
+                  flex: 1,
+                  padding: "18px",
+                  border: "none",
+                  borderRadius: "12px",
+                  background: "#be27ee",
+                  color: "#fff",
+                  fontSize: "18px",
+                  fontWeight: "700",
+                  cursor: processing ? "not-allowed" : "pointer",
+                }}
+              >
+                {processing ? "Processing..." : "Pay Now →"}
+              </button>
 
-  {/* Buttons */}
-  <div
-    style={{
-      marginTop: "35px",
-      display: "flex",
-      gap: "15px",
-    }}
-  >
-    <button
-      onClick={handlePayment}
-      disabled={processing}
-      style={{
-        padding: "16px 35px",
-        border: "none",
-        borderRadius: "12px",
-        background: "#be27ee",
-        color: "#fff",
-        fontSize: "18px",
-        fontWeight: "700",
-        cursor: processing ? "not-allowed" : "pointer",
-      }}
-    >
-      {processing ? "Processing..." : "Pay Now →"}
-    </button>
-
-    <button
-      onClick={() => navigate("/select-plan")}
-      disabled={processing}
-      style={{
-        padding: "16px 35px",
-        borderRadius: "12px",
-        background: "#fff",
-        border: "1px solid #d1d5db",
-        fontSize: "16px",
-        color: "#000",
-        fontWeight: "600",
-        cursor: "pointer",
-      }}
-    >
-      Change Plan
-    </button>
-  </div>
-
-</div>
+              <button
+                onClick={() => navigate("/select-plan")}
+                disabled={processing}
+                style={{
+                  flex: 1,
+                  padding: "16px",
+                  borderRadius: "12px",
+                  background: "#fff",
+                  border: "1px solid #d1d5db",
+                  fontSize: "16px",
+                  color: "#000",
+                  cursor: "pointer",
+                  fontWeight: "600",
+                }}
+              >
+                Change Plan
+              </button>
+            </div>
+          </div>
 
           {/* RIGHT SIDE */}
           <div
