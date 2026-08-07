@@ -30,8 +30,9 @@ export default function Footer() {
 
         <div className="footer-col">
           <h5>Legal</h5>
-          <span>Privacy policy</span>
-          <span>Terms of service</span>
+          <a href="/privacypolicy">Privacy Policy</a>
+          <a href="/termofservices">Term of Services</a>
+          <a href="/refundpolicy">Cancel & Refund Policy</a>
         </div>
       </div>
 
