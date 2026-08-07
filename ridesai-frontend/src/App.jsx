@@ -63,6 +63,9 @@ import OwnerTasks from "./dashboard/owner/OwnerTasks";
 import OwnerEmployees from "./dashboard/owner/EmployeesList"
 import OwnerAllAttendance from "./dashboard/owner/Attendanceall"
 import OwnerProfile from "./dashboard/owner/Profile"
+import PrivacyPolicy from "./pages/PrivacyPolicy"
+import RefundPolicy from "./pages/RefundPolicy"
+import TermofServices from "./pages/TermofServices"
 
 export default function App() {
 
@@ -121,7 +124,18 @@ element={<ContactPage />}
 path="/work"
 element={<HowItWorks />}
 />
-
+<Route
+path="/privacypolicy"
+element={<PrivacyPolicy />}
+/>
+<Route
+path="/termofservices"
+element={<TermofServices />}
+/>
+<Route
+path="/refundpolicy"
+element={<RefundPolicy />}
+/>
 
 {/* Manager Dashboard Routes */}
 <Route element={<ManagerLayout />}>
