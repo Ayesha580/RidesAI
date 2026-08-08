@@ -4,11 +4,11 @@ import "./admin.css";
 
 export default function AdminLayout({ children }) {
   return (
-    <div className="admin-wrapper">
+    <div className="rideai_admin_wrapper">
       <Sidebar />
-      <div className="admin-content">
+      <div className="rideai_admin_content">
         <Header />
-        <main>{children}</main>
+        <main className="rideai_admin_main">{children}</main>
       </div>
     </div>
   );

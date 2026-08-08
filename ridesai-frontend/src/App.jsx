@@ -63,11 +63,6 @@ import OwnerTasks from "./dashboard/owner/OwnerTasks";
 import OwnerEmployees from "./dashboard/owner/EmployeesList"
 import OwnerAllAttendance from "./dashboard/owner/Attendanceall"
 import OwnerProfile from "./dashboard/owner/Profile"
-<<<<<<< HEAD
-import PrivacyPolicy from "./pages/PrivacyPolicy"
-import RefundPolicy from "./pages/RefundPolicy"
-import TermofServices from "./pages/TermofServices"
-=======
 import AdminDashboard from "./admin/AdminDashboard";
 import AdminLogin from "./admin/AdminLogin"
 import AdminBusinesses from "./admin/Businesses"
@@ -76,8 +71,7 @@ import AdminPayments from "./admin/Payments"
 import PrivacyPolicy from "./pages/PrivacyPolicy"
 import RefundPolicy from "./pages/RefundPolicy"
 import TermofServices from "./pages/TermofServices"
-
->>>>>>> 5fcabad (Update frontend and dashboard)
+import Plans from "./admin/Plan";
 
 export default function App() {
 
@@ -146,17 +140,21 @@ element={<TermofServices />}
 path="/refundpolicy"
 element={<RefundPolicy />}
 />
-<<<<<<< HEAD
-=======
+
 
 <Route path="/admin" element={<AdminLogin />} />
 <Route path="/admin/dashboard" element={<AdminDashboard />} />
 <Route path="/admin/businesses" element={<AdminBusinesses />} />
 <Route path="/admin/users" element={<AdminUsers />} />
 <Route path="/admin/payments" element={<AdminPayments />} />
->>>>>>> 5fcabad (Update frontend and dashboard)
+<Route path="/admin/plans" element={<Plans />} />
 
-<Route element={<ManagerLayout />}>
+
+<Route element={
+  <ProtectedRoute>
+    <ManagerLayout />
+  </ProtectedRoute>
+}>
 
     <Route
         path="/manager/dashboard"
@@ -205,7 +203,11 @@ element={<RefundPolicy />}
 
 {/* HR Dashboard Routes */}
 
-<Route element={<HRLayout />}>
+<Route element={
+  <ProtectedRoute>
+    <HRLayout />
+  </ProtectedRoute>
+}>
 
 <Route
 path="/hr/dashboard"
@@ -250,7 +252,11 @@ element={<OfferLetters/>}
 </Route>
 
 
-<Route element={<EmployeeLayout />}>
+<Route element={
+  <ProtectedRoute>
+    <EmployeeLayout />
+  </ProtectedRoute>
+}>
   <Route path="/employee/dashboard" element={<EmployeeDashboard />} />
   <Route path="/employee/profile" element={<MyProfile />} />
   <Route path="/employee/attendance" element={<Attendance />} />
@@ -284,7 +290,11 @@ element={<HRManagement />}
 />
 
 
-<Route element={<DashboardLayout />}>
+<Route element={
+  <ProtectedRoute>
+    <DashboardLayout />
+  </ProtectedRoute>
+}>
 
 <Route
 path="/owner/dashboard"

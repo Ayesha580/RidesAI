@@ -21,6 +21,7 @@
     line-height:1.5;
     color:#5a2670;
     box-shadow:0 2px 8px rgba(190,39,238,.08);
+    word-break:break-word;
 }
 
 .message.mine .message-body{
@@ -32,4 +33,10 @@
     margin-top:5px;
     font-size:11px;
     color:#c9a3da;
+}
+
+@media (max-width:768px){
+    .message{
+        max-width:85%;
+    }
 }

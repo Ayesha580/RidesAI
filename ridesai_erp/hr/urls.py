@@ -221,6 +221,7 @@ path("attendance/today/", views.TodayAttendanceAPIView.as_view(), name="api-atte
     # ---------- HR (Owner-managed) ----------
     path("add-hr/", views.add_hr, name="add-hr"),
     path("hr-list/", views.hr_list, name="hr-list"),
+    path("<int:pk>/delete/", views.HRDeleteAPIView.as_view(), name="hr-delete"),
 path(
     "attendance/company/",
     views.CompanyAttendanceAPIView.as_view(),

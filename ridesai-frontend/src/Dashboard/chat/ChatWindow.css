@@ -3,6 +3,8 @@
     display:flex;
     flex-direction:column;
     background:#fdf6ff;
+    width:100%;
+    min-width:0;
 }
 
 .chat-header{
@@ -11,7 +13,23 @@
     border-bottom:1px solid #f1def7;
     display:flex;
     align-items:center;
+    gap:14px;
     padding:0 25px;
+}
+
+.chat-back-btn{
+    display:none;
+    border:none;
+    background:#f6dcff;
+    color:#BE27EE;
+    width:36px;
+    height:36px;
+    border-radius:50%;
+    align-items:center;
+    justify-content:center;
+    font-size:15px;
+    cursor:pointer;
+    flex-shrink:0;
 }
 
 .chat-header h2{
@@ -48,4 +66,25 @@
     font-size:22px;
     color:#d3a8e6;
     background:#fdf6ff;
+    text-align:center;
+    padding:20px;
+}
+
+@media (max-width:768px){
+    .chat-back-btn{
+        display:flex;
+    }
+
+    .chat-header{
+        height:60px;
+        padding:0 14px;
+    }
+
+    .chat-header h2{
+        font-size:18px;
+    }
+
+    .chat-messages{
+        padding:16px;
+    }
 }

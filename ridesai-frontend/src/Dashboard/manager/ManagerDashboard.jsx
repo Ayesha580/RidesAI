@@ -1,117 +1,58 @@
 import { useEffect, useState } from "react";
 import axiosClient from "../../api/axiosClient";
-import "../Dashboard.css";
+import "./ManagerDashboard.css";
 
+export default function ManagerDashboard() {
 
-export default function ManagerDashboard(){
-
-    const [stats,setStats] = useState({
-        employees:0,
-        tasks:0,
-        pending_tasks:0,
-        completed_tasks:0
+    const [stats, setStats] = useState({
+        employees: 0,
+        tasks: 0,
+        pending_tasks: 0,
+        completed_tasks: 0
     });
 
-
-    useEffect(()=>{
-
+    useEffect(() => {
         fetchDashboard();
+    }, []);
 
-    },[]);
-
-
-
-    const fetchDashboard = async()=>{
-
-        try{
-
-            const res = await axiosClient.get(
-                "/dashboard/manager/"
-            );
-
+    const fetchDashboard = async () => {
+        try {
+            const res = await axiosClient.get("/dashboard/manager/");
             setStats(res.data);
-
-        }
-        catch(error){
-
+        } catch (error) {
             console.log(error);
-
         }
-
-    }
-
-
+    };
 
     return (
+        <div className="rideai_mgr_dashboard">
 
-        <div className="dashboard-container">
+            <h2 className="rideai_mgr_title">Manager Dashboard</h2>
 
+            <div className="rideai_mgr_cards">
 
-            <h2>
-                Manager Dashboard
-            </h2>
-
-
-            <div className="cards">
-
-
-                <div className="card">
-                    <h3>
-                        Team Members
-                    </h3>
-
-                    <p>
-                        {stats.employees}
-                    </p>
+                <div className="rideai_mgr_card">
+                    <h3>Team Members</h3>
+                    <p>{stats.employees}</p>
                 </div>
 
-
-
-                <div className="card">
-
-                    <h3>
-                        Total Tasks
-                    </h3>
-
-                    <p>
-                        {stats.tasks}
-                    </p>
-
+                <div className="rideai_mgr_card">
+                    <h3>Total Tasks</h3>
+                    <p>{stats.tasks}</p>
                 </div>
 
-
-
-                <div className="card">
-
-                    <h3>
-                        Pending Tasks
-                    </h3>
-
-                    <p>
-                        {stats.pending_tasks}
-                    </p>
-
+                <div className="rideai_mgr_card">
+                    <h3>Pending Tasks</h3>
+                    <p>{stats.pending_tasks}</p>
                 </div>
 
-
-
-                <div className="card">
-
-                    <h3>
-                        Completed
-                    </h3>
-
-                    <p>
-                        {stats.completed_tasks}
-                    </p>
-
+                <div className="rideai_mgr_card">
+                    <h3>Completed</h3>
+                    <p>{stats.completed_tasks}</p>
                 </div>
-
 
             </div>
 
-
         </div>
-
-    )
+    );
 }

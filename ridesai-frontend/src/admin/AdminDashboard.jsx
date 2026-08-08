@@ -119,39 +119,38 @@ export default function AdminDashboard() {
     return rawValue;
   }
 
-  return (
+  // ... imports same ...
+
+return (
     <AdminLayout>
-      <div className="dashboard-heading">
+      <div className="rideai_admin_dashheading">
         <h2>Dashboard Overview</h2>
         <p>Real-time snapshot of your platform activity</p>
       </div>
 
       {error && (
-        <div className="dashboard-error">
+        <div className="rideai_admin_error">
           Couldn't load dashboard data — {error}.{" "}
-          <button className="retry-btn" onClick={() => window.location.reload()}>
+          <button className="rideai_admin_retrybtn" onClick={() => window.location.reload()}>
             Retry
           </button>
         </div>
       )}
 
-      <div className="cards">
+      <div className="rideai_admin_cards">
         {loading
           ? CARD_META.map((meta) => (
-              <div className="card card-skeleton" key={meta.key}>
-                <div className="skeleton-icon" />
-                <div className="skeleton-line short" />
-                <div className="skeleton-line long" />
+              <div className="rideai_admin_card rideai_admin_skeleton" key={meta.key}>
+                <div className="rideai_admin_skeletonicon" />
+                <div className="rideai_admin_skeletonline short" />
+                <div className="rideai_admin_skeletonline long" />
               </div>
             ))
           : CARD_META.map((meta) => (
-              <div className="card" key={meta.key}>
+              <div className="rideai_admin_card" key={meta.key}>
                 <div
-                  className="card-icon"
-                  style={{
-                    background: `${meta.accent}1A`,
-                    color: meta.accent,
-                  }}
+                  className="rideai_admin_cardicon"
+                  style={{ background: `${meta.accent}1A`, color: meta.accent }}
                 >
                   {meta.icon}
                 </div>
@@ -161,20 +160,20 @@ export default function AdminDashboard() {
             ))}
       </div>
 
-      <div className="panels">
-        <div className="panel">
-          <div className="panel-header">
+      <div className="rideai_admin_panels">
+        <div className="rideai_admin_panel">
+          <div className="rideai_admin_panelheader">
             <h3>Recent Companies</h3>
           </div>
           {loading ? (
-            <div className="panel-empty">Loading…</div>
+            <div className="rideai_admin_panelempty">Loading…</div>
           ) : recentCompanies.length === 0 ? (
-            <div className="panel-empty">No companies yet.</div>
+            <div className="rideai_admin_panelempty">No companies yet.</div>
           ) : (
-            <ul className="panel-list">
+            <ul className="rideai_admin_panellist">
               {recentCompanies.map((company) => (
                 <li key={company.id}>
-                  <span className="panel-list-avatar">{company.name?.charAt(0) || "?"}</span>
+                  <span className="rideai_admin_panellistavatar">{company.name?.charAt(0) || "?"}</span>
                   {company.name}
                 </li>
               ))}
@@ -182,19 +181,19 @@ export default function AdminDashboard() {
           )}
         </div>
 
-        <div className="panel">
-          <div className="panel-header">
+        <div className="rideai_admin_panel">
+          <div className="rideai_admin_panelheader">
             <h3>Recent Leads</h3>
           </div>
           {loading ? (
-            <div className="panel-empty">Loading…</div>
+            <div className="rideai_admin_panelempty">Loading…</div>
           ) : recentLeads.length === 0 ? (
-            <div className="panel-empty">No leads yet.</div>
+            <div className="rideai_admin_panelempty">No leads yet.</div>
           ) : (
-            <ul className="panel-list">
+            <ul className="rideai_admin_panellist">
               {recentLeads.map((lead) => (
                 <li key={lead.id}>
-                  <span className="panel-list-avatar">{lead.name?.charAt(0) || "?"}</span>
+                  <span className="rideai_admin_panellistavatar">{lead.name?.charAt(0) || "?"}</span>
                   {lead.name}
                 </li>
               ))}
@@ -203,5 +202,5 @@ export default function AdminDashboard() {
         </div>
       </div>
     </AdminLayout>
-  );
+);
 }

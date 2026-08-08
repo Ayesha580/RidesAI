@@ -28,16 +28,13 @@ export default function EmployeeList() {
 
     if (!confirmed) return;
 
-    await axiosClient.delete(`/hr/employees/${id}/remove/`);   // 👈 "/remove/" add karein
-
+    await axiosClient.delete(`/hr/employees/${id}/remove/`);
     fetchEmployees();
   };
 
   return (
     <div className="employee-page">
-
       <div className="employee-header">
-
         <div>
           <h1>Employees</h1>
           <p>Manage all employees in your organization.</p>
@@ -49,7 +46,6 @@ export default function EmployeeList() {
         >
           {showAddForm ? "Close Form" : "+ Add Employee"}
         </button>
-
       </div>
 
       {showAddForm && (
@@ -64,9 +60,7 @@ export default function EmployeeList() {
       )}
 
       {loading ? (
-        <div className="loading">
-          Loading employees...
-        </div>
+        <div className="loading">Loading employees...</div>
       ) : employees.length === 0 ? (
         <div className="empty-state">
           <h3>No Employees Found</h3>
@@ -74,62 +68,44 @@ export default function EmployeeList() {
         </div>
       ) : (
         <div className="employee-table-card">
-
-          <table className="employee-table">
-
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Username</th>
-                <th>Email</th>
-                <th>Designation</th>
-                <th>Age</th>
-                <th>Manager</th>
-                <th style={{ textAlign: "center" }}>Action</th>
-              </tr>
-            </thead>
-
-            <tbody>
-
-              {employees.map((emp) => (
-
-                <tr key={emp.id}>
-
-                  <td>{emp.name}</td>
-
-                  <td>{emp.username}</td>
-
-                  <td>{emp.email}</td>
-
-                  <td>{emp.designation || "-"}</td>
-
-                  <td>{emp.age || "-"}</td>
-                  <td>{emp.manager || "Not Assigned"}</td>
-
-                  <td style={{ textAlign: "center" }}>
-
-                    <button
-                      className="remove-btn"
-                      onClick={() =>
-                        handleRemove(emp.id, emp.name)
-                      }
-                    >
-                      Remove
-                    </button>
-
-                  </td>
-
+          <div className="employee-table-wrap">
+            <table className="employee-table">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Username</th>
+                  <th>Email</th>
+                  <th>Designation</th>
+                  <th>Age</th>
+                  <th>Manager</th>
+                  <th className="employee-table-action-col">Action</th>
                 </tr>
+              </thead>
 
-              ))}
-
-            </tbody>
-
-          </table>
-
+              <tbody>
+                {employees.map((emp) => (
+                  <tr key={emp.id}>
+                    <td>{emp.name}</td>
+                    <td>{emp.username}</td>
+                    <td>{emp.email}</td>
+                    <td>{emp.designation || "-"}</td>
+                    <td>{emp.age || "-"}</td>
+                    <td>{emp.manager || "Not Assigned"}</td>
+                    <td className="employee-table-action-col">
+                      <button
+                        className="remove-btn"
+                        onClick={() => handleRemove(emp.id, emp.name)}
+                      >
+                        Remove
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       )}
-
     </div>
   );
 }

@@ -111,16 +111,10 @@ useEffect(()=>{
 
       </div>
       {errors.error && (
-      <div style={{
-        background: "#fef2f2",
-        color: "#991b1b",
-        padding: "12px 16px",
-        borderRadius: "8px",
-        marginBottom: "20px",
-      }}>
-        {errors.error}
-      </div>
-    )}
+  <div className="employee-error-banner">
+    {errors.error}
+  </div>
+)}
 
 
 

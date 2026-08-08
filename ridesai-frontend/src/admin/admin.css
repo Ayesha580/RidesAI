@@ -1,5 +1,706 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
-.card-icon svg {
-  width: 28px;
-  height: 28px;
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
+}
+
+/* ============ LAYOUT ============ */
+
+.rideai_admin_wrapper {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+  background: #f4f2fb;
+}
+
+.rideai_admin_content {
+  flex: 1;
+  margin-left: 240px;
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.rideai_admin_main {
+  padding: 30px;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* ============ SIDEBAR (dark, matches screenshot) ============ */
+
+.rideai_admin_sidebar {
+  width: 240px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  background: #150c22;
+  color: #fff;
+  padding: 22px 14px;
+  overflow-y: auto;
+  z-index: 300;
+}
+
+.rideai_admin_sidebarlogo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 8px 28px;
+}
+
+.rideai_admin_sidebarlogo img {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #fff;
+  padding: 3px;
+}
+
+.rideai_admin_sidebarlogo h2 {
+  margin: 0;
+  font-size: 19px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.rideai_admin_sidebar a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 16px;
+  color: #a7a3b3;
+  text-decoration: none;
+  border-radius: 10px;
+  margin-bottom: 4px;
+  font-weight: 500;
+  font-size: 14.5px;
+  transition: 0.2s;
+}
+
+.rideai_admin_sidebar a:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+}
+
+.rideai_admin_navactive {
+  background: linear-gradient(135deg, #a52cf0, #8b1fd6) !important;
+  color: #fff !important;
+  box-shadow: 0 8px 20px rgba(165, 44, 240, 0.35);
+}
+
+.rideai_admin_navicon {
+  font-size: 17px;
+  width: 20px;
+  text-align: center;
+}
+
+/* Mobile toggle / overlay / close */
+
+.rideai_admin_mobiletoggle {
+  display: none;
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 400;
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #a52cf0, #6d28d9);
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(165, 44, 240, 0.35);
+}
+
+.rideai_admin_closebtn {
+  display: none;
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.rideai_admin_overlay {
+  display: none;
+}
+
+/* ============ HEADER ============ */
+
+.rideai_admin_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  padding: 20px 30px;
+  border-bottom: 1px solid #ece9f3;
+}
+
+.rideai_admin_headerleft h3 {
+  margin: 0;
+  color: #111827;
+  font-size: 19px;
+}
+
+.rideai_admin_avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #a52cf0, #8b1fd6);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+/* ============ DASHBOARD HEADING / ERRORS ============ */
+
+.rideai_admin_dashheading {
+  margin-bottom: 25px;
+}
+
+.rideai_admin_dashheading h2 {
+  margin: 0 0 5px;
+  font-size: 24px;
+  color: #0f172a;
+  font-weight: 700;
+}
+
+.rideai_admin_dashheading p {
+  color: #6b7280;
+  margin: 0;
+  font-size: 14px;
+}
+
+.rideai_admin_error {
+  background: #fee2e2;
+  color: #b91c1c;
+  padding: 14px 18px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.rideai_admin_retrybtn {
+  background: #b91c1c;
+  color: #fff;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-left: 8px;
+}
+
+/* ============ STAT CARDS ============ */
+
+.rideai_admin_cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 18px;
+  margin-bottom: 30px;
+}
+
+.rideai_admin_card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 2px 12px rgba(15, 23, 42, 0.05);
+  min-width: 0;
+}
+
+.rideai_admin_card h4 {
+  margin: 14px 0 4px;
+  font-size: 13.5px;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.rideai_admin_card h1 {
+  margin: 0;
+  font-size: 26px;
+  color: #111827;
+  font-weight: 700;
+}
+
+.rideai_admin_cardicon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 19px;
+}
+
+.rideai_admin_cardicon svg {
+  width: 21px;
+  height: 21px;
+}
+
+/* Skeleton */
+
+.rideai_admin_skeleton {
+  background: #fff;
+  border-radius: 16px;
+  padding: 20px;
+}
+
+.rideai_admin_skeletonicon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: #eee9f7;
+  margin-bottom: 14px;
+}
+
+.rideai_admin_skeletonline {
+  height: 11px;
+  border-radius: 6px;
+  background: #eee9f7;
+  margin-bottom: 8px;
+}
+
+.rideai_admin_skeletonline.short {
+  width: 55%;
+}
+
+.rideai_admin_skeletonline.long {
+  width: 38%;
+  height: 18px;
+}
+
+/* ============ PANELS (recent lists) ============ */
+
+.rideai_admin_panels {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.rideai_admin_panel {
+  background: #fff;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 2px 12px rgba(15, 23, 42, 0.05);
+  min-width: 0;
+}
+
+.rideai_admin_panelheader h3 {
+  margin: 0 0 15px;
+  color: #111827;
+  font-size: 16px;
+}
+
+.rideai_admin_panelempty {
+  color: #6b7280;
+  padding: 20px 0;
+  text-align: center;
+  font-size: 14px;
+}
+
+.rideai_admin_panellist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.rideai_admin_panellist li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid #f4f2fb;
+  color: #334155;
+  font-size: 14px;
+}
+
+.rideai_admin_panellist li:last-child {
+  border-bottom: none;
+}
+
+.rideai_admin_panellistavatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #a52cf0, #8b1fd6);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+/* ============ TABLE TOOLBAR ============ */
+
+.rideai_admin_toolbar {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.rideai_admin_search,
+.rideai_admin_roleselect {
+  padding: 10px 14px;
+  border: 1px solid #e2dff0;
+  border-radius: 8px;
+  font-size: 13.5px;
+  background: #fff;
+}
+
+/* ============ TABLE PANEL ============ */
+
+.rideai_admin_tablepanel {
+  background: #fff;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 2px 12px rgba(15, 23, 42, 0.05);
+  overflow-x: auto;
+  width: 100%;
+  max-width: 100%;
+}
+
+.rideai_admin_datatable {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 650px;
+}
+
+.rideai_admin_datatable th {
+  text-align: left;
+  padding: 12px 14px;
+  background: #faf9fd;
+  color: #8b8698;
+  font-size: 11.5px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.rideai_admin_datatable td {
+  padding: 14px;
+  border-bottom: 1px solid #f1eff7;
+  color: #334155;
+  font-size: 14px;
+}
+
+.rideai_admin_cellstrong {
+  font-weight: 600;
+  color: #111827;
+}
+
+.rideai_admin_monotext {
+  font-family: monospace;
+  font-size: 12px;
+  color: #8b8698;
+}
+
+.rideai_admin_textmuted {
+  color: #b3adc4;
+}
+
+.rideai_admin_rowclickable {
+  cursor: pointer;
+}
+
+.rideai_admin_rowclickable:hover {
+  background: #faf9fd;
+}
+
+.rideai_admin_statusbadge {
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.rideai_admin_status-active {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+.rideai_admin_status-inactive {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.rideai_admin_dangerbtn {
+  background: #ef4444;
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  white-space: nowrap;
+  font-size: 13px;
+}
+
+.rideai_admin_dangerbtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Expanded hierarchy row (Businesses) */
+
+.rideai_admin_hierarchygrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  padding: 15px 5px;
+}
+
+.rideai_admin_hierarchygroup h5 {
+  margin: 0 0 10px;
+  color: #111827;
+  font-size: 14px;
+}
+
+.rideai_admin_hierarchygroup ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.rideai_admin_hierarchygroup li {
+  padding: 6px 0;
+  font-size: 13.5px;
+  color: #334155;
+  display: flex;
+  flex-direction: column;
+}
+
+.rideai_admin_hierarchyemail {
+  font-size: 12px;
+  color: #b3adc4;
+}
+
+/* ============ LOGIN PAGE (width fixed, matches screenshot) ============ */
+
+.rideai_admin_loginpage {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f4f0fb;
+  padding: 20px;
+}
+
+.rideai_admin_logincard {
+  position: relative;
+  background: #fff;
+  border-radius: 26px;
+  width: 100%;
+  max-width: 400px;
+  padding: 45px 36px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.rideai_admin_loginshape {
+  position: absolute;
+  border-radius: 50%;
+  background: #f3e8fd;
+}
+
+.rideai_admin_shape1 {
+  width: 130px;
+  height: 130px;
+  top: -35px;
+  left: -35px;
+}
+
+.rideai_admin_shape2 {
+  width: 95px;
+  height: 95px;
+  top: 18px;
+  left: 8px;
+  background: #e9d5fb;
+}
+
+.rideai_admin_logincontent {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+.rideai_admin_loginlogo {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 14px;
+}
+
+.rideai_admin_logincontent h2 {
+  margin: 0 0 8px;
+  font-size: 24px;
+  color: #111827;
+  font-weight: 700;
+}
+
+.rideai_admin_logincontent p {
+  color: #6b7280;
+  margin-bottom: 24px;
+  font-size: 14px;
+}
+
+.rideai_admin_inputgroup {
+  margin-bottom: 14px;
+  text-align: left;
+}
+
+.rideai_admin_inputgroup input {
+  width: 100%;
+  padding: 13px 16px;
+  border: none;
+  border-radius: 10px;
+  background: #eef2ff;
+  font-size: 14px;
+  outline: none;
+}
+
+.rideai_admin_logincontent form button {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #a52cf0, #8b1fd6);
+  color: #fff;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  margin-top: 6px;
+}
+
+/* ============ RESPONSIVE ============ */
+
+@media (max-width: 992px) {
+  .rideai_admin_content {
+    margin-left: 0;
+  }
+
+  .rideai_admin_panels {
+    grid-template-columns: 1fr;
+  }
+
+  .rideai_admin_sidebar {
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+
+  .rideai_admin_sidebar.open {
+    transform: translateX(0);
+  }
+
+  .rideai_admin_mobiletoggle {
+    display: flex;
+  }
+
+  .rideai_admin_closebtn {
+    display: block;
+  }
+
+  .rideai_admin_overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 250;
+  }
+}
+
+@media (max-width: 768px) {
+  .rideai_admin_main {
+    padding: 20px 16px;
+  }
+
+  .rideai_admin_header {
+    padding: 16px 20px 16px 70px;
+  }
+
+  .rideai_admin_cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .rideai_admin_cards {
+    grid-template-columns: 1fr;
+  }
+
+  .rideai_admin_dashheading h2 {
+    font-size: 20px;
+  }
+
+  .rideai_admin_tablepanel {
+    padding: 12px;
+  }
+
+  .rideai_admin_logincard {
+    max-width: 340px;
+    padding: 32px 22px;
+  }
+
+  .rideai_admin_datatable thead {
+    display: none;
+  }
+
+  .rideai_admin_datatable,
+  .rideai_admin_datatable tbody,
+  .rideai_admin_datatable tr,
+  .rideai_admin_datatable td {
+    display: block;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .rideai_admin_datatable tr {
+    margin-bottom: 15px;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .rideai_admin_datatable td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: right;
+    padding: 10px 14px;
+    border-bottom: 1px solid #f4f2fb;
+  }
+
+  .rideai_admin_datatable td:last-child {
+    border-bottom: none;
+  }
+
+  .rideai_admin_datatable td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: #8b8698;
+    text-align: left;
+  }
 }

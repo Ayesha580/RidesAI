@@ -74,6 +74,7 @@
 /* RIGHT content panel */
 .settings-content {
     flex: 1;
+    min-width: 0;
     background: #fff;
     border: 1px solid #e5e7eb;
     border-radius: 12px;
@@ -96,14 +97,48 @@
     margin-bottom: 10px;
 }
 
-/* Responsive: stack on smaller screens */
+/* Mobile back button inside content panel */
+.settings-back-btn {
+    display: none;
+    background: #f0f4ff;
+    color: #4f46e5;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    margin-bottom: 18px;
+}
+
+/* Responsive: stack on smaller screens, list/detail toggle */
 @media (max-width: 768px) {
+    .settings-page {
+        padding: 16px;
+    }
+
     .settings-layout {
         flex-direction: column;
+        gap: 0;
     }
 
     .settings-sidebar {
         width: 100%;
+    }
+
+    .settings-content {
+        width: 100%;
+        padding: 18px;
+    }
+
+    .settings-mobile-hidden {
+        display: none;
+    }
+
+    .settings-back-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
     }
 }
 .billing-settings button{
@@ -526,4 +561,28 @@ font-size:25px;
 
     cursor:not-allowed;
 
+}
+@media (max-width: 768px) {
+    .billing-tabs {
+        flex-direction: column;
+    }
+
+    .billing-tabs button {
+        width: 100%;
+    }
+
+    .plan-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .current-plan-box {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .seat-control {
+        flex-wrap: wrap;
+        gap: 12px;
+    }
 }

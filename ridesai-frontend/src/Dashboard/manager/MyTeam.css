@@ -1,0 +1,142 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.rideai_team_page {
+  padding: 30px;
+  background: #f8fafc;
+  min-height: 100vh;
+  width: 100%;
+  max-width: 100%;
+}
+
+.rideai_team_title {
+  font-size: 28px;
+  color: #0f172a;
+  margin-bottom: 25px;
+}
+
+.rideai_team_loading {
+  padding: 30px;
+  color: #64748b;
+}
+
+.rideai_team_empty {
+  background: #fff;
+  padding: 40px;
+  text-align: center;
+  border-radius: 15px;
+  color: #64748b;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.rideai_team_tablecard {
+  background: #fff;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+  overflow-x: auto;
+  width: 100%;
+  max-width: 100%;
+}
+
+.rideai_team_table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 500px; /* prevents column squeeze; card scrolls instead */
+}
+
+.rideai_team_table th {
+  background: #be28ee;
+  color: #fff;
+  padding: 14px 16px;
+  text-align: left;
+  font-size: 14px;
+}
+
+.rideai_team_table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid #e5e7eb;
+  color: #334155;
+  font-size: 14px;
+}
+
+.rideai_team_table tr:hover {
+  background: #f8fafc;
+}
+
+.rideai_team_table td:first-child {
+  font-weight: 600;
+  color: #111827;
+}
+
+/* ============ RESPONSIVE ============ */
+
+@media (max-width: 992px) {
+  .rideai_team_page {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .rideai_team_page {
+    padding-top: 80px; /* space for fixed mobile hamburger button */
+  }
+}
+
+@media (max-width: 600px) {
+  .rideai_team_page {
+    padding: 75px 12px 20px;
+  }
+
+  .rideai_team_title {
+    font-size: 22px;
+  }
+
+  .rideai_team_tablecard {
+    padding: 12px;
+  }
+
+  /* Card-style table for very small screens */
+  .rideai_team_table thead {
+    display: none;
+  }
+
+  .rideai_team_table,
+  .rideai_team_table tbody,
+  .rideai_team_table tr,
+  .rideai_team_table td {
+    display: block;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .rideai_team_table tr {
+    margin-bottom: 15px;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .rideai_team_table td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: right;
+    padding: 10px 14px;
+    border-bottom: 1px solid #f1f5f9;
+  }
+
+  .rideai_team_table td:last-child {
+    border-bottom: none;
+  }
+
+  .rideai_team_table td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: #64748b;
+    text-align: left;
+  }
+}

@@ -4,7 +4,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('admin/', admin.site.urls),          # sirf superadmin ke internal use ke liye rakha hai
+    # path('admin/', admin.site.urls),          # sirf superadmin ke internal use ke liye rakha hai
     path(
         "api/",
         include("accounts.urls")

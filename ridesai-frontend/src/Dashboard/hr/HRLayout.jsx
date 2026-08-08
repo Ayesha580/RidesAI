@@ -5,13 +5,13 @@ import "./HRDashboard.css";
 
 export default function HRLayout() {
   return (
-    <div className="dashboard-wrapper">
+    <div className="hrlayout_wrapper">
       <HRSidebar />
 
-      <div className="dashboard-main">
+      <div className="hrlayout_main">
         <Topbar />
 
-        <div className="page-content">
+        <div className="hrlayout_content">
           <Outlet />
         </div>
       </div>

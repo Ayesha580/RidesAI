@@ -166,3 +166,17 @@
     font-weight: 600;
     text-decoration: underline;
 }
+@media (max-width: 480px) {
+    .upload-box {
+        width: 92vw;
+        padding: 18px;
+    }
+
+    .upload-actions {
+        flex-direction: column-reverse;
+    }
+
+    .upload-actions button {
+        width: 100%;
+    }
+}

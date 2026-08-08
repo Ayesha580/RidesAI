@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const axiosClient = axios.create({
-    baseURL: "https://ridesai.cloud/api",
-    withCredentials : true,
+    baseURL: "http:ridesai.cloud/api",
+    withCredentials: true,
 });
 
 axiosClient.interceptors.request.use((config) => {
@@ -15,12 +15,13 @@ axiosClient.interceptors.request.use((config) => {
     return config;
 });
 
-// ---- Auto-refresh on 401 ----
+// ---- Auto-refresh on 401, logout on 403 / refresh-failure ----
 // If a request comes back 401 (access token expired), try once to get a
 // fresh access token using the refresh token, then retry the original
-// request. Only logs the user out if the refresh itself fails
-// (refresh token expired/invalid too).
-
+// request. Logs the user out (redirect to /login) if:
+//   - there's no refresh token to use
+//   - the refresh request itself fails (refresh token expired/invalid)
+//   - the server returns 403 (valid token, but not authorized)
 let isRefreshing = false;
 let pendingQueue = [];
 
@@ -35,6 +36,17 @@ function resolveQueue(error, token = null) {
     pendingQueue = [];
 }
 
+function redirectToLogin() {
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("refresh_token");
+    localStorage.removeItem("user");
+
+    // Avoid redirect loop if already on the login page
+    if (window.location.pathname !== "/login") {
+        window.location.href = "/login";
+    }
+}
+
 axiosClient.interceptors.response.use(
     (response) => response,
     async (error) => {
@@ -44,6 +56,7 @@ axiosClient.interceptors.response.use(
             originalRequest?.url?.includes("/login/") ||
             originalRequest?.url?.includes("/token/refresh/");
 
+        // ---- 401: token expired/missing -> try refresh ----
         if (
             error.response?.status === 401 &&
             !originalRequest._retry &&
@@ -52,6 +65,7 @@ axiosClient.interceptors.response.use(
             const refreshToken = localStorage.getItem("refresh_token");
 
             if (!refreshToken) {
+                redirectToLogin();
                 return Promise.reject(error);
             }
 
@@ -73,7 +87,7 @@ axiosClient.interceptors.response.use(
 
             try {
                 const res = await axios.post(
-                    "https://ridesai.cloud/api/token/refresh/",
+                    "http://ridesai.cloud/api/token/refresh/",
                     { refresh: refreshToken },
                     { withCredentials: true }
                 );
@@ -96,17 +110,19 @@ axiosClient.interceptors.response.use(
             } catch (refreshError) {
                 resolveQueue(refreshError, null);
 
-                // Refresh token itself is invalid/expired — this is a real
-                // logout, not just a slow request.
-                localStorage.removeItem("access_token");
-                localStorage.removeItem("refresh_token");
-                localStorage.removeItem("user");
-                window.location.href = "/login";
+                // Refresh token itself is invalid/expired — real logout.
+                redirectToLogin();
 
                 return Promise.reject(refreshError);
             } finally {
                 isRefreshing = false;
             }
+        }
+
+        // ---- 403: valid token but not authorized -> logout + redirect ----
+        if (error.response?.status === 403 && !isAuthEndpoint) {
+            redirectToLogin();
+            return Promise.reject(error);
         }
 
         return Promise.reject(error);

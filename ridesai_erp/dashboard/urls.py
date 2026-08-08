@@ -6,6 +6,7 @@ from .superadmin_views import (
     SuperAdminUserListAPIView,
     SuperAdminUserDetailAPIView,
     SuperAdminPaymentsAPIView,
+    PlanListView
 )
 
 urlpatterns = [
@@ -20,6 +21,7 @@ urlpatterns = [
     path('manager/', views.ManagerDashboardAPIView.as_view(), name='api-dashboard-manager'),
     path('accountant/', views.AccountantDashboardAPIView.as_view(), name='api-dashboard-accountant'),
     path('crm/', views.CRMDashboardAPIView.as_view(), name='api-dashboard-crm'),
+
 ]
 urlpatterns += [
     path("superadmin/companies/", SuperAdminCompanyListAPIView.as_view()),
@@ -27,4 +29,6 @@ urlpatterns += [
     path("superadmin/users/", SuperAdminUserListAPIView.as_view()),
     path("superadmin/users/<int:pk>/", SuperAdminUserDetailAPIView.as_view()),
     path("superadmin/payments/", SuperAdminPaymentsAPIView.as_view()),
+    path("superadmin/plans/", PlanListView.as_view(), name="superadmin-plans"),
+
 ]

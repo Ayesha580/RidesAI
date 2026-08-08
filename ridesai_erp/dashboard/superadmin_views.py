@@ -18,10 +18,17 @@ from rest_framework_simplejwt.token_blacklist.models import OutstandingToken
 from rest_framework.permissions import AllowAny
 from accounts.models import User
 from accounts.permissions import IsSuperAdmin
-from companies.models import Company
+from companies.models import Company,Plan
 from hr.models import Employee
+from .serializers import PlanSerializer
 
+class PlanListView(APIView):
+    permission_classes = [AllowAny]  #
 
+    def get(self, request):
+        plans = Plan.objects.all().order_by("name", "billing_cycle")
+        serializer = PlanSerializer(plans, many=True)
+        return Response(serializer.data)
 # ============================================================
 # COMPANIES
 # ============================================================

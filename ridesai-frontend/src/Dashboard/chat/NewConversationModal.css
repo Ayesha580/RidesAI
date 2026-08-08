@@ -10,7 +10,8 @@
 
 .modal-box{
     width:380px;
-    max-height:80vh;
+    max-width:92vw;
+    max-height:85vh;
     background:#fffafd;
     border-radius:16px;
     box-shadow:0 10px 40px rgba(190,39,238,.2);
@@ -18,7 +19,6 @@
     flex-direction:column;
     overflow:hidden;
 }
-
 .modal-header{
     display:flex;
     align-items:center;
@@ -175,4 +175,27 @@
 .btn-submit:disabled{
     opacity:.5;
     cursor:not-allowed;
+}
+
+@media (max-width:480px){
+    .modal-box{
+        width:94vw;
+        border-radius:14px;
+    }
+
+    .modal-header{
+        padding:14px 16px;
+    }
+
+    .modal-title-input{
+        margin:12px 16px 0;
+    }
+
+    .user-select-list{
+        padding:10px;
+    }
+
+    .modal-actions{
+        padding:12px 16px;
+    }
 }

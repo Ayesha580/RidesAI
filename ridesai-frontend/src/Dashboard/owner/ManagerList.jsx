@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axiosClient from "../../api/axiosClient";
-import Sidebar from "../Sidebar";
+import "./ManagerList.css";
 
 export default function ManagerList() {
   const [managers, setManagers] = useState([]);
@@ -25,9 +25,7 @@ export default function ManagerList() {
   }
 
   async function handleDelete(id, name) {
-    const confirmed = window.confirm(
-      `Are you sure you want to delete "${name}"?`
-    );
+    const confirmed = window.confirm(`Are you sure you want to delete "${name}"?`);
     if (!confirmed) return;
 
     setDeletingId(id);
@@ -42,95 +40,57 @@ export default function ManagerList() {
     }
   }
 
+  if (loading) return <h2>Loading Managers...</h2>;
+
   return (
-    <div style={{ display: "flex", minHeight: "100vh" }}>
-      <Sidebar />
+    <div className="mgrlist_panel">
+      <div className="mgrlist_header">
+        <h2>Manager List</h2>
+        <Link to="/owner/managers/add" className="mgrlist_add-btn">
+          + Create Manager
+        </Link>
+      </div>
 
-      <div style={{ flex: 1, padding: "30px" }}>
-        {loading ? (
-          <h2>Loading Managers...</h2>
-        ) : (
-          <div className="panel">
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                marginBottom: "20px",
-              }}
-            >
-              <h2>Manager List</h2>
+      <div className="mgrlist_table-wrap">
+        <table className="mgrlist_table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Username</th>
+              <th>Email</th>
+              <th>Designation</th>
+              <th>Action</th>
+            </tr>
+          </thead>
 
-              <Link
-                to="/owner/managers/add"
-                style={{
-                  background: "#be27ee",
-                  color: "#fff",
-                  padding: "10px 18px",
-                  borderRadius: "8px",
-                  textDecoration: "none",
-                  fontWeight: "600",
-                }}
-              >
-                + Create Manager
-              </Link>
-            </div>
-
-            <table>
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Name</th>
-                  <th>Username</th>
-                  <th>Email</th>
-                  <th>Designation</th>
-                  <th>Action</th>
+          <tbody>
+            {managers.length === 0 ? (
+              <tr>
+                <td colSpan="6" className="mgrlist_empty">No Managers Found</td>
+              </tr>
+            ) : (
+              managers.map((manager, index) => (
+                <tr key={manager.id}>
+                  <td>{index + 1}</td>
+                  <td>{manager.name}</td>
+                  <td>{manager.username}</td>
+                  <td>{manager.email}</td>
+                  <td>{manager.designation || "-"}</td>
+                  <td>
+                    <button
+                      onClick={() => handleDelete(manager.id, manager.name)}
+                      disabled={deletingId === manager.id}
+                      className="mgrlist_delete-btn"
+                    >
+                      {deletingId === manager.id ? "Deleting..." : "Delete"}
+                    </button>
+                  </td>
                 </tr>
-              </thead>
-
-              <tbody>
-                {managers.length === 0 ? (
-                  <tr>
-                    <td colSpan="6" style={{ textAlign: "center" }}>
-                      No Managers Found
-                    </td>
-                  </tr>
-                ) : (
-                  managers.map((manager, index) => (
-                    <tr key={manager.id}>
-                      <td>{index + 1}</td>
-                      <td>{manager.name}</td>
-                      <td>{manager.username}</td>
-                      <td>{manager.email}</td>
-                      <td>{manager.designation || "-"}</td>
-                      <td>
-                        <button
-                          onClick={() => handleDelete(manager.id, manager.name)}
-                          disabled={deletingId === manager.id}
-                          style={{
-                            background: "#ef4444",
-                            color: "#fff",
-                            border: "none",
-                            padding: "6px 14px",
-                            borderRadius: "6px",
-                            fontWeight: "600",
-                            cursor:
-                              deletingId === manager.id
-                                ? "not-allowed"
-                                : "pointer",
-                            opacity: deletingId === manager.id ? 0.6 : 1,
-                          }}
-                        >
-                          {deletingId === manager.id ? "Deleting..." : "Delete"}
-                        </button>
-                      </td>
-                    </tr>
-                  ))
-                )}
-              </tbody>
-            </table>
-          </div>
-        )}
+              ))
+            )}
+          </tbody>
+        </table>
       </div>
     </div>
   );

@@ -5,3 +5,30 @@
     background:#fdf5ff;
     overflow:hidden;
 }
+
+.chat-sidebar-wrap,
+.chat-window-wrap{
+    display:flex;
+    min-width:0;
+}
+
+.chat-window-wrap{
+    flex:1;
+}
+
+@media (max-width:768px){
+    .chat-page{
+        height:calc(100vh - 60px);
+        position:relative;
+    }
+
+    .chat-sidebar-wrap,
+    .chat-window-wrap{
+        width:100%;
+        flex:1 1 100%;
+    }
+
+    .mobile-hidden{
+        display:none;
+    }
+}

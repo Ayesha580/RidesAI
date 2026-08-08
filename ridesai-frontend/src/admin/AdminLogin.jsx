@@ -4,7 +4,6 @@ import "./admin.css";
 import logo from "../assets/logo.png";
 
 export default function AdminLogin() {
-
     const navigate = useNavigate();
 
     const [username, setUsername] = useState("");
@@ -12,36 +11,33 @@ export default function AdminLogin() {
 
     const handleLogin = (e) => {
         e.preventDefault();
-
-        // Temporary login
         if (username && password) {
             navigate("/admin/dashboard");
         }
     };
 
     return (
-        <div className="admin-login">
+        <div className="rideai_admin_loginpage">
 
-            <div className="login-card">
+            <div className="rideai_admin_logincard">
 
-                <div className="login-shape shape1"></div>
-                <div className="login-shape shape2"></div>
+                <div className="rideai_admin_loginshape rideai_admin_shape1"></div>
+                <div className="rideai_admin_loginshape rideai_admin_shape2"></div>
 
-                <div className="login-content">
+                <div className="rideai_admin_logincontent">
 
                     <img
                         src={logo}
-                        className="login-logo"
+                        className="rideai_admin_loginlogo"
                         alt="Rides AI"
                     />
 
                     <h2>Welcome Back</h2>
-
                     <p>Sign in to access the RidesAI Admin Dashboard</p>
 
                     <form onSubmit={handleLogin}>
 
-                        <div className="input-group">
+                        <div className="rideai_admin_inputgroup">
                             <input
                                 type="text"
                                 placeholder="Username"
@@ -51,7 +47,7 @@ export default function AdminLogin() {
                             />
                         </div>
 
-                        <div className="input-group">
+                        <div className="rideai_admin_inputgroup">
                             <input
                                 type="password"
                                 placeholder="Password"
@@ -61,9 +57,7 @@ export default function AdminLogin() {
                             />
                         </div>
 
-                        <button type="submit">
-                            Sign In
-                        </button>
+                        <button type="submit">Sign In</button>
 
                     </form>
 

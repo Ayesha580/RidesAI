@@ -14,6 +14,7 @@ class PlanListAPIView(generics.ListAPIView):
     permission_classes = [permissions.AllowAny]
 
 
+
 class SelectPlanAPIView(APIView):
     permission_classes = [permissions.IsAuthenticated]
 

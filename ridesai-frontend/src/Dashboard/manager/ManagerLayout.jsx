@@ -1,37 +1,20 @@
 import { Outlet } from "react-router-dom";
 import ManagerSidebar from "./ManagerSidebar";
 import Topbar from "../Topbar";
-import "../hr/HRDashboard.css";
+import "./ManagerLayout.css";
 
+export default function ManagerLayout() {
+  return (
+    <div className="rideai_mgr_wrapper">
+      <ManagerSidebar />
 
-export default function ManagerLayout(){
-
-return (
-
-<div className="dashboard-wrapper">
-
-
-    <ManagerSidebar />
-
-
-    <div className="dashboard-main">
-
-
+      <div className="rideai_mgr_main">
         <Topbar />
 
-
-        <div className="page-content">
-
-            <Outlet />
-
+        <div className="rideai_mgr_content">
+          <Outlet />
         </div>
-
-
+      </div>
     </div>
-
-
-</div>
-
-)
-
+  );
 }

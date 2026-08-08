@@ -5,13 +5,13 @@ import "./Dashboard.css";
 
 export default function DashboardLayout() {
   return (
-    <div className="dashboard-wrapper">
+    <div className="dash_wrapper">
       <Sidebar />
 
-      <div className="dashboard-main">
+      <div className="dash_main">
         <Topbar />
 
-        <div className="page-content">
+        <div className="dash_page-content">
           <Outlet />
         </div>
       </div>

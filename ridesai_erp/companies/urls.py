@@ -8,6 +8,7 @@ app_name = "companies"
 urlpatterns = [
     path("api/plans/", views.PlanListAPIView.as_view(), name="api-plan-list"),
     path("api/select-plan/", views.SelectPlanAPIView.as_view(), name="api-select-plan"),
+
 ]
 
 # =========================================================

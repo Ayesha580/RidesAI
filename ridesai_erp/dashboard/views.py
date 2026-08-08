@@ -12,10 +12,12 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAdminUser
 from rest_framework.permissions import AllowAny
 from accounts.models import User
-from companies.models import Company
+from companies.models import Company,Plan
 from crm.models import Lead
 from chat.models import Conversation
 from hr.models import Employee, Task
+
+from accounts.permissions import IsSuperAdmin
 
 
 class AdminDashboardAPIView(APIView):
@@ -273,33 +275,47 @@ class EmployeeDashboardAPIView(APIView):
             ]
         })
 
-
 class ManagerDashboardAPIView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
+
         if request.user.role != User.ROLE_MANAGER:
             return Response(
                 {"error": "Permission denied"},
                 status=403
             )
 
-        employee_count = Employee.objects.filter(
-            company=request.user.company
+        # Only this manager's team
+        team_employees = Employee.objects.filter(
+            company=request.user.company,
+            manager=request.user,
+            status="Active",
+            user__is_active=True
+        )
+
+        employee_count = team_employees.count()
+
+        # Get only team members' user IDs
+        team_user_ids = team_employees.values_list(
+            "user_id",
+            flat=True
+        )
+
+        # Only tasks assigned to this manager's team
+        team_tasks = Task.objects.filter(
+            company=request.user.company,
+            assigned_to__in=team_user_ids
+        )
+
+        task_count = team_tasks.count()
+
+        pending_tasks = team_tasks.filter(
+            status=Task.STATUS_TODO
         ).count()
 
-        task_count = Task.objects.filter(
-            created_by=request.user
-        ).count()
-
-        pending_tasks = Task.objects.filter(
-            created_by=request.user,
-            status="Pending"
-        ).count()
-
-        completed_tasks = Task.objects.filter(
-            created_by=request.user,
-            status="Completed"
+        completed_tasks = team_tasks.filter(
+            status=Task.STATUS_DONE
         ).count()
 
         return Response({
@@ -308,7 +324,6 @@ class ManagerDashboardAPIView(APIView):
             "pending_tasks": pending_tasks,
             "completed_tasks": completed_tasks,
         })
-
 
 class AccountantDashboardAPIView(APIView):
     permission_classes = [IsAuthenticated]

@@ -113,3 +113,62 @@
     color:#64748b;
 
 }
+/* Tablet & Mobile */
+@media(max-width:768px){
+
+    .owner-attendance-page{
+        padding:15px;
+    }
+
+
+    .owner-attendance-page h2{
+        font-size:22px;
+        margin-bottom:18px;
+    }
+
+
+    .attendance-table{
+        padding:12px;
+        border-radius:10px;
+    }
+
+
+    .attendance-table th{
+        padding:10px 12px;
+        font-size:12px;
+    }
+
+
+    .attendance-table td{
+        padding:10px 12px;
+        font-size:12px;
+    }
+
+}
+
+
+/* Small Mobile */
+@media(max-width:480px){
+
+    .owner-attendance-page{
+        padding:10px;
+    }
+
+
+    .owner-attendance-page h2{
+        font-size:20px;
+    }
+
+
+    .attendance-table{
+        padding:8px;
+    }
+
+
+    .attendance-table th,
+    .attendance-table td{
+        padding:8px 10px;
+        font-size:11px;
+    }
+
+}

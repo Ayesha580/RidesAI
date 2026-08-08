@@ -354,6 +354,24 @@ class ManagerDeleteAPIView(APIView):
             "message": "Manager deleted successfully."
         })
 
+class HRDeleteAPIView(APIView):
+    permission_classes = [IsAuthenticated, IsOwner]
+
+    def delete(self, request, pk):
+        hr_user = get_object_or_404(
+            User,
+            id=pk,
+            company=request.user.company,
+            role=User.ROLE_HR,
+        )
+
+        name = hr_user.get_full_name() or hr_user.username
+        hr_user.delete()
+
+        return Response({
+            "message": f"{name} has been deleted successfully."
+        })
+
 class ManagerTeamAPIView(APIView):
     permission_classes = [
         IsAuthenticated,

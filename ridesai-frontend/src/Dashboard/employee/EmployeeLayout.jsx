@@ -5,20 +5,16 @@ import "./EmployeeDashboard.css";
 
 export default function EmployeeLayout() {
   return (
-    <div className="dashboard-wrapper">
-
+    <div className="rideai_emp_wrapper">
       <EmployeeSidebar />
 
-      <div className="dashboard-main">
-
+      <div className="rideai_emp_main">
         <Topbar />
 
-        <div className="page-content">
+        <div className="rideai_emp_content">
           <Outlet />
         </div>
-
       </div>
-
     </div>
   );
 }

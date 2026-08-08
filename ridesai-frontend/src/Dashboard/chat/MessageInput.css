@@ -5,6 +5,7 @@
     display:flex;
     align-items:flex-end;
     gap:12px;
+    position:relative;
 }
 
 .chat-icon-btn{
@@ -14,6 +15,7 @@
     font-size:22px;
     color:#c98fdd;
     transition:.25s;
+    flex-shrink:0;
 }
 
 .chat-icon-btn:hover{
@@ -33,6 +35,7 @@
     overflow-y:auto;
     background:#fff;
     color:#5a2670;
+    min-width:0;
 }
 
 .message-input-container textarea:focus{
@@ -50,6 +53,7 @@
     cursor:pointer;
     font-size:18px;
     transition:.25s;
+    flex-shrink:0;
 }
 
 .send-btn:hover{
@@ -60,13 +64,34 @@
     opacity:.5;
     cursor:not-allowed;
 }
-.message-input-container{
-    position: relative;
-}
 
 .emoji-picker{
-    position: absolute;
-    bottom: 60px;
-    left: 10px;
-    z-index: 1000;
+    position:absolute;
+    bottom:60px;
+    left:10px;
+    z-index:1000;
+    max-width:90vw;
+}
+
+@media (max-width:768px){
+    .message-input-container{
+        padding:10px;
+        gap:8px;
+    }
+
+    .send-btn{
+        width:42px;
+        height:42px;
+        font-size:16px;
+    }
+
+    .emoji-picker{
+        left:5px;
+        right:5px;
+        bottom:55px;
+    }
+
+    .emoji-picker > * {
+        width:100% !important;
+    }
 }

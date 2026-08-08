@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axiosClient from "../../api/axiosClient";
+import "./Profile.css";
 
 const IMAGE_EXTENSIONS = ["jpg", "jpeg", "png", "gif", "webp"];
 
@@ -163,27 +164,16 @@ export default function Profile() {
         <input name="business_address" value={form.business_address} onChange={handleChange} />
       </div>
 
-      {/* -------- Registration Document -------- */}
       <div className="form-group">
         <label>Registration Document</label>
 
         {docUrl && !newDocPreview && (
-          <div style={{ marginBottom: "10px" }}>
+          <div className="doc-preview-wrap">
             {isImage(docName) ? (
-              <img
-                src={docUrl}
-                alt="Registration Document"
-                style={{
-                  maxWidth: "220px",
-                  borderRadius: "8px",
-                  display: "block",
-                  marginBottom: "8px",
-                }}
-              />
+              <img src={docUrl} alt="Registration Document" className="doc-preview-img" />
             ) : (
-              <p style={{ marginBottom: "8px" }}>📄 {docName}</p>
+              <p className="doc-name">📄 {docName}</p>
             )}
-
             <a href={docUrl} target="_blank" rel="noopener noreferrer">
               View Current Document
             </a>
@@ -191,24 +181,18 @@ export default function Profile() {
         )}
 
         {newDocPreview && (
-          <div style={{ marginBottom: "10px" }}>
+          <div className="doc-preview-wrap">
             <p>New preview:</p>
-            <img
-              src={newDocPreview}
-              alt="New Document Preview"
-              style={{ maxWidth: "220px", borderRadius: "8px" }}
-            />
+            <img src={newDocPreview} alt="New Document Preview" className="doc-preview-img" />
           </div>
         )}
 
         {newDocFile && !newDocPreview && (
-          <p style={{ marginBottom: "10px" }}>📄 Selected: {newDocFile.name}</p>
+          <p className="doc-name">📄 Selected: {newDocFile.name}</p>
         )}
 
         {!docUrl && !newDocFile && (
-          <p style={{ color: "#888", marginBottom: "10px" }}>
-            No document uploaded yet.
-          </p>
+          <p className="doc-empty">No document uploaded yet.</p>
         )}
 
         <input type="file" accept="image/*,.pdf" onChange={handleFileChange} />

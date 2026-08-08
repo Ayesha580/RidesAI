@@ -30,16 +30,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = []
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'jazzmin',
     'daphne',
     'corsheaders',
-    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -203,21 +201,22 @@ ALLOWED_HOSTS = [
     "ridesai.cloud",
     "www.ridesai.cloud",
     "187.127.217.78",
+    "localhost",
     "127.0.0.1"
 ]
 CSRF_TRUSTED_ORIGINS = [
     "https://ridesai.cloud",
     "https://www.ridesai.cloud",
     "http://localhost:5173",
-"http://127.0.0.1:8000",
+"http://127.0.0.1:5173",
 
 ]
 
 CORS_ALLOWED_ORIGINS = [
     "https://ridesai.cloud",
     "https://www.ridesai.cloud",
-    "http://localhost:5173",   # agar local testing bhi karni hai
-    "http://127.0.0.1:8000"
+    "http://localhost:5173",
+    "http://127.0.0.1:5173"
 ]
 ROTATE_REFRESH_TOKENS = True,
 BLACKLIST_AFTER_ROTATION =  True,

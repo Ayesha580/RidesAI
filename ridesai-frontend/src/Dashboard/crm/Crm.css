@@ -291,3 +291,33 @@
     font-weight: 600;
     text-decoration: underline;
 }
+
+@media (max-width: 768px) {
+    .crm-page {
+        padding: 16px;
+        height: calc(100vh - 60px);
+    }
+
+    .crm-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .crm-upload-btn {
+        width: 100%;
+    }
+
+    .crm-table-wrapper {
+        overflow-x: auto;
+    }
+
+    .crm-table {
+        min-width: 700px;
+    }
+
+    .confirm-box {
+        width: 90vw;
+        max-width: 340px;
+    }
+}

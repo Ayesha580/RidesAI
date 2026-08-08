@@ -103,3 +103,25 @@ border-radius:8px;
     font-size: 14px;
     padding: 0 4px;
 }
+@media (max-width: 768px) {
+    .mailbox-page {
+        padding: 16px;
+    }
+
+    .mailbox-card {
+        padding: 20px;
+    }
+
+    .mailbox-row {
+        flex-direction: column;
+        gap: 4px;
+        margin-bottom: 14px;
+    }
+
+    .gmail-btn,
+    .test-btn,
+    .disconnect-btn {
+        width: 100%;
+        margin-right: 0;
+    }
+}

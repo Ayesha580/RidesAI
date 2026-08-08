@@ -304,7 +304,7 @@ className="form-input"
 
 name="first_name"
 
-placeholder="Full Name"
+placeholder="John Smith"
 
 onChange={handleChange}
 
@@ -322,7 +322,7 @@ className="form-input"
 
 name="username"
 
-placeholder="Username"
+placeholder="john"
 
 onChange={handleChange}
 
@@ -342,7 +342,7 @@ type="email"
 
 name="email"
 
-placeholder="Email"
+placeholder="john12@gmail.com"
 
 onChange={handleChange}
 
@@ -360,7 +360,7 @@ className="form-input"
 
 name="cnic"
 
-placeholder="CNIC / ID Card"
+placeholder="35403-9765437-9"
 
 onChange={handleChange}
 
@@ -378,7 +378,7 @@ className="form-input"
 
 name="phone"
 
-placeholder="Phone Number"
+placeholder="03123456789"
 
 onChange={handleChange}
 

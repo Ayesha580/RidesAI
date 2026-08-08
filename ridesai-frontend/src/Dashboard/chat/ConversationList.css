@@ -4,6 +4,7 @@
     border-right:1px solid #f2e0fa;
     display:flex;
     flex-direction:column;
+    height:100%;
 }
 
 .conversation-header{
@@ -217,4 +218,31 @@
 .confirm-cancel:disabled{
     opacity:.5;
     cursor:not-allowed;
+}
+@media (max-width:768px){
+    .conversation-sidebar{
+        width:100%;
+        border-right:none;
+    }
+
+    .conversation-header{
+        height:60px;
+        padding:0 16px;
+        font-size:18px;
+    }
+
+    .conversation-item{
+        padding:14px 16px;
+    }
+
+    .conversation-avatar{
+        width:42px;
+        height:42px;
+        font-size:17px;
+    }
+
+    .confirm-box{
+        width:90vw;
+        max-width:340px;
+    }
 }

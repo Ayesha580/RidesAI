@@ -1,145 +1,263 @@
-.task-page {
-    padding: 30px;
-    background: #f5f7fb;
-    min-height: 100vh;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-.task-card {
-    background: white;
-    max-width: 750px;
-    margin: auto;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+.rideai_mgrtask_page {
+  padding: 30px;
+  background: #f5f7fb;
+  min-height: 100vh;
+  width: 100%;
+  max-width: 100%;
 }
 
-.task-card h2 {
-    margin-bottom: 25px;
-    color: #1f2937;
+.rideai_mgrtask_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+  gap: 15px;
 }
 
-.form-group {
-    display: flex;
+.rideai_mgrtask_header h2 {
+  margin: 0;
+  color: #1f2937;
+}
+
+.rideai_mgrtask_createbtn {
+  background: #be27ee;
+  color: white;
+  border: none;
+  padding: 12px 22px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* ============ FORM CARD ============ */
+
+.rideai_mgrtask_formcard {
+  background: white;
+  max-width: 750px;
+  margin: 0 auto 25px;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+  width: 100%;
+}
+
+.rideai_mgrtask_formtop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.rideai_mgrtask_formtop h2 {
+  margin: 0;
+  color: #1f2937;
+}
+
+.rideai_mgrtask_closebtn {
+  background: #ef4444;
+  color: white;
+  border: none;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.rideai_mgrtask_formgroup {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 18px;
+  width: 100%;
+}
+
+.rideai_mgrtask_formgroup label {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 7px;
+  color: #374151;
+}
+
+.rideai_mgrtask_formgroup input,
+.rideai_mgrtask_formgroup textarea,
+.rideai_mgrtask_formgroup select {
+  padding: 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  width: 100%;
+}
+
+.rideai_mgrtask_formgroup input:focus,
+.rideai_mgrtask_formgroup textarea:focus,
+.rideai_mgrtask_formgroup select:focus {
+  border-color: #be27ee;
+  box-shadow: 0 0 0 3px rgba(190, 39, 238, 0.15);
+}
+
+.rideai_mgrtask_row {
+  display: flex;
+  gap: 20px;
+}
+
+.rideai_mgrtask_row .rideai_mgrtask_formgroup {
+  flex: 1;
+  min-width: 0;
+}
+
+.rideai_mgrtask_assignbtn {
+  width: 100%;
+  padding: 13px;
+  border: none;
+  background: #be27ee;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: 0.3s;
+}
+
+.rideai_mgrtask_assignbtn:hover {
+  background: #a91fd6;
+}
+
+/* ============ TASK LIST / TABLE ============ */
+
+.rideai_mgrtask_listcard {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.rideai_mgrtask_listcard h2 {
+  margin: 0 0 20px;
+  color: #1f2937;
+}
+
+.rideai_mgrtask_table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 650px;
+}
+
+.rideai_mgrtask_table th,
+.rideai_mgrtask_table td {
+  padding: 14px;
+  border-bottom: 1px solid #eee;
+  text-align: left;
+}
+
+.rideai_mgrtask_empty {
+  text-align: center;
+  color: #64748b;
+}
+
+.rideai_mgrtask_deletebtn {
+  background: #ef4444;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+/* ============ RESPONSIVE ============ */
+
+@media (max-width: 992px) {
+  .rideai_mgrtask_page {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .rideai_mgrtask_page {
+    padding-top: 80px; /* space for fixed mobile hamburger button */
+  }
+
+  .rideai_mgrtask_formcard {
+    padding: 20px;
+  }
+
+  .rideai_mgrtask_row {
     flex-direction: column;
-    margin-bottom: 18px;
+    gap: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .rideai_mgrtask_page {
+    padding: 75px 12px 20px;
+  }
+
+  .rideai_mgrtask_header h2 {
+    font-size: 22px;
+  }
+
+  .rideai_mgrtask_createbtn {
     width: 100%;
-}
+  }
 
-label {
-    font-size: 14px;
-    font-weight: 600;
-    margin-bottom: 7px;
-    color: #374151;
-}
+  .rideai_mgrtask_listcard {
+    padding: 14px;
+  }
 
-input,
-textarea,
-select {
-    padding: 12px;
-    border: 1px solid #d1d5db;
-    border-radius: 8px;
-    font-size: 14px;
-    outline: none;
-}
+  /* Card-style table on very small screens */
+  .rideai_mgrtask_table thead {
+    display: none;
+  }
 
-input:focus,
-textarea:focus,
-select:focus {
-    border-color: #be27ee;
-    box-shadow: 0 0 0 3px rgba(190, 39, 238, 0.15);
-}
+  .rideai_mgrtask_table,
+  .rideai_mgrtask_table tbody,
+  .rideai_mgrtask_table tr,
+  .rideai_mgrtask_table td {
+    display: block;
+    width: 100%;
+    min-width: 0;
+  }
 
-.row {
+  .rideai_mgrtask_table tr {
+    margin-bottom: 15px;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .rideai_mgrtask_table td {
     display: flex;
-    gap: 20px;
-}
+    justify-content: space-between;
+    align-items: center;
+    text-align: right;
+    padding: 10px 14px;
+    border-bottom: 1px solid #f1f5f9;
+  }
 
-.row .form-group {
-    flex: 1;
-}
+  .rideai_mgrtask_table td:last-child {
+    border-bottom: none;
+  }
 
-.assign-btn {
-    width: 100%;
-    padding: 13px;
-    border: none;
-    background: #be27ee;
-    color: white;
-    font-size: 16px;
+  .rideai_mgrtask_table td::before {
+    content: attr(data-label);
     font-weight: 600;
-    border-radius: 8px;
-    cursor: pointer;
-    margin-top: 10px;
-    transition: 0.3s;
-}
+    color: #64748b;
+    text-align: left;
+  }
 
-.assign-btn:hover {
-    background: #be27ee;
-}
-.task-header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:25px;
-}
-
-
-.create-btn{
-    background:#be27ee;
-    color:white;
-    border:none;
-    padding:12px 22px;
-    border-radius:8px;
-    cursor:pointer;
-    font-weight:600;
-}
-
-
-.close-btn{
-    background:#ef4444;
-    color:white;
-    border:none;
-    width:35px;
-    height:35px;
-    border-radius:50%;
-    cursor:pointer;
-}
-
-
-.form-top{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
-
-
-.task-list-card{
-    background:white;
-    padding:25px;
-    border-radius:12px;
-    box-shadow:0 5px 20px rgba(0,0,0,.08);
-    margin-top:25px;
-}
-
-
-.task-list-card table{
-    width:100%;
-    border-collapse:collapse;
-}
-
-
-.task-list-card th,
-.task-list-card td{
-    padding:14px;
-    border-bottom:1px solid #eee;
-    text-align:left;
-}
-
-
-.delete-btn{
-    background:#ef4444;
-    color:white;
-    border:none;
-    padding:8px 15px;
-    border-radius:6px;
-    cursor:pointer;
+  .rideai_mgrtask_table .rideai_mgrtask_empty::before {
+    content: "";
+  }
 }

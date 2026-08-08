@@ -1,0 +1,55 @@
+.hrmgmt_wrap {
+  padding: 30px;
+}
+
+.hrmgmt_title {
+  font-size: 28px;
+  margin-bottom: 25px;
+  color: #0f172a;
+}
+
+.hrmgmt_cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 25px;
+}
+
+.hrmgmt_card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.08);
+}
+
+.hrmgmt_card h2 {
+  font-size: 20px;
+  margin-bottom: 8px;
+  color: #1F1F1F;
+}
+
+.hrmgmt_card p {
+  color: #6b7280;
+  font-size: 14px;
+  margin-bottom: 18px;
+}
+
+.hrmgmt_btn {
+  background: #be27ee;
+  color: #fff;
+  border: none;
+  padding: 12px 22px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: .3s;
+}
+
+.hrmgmt_btn:hover {
+  background: #9b1fc4;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .hrmgmt_wrap { padding: 16px; }
+  .hrmgmt_cards { grid-template-columns: 1fr; }
+}

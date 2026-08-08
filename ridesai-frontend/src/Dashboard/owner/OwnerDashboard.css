@@ -1,0 +1,241 @@
+.ownerdash_wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+/* ================= Stat Cards ================= */
+
+.ownerdash_cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.ownerdash_card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.06);
+  position: relative;
+  overflow: hidden;
+}
+
+.ownerdash_card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #be27ee, #6d28d9);
+}
+
+.ownerdash_card h2 {
+  font-size: 34px;
+  color: #be27ee;
+  margin-bottom: 6px;
+}
+
+.ownerdash_card p {
+  color: #6b7280;
+  font-size: 14px;
+}
+
+/* ================= Panel Card (shared: office hours, announcement, tables, chart) ================= */
+
+.ownerdash_panel-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 25px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.06);
+}
+
+.ownerdash_panel-title {
+  margin-bottom: 18px;
+  color: #1f1f1f;
+  font-size: 18px;
+}
+
+/* ================= Forms (office hours + announcement) ================= */
+
+.ownerdash_form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.ownerdash_form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ownerdash_form-group label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.ownerdash_form input,
+.ownerdash_form select,
+.ownerdash_form textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-size: 15px;
+  font-family: inherit;
+  outline: none;
+  box-sizing: border-box;
+  background: #fff;
+  color: #000;
+  transition: .2s;
+}
+
+.ownerdash_form textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.ownerdash_form input:focus,
+.ownerdash_form select:focus,
+.ownerdash_form textarea:focus {
+  border-color: #be27ee;
+  box-shadow: 0 0 0 3px rgba(190,39,238,.12);
+}
+
+.ownerdash_btn {
+  align-self: flex-start;
+  background: #be27ee;
+  color: #fff;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.ownerdash_btn:hover {
+  background: #9d18cb;
+}
+
+.ownerdash_btn:disabled {
+  opacity: .6;
+  cursor: not-allowed;
+}
+
+/* ================= Tables Grid ================= */
+
+.ownerdash_grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  min-width: 0;
+}
+.ownerdash_grid > .ownerdash_panel-card {
+  min-width: 0;      /* IMPORTANT: grid item ko shrink hone deta hai */
+}
+
+.ownerdash_table-wrap {
+  overflow-x: auto;
+}
+
+.ownerdash_table {
+  width: 100%;
+  border-collapse: collapse;
+    min-width: 480px;   /* ye ab wrap ke andar hi rahega, page ko nahi todega */
+
+}
+
+.ownerdash_table thead {
+  background: #f8e8fd;
+}
+
+.ownerdash_table th {
+  color: #be27ee;
+  text-align: left;
+  padding: 14px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.ownerdash_table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid #f0f0f0;
+  color: #4b5563;
+  font-size: 14px;
+}
+
+.ownerdash_table tbody tr:hover {
+  background: #faf5ff;
+}
+
+.ownerdash_empty {
+  text-align: center;
+  color: #9ca3af;
+}
+
+/* ================= Chart ================= */
+
+.ownerdash_chart-wrap {
+  position: relative;
+  height: 320px;
+}
+
+/* ================= Responsive ================= */
+
+@media (max-width: 992px) {
+  .ownerdash_grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .ownerdash_wrap {
+    gap: 18px;
+  }
+
+  .ownerdash_cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+
+  .ownerdash_card {
+    padding: 18px;
+  }
+
+  .ownerdash_card h2 {
+    font-size: 26px;
+  }
+
+  .ownerdash_panel-card {
+    padding: 18px;
+    border-radius: 14px;
+  }
+
+  .ownerdash_table {
+    min-width: 480px;
+  }
+
+  .ownerdash_chart-wrap {
+    height: 260px;
+  }
+
+  .ownerdash_btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .ownerdash_cards {
+    grid-template-columns: 1fr;
+  }
+
+  .ownerdash_chart-wrap {
+    height: 220px;
+  }
+}
