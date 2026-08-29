@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axiosClient from "../../api/axiosClient";
 import "./ManagerDashboard.css";
+import Herry from "../components/Herry";
 
 export default function ManagerDashboard() {
 
@@ -52,6 +53,7 @@ export default function ManagerDashboard() {
                 </div>
 
             </div>
+            <Herry />
 
         </div>
     );

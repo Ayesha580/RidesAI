@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosClient = axios.create({
-    baseURL: "http:ridesai.cloud/api",
+    baseURL: "http://ridesai.cloud/api",
     withCredentials: true,
 });
 
@@ -87,7 +87,7 @@ axiosClient.interceptors.response.use(
 
             try {
                 const res = await axios.post(
-                    "http://ridesai.cloud/api/token/refresh/",
+                    "https://ridesai.cloud/api/token/refresh/",
                     { refresh: refreshToken },
                     { withCredentials: true }
                 );

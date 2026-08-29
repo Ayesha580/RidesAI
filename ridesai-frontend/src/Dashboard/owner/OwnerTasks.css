@@ -50,7 +50,7 @@
 .task-form input:focus,
 .task-form select:focus,
 .task-form textarea:focus{
-    border-color:#be27ee;
+    border-color:#FF77FF;
     box-shadow:0 0 0 3px rgba(190,39,238,.12);
 }
 
@@ -60,7 +60,7 @@
     padding:12px;
     border:none;
     border-radius:8px;
-    background:#be27ee;
+    background:#FF77FF;
     color:#fff;
     font-size:15px;
     font-weight:600;
@@ -69,7 +69,7 @@
 }
 
 .task-form button:hover{
-    background:#a91bd6;
+    background:#FF77FF;
 }
 
 /* Divider */
@@ -100,7 +100,7 @@
     margin:0;
     padding:18px 20px;
     background:#f8f0ff;
-    color:#be27ee;
+    color:#FF77FF;
     font-size:18px;
     font-weight:700;
     border-bottom:1px solid #ececec;

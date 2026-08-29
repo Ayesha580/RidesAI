@@ -1,24 +1,99 @@
+:root {
+  --od-primary: #FF77FF;
+  --od-primary-light: #ff77ff;
+  --od-primary-soft: #f8e7fe;
+  --od-text: #1f1f1f;
+  --od-muted: #6b7280;
+  --od-border: #f0e6f7;
+}
+
 .ownerdash_wrap {
   display: flex;
   flex-direction: column;
-  gap: 25px;
+  gap: 26px;
+  font-family: Arial, sans-serif;
+}
+
+/* ================= Loading ================= */
+
+.ownerdash_loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 80px 0;
+  color: var(--od-muted);
+}
+
+.ownerdash_loader {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 4px solid var(--od-primary-soft);
+  border-top-color: var(--od-primary);
+  animation: ownerdashSpin 0.8s linear infinite;
+}
+
+@keyframes ownerdashSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ================= Page Header ================= */
+
+.ownerdash_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 24px 28px;
+  border-radius: 18px;
+
+  background: linear-gradient(135deg, var(--od-primary), var(--od-primary-light));
+  color: #ffffff;
+
+  box-shadow: 0 10px 30px rgba(190, 39, 238, 0.25);
+}
+
+.ownerdash_header h1 {
+  margin: 0 0 4px;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.ownerdash_header p {
+  margin: 0;
+  font-size: 14px;
+  opacity: 0.9;
 }
 
 /* ================= Stat Cards ================= */
 
 .ownerdash_cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 18px;
 }
 
 .ownerdash_card {
-  background: #fff;
-  border-radius: 16px;
-  padding: 24px;
-  box-shadow: 0 10px 30px rgba(0,0,0,.06);
   position: relative;
   overflow: hidden;
+
+  background: #fff;
+  border: 1px solid var(--od-border);
+  border-radius: 16px;
+  padding: 22px;
+
+  box-shadow: 0 8px 24px rgba(190, 39, 238, 0.06);
+  transition: all 0.2s ease;
+}
+
+.ownerdash_card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(190, 39, 238, 0.14);
+  border-color: var(--od-primary-light);
 }
 
 .ownerdash_card::before {
@@ -28,40 +103,95 @@
   left: 0;
   width: 100%;
   height: 4px;
-  background: linear-gradient(90deg, #be27ee, #6d28d9);
+  background: linear-gradient(90deg, var(--od-primary-light), var(--od-primary));
+}
+
+.ownerdash_card-icon {
+  width: 44px;
+  height: 44px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 14px;
+
+  border-radius: 12px;
+  background: var(--od-primary-soft);
+
+  font-size: 20px;
 }
 
 .ownerdash_card h2 {
-  font-size: 34px;
-  color: #be27ee;
-  margin-bottom: 6px;
+  font-size: 30px;
+  color: var(--od-primary);
+  margin: 0 0 4px;
+  font-weight: 700;
 }
 
 .ownerdash_card p {
-  color: #6b7280;
-  font-size: 14px;
+  color: var(--od-muted);
+  font-size: 13px;
+  margin: 0;
 }
 
-/* ================= Panel Card (shared: office hours, announcement, tables, chart) ================= */
+/* ================= Panel Card (shared) ================= */
 
 .ownerdash_panel-card {
   background: #fff;
+  border: 1px solid var(--od-border);
   border-radius: 16px;
-  padding: 25px;
-  box-shadow: 0 10px 30px rgba(0,0,0,.06);
+  padding: 24px;
+  box-shadow: 0 8px 24px rgba(190, 39, 238, 0.05);
+}
+
+.ownerdash_panel-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.ownerdash_panel-icon {
+  width: 34px;
+  height: 34px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 10px;
+  background: var(--od-primary-soft);
+
+  font-size: 16px;
 }
 
 .ownerdash_panel-title {
-  margin-bottom: 18px;
-  color: #1f1f1f;
-  font-size: 18px;
+  margin: 0;
+  color: var(--od-text);
+  font-size: 16px;
+  font-weight: 700;
 }
 
-/* ================= Forms (office hours + announcement) ================= */
+/* ================= Two-column layout (office hours + announcement) ================= */
+
+.ownerdash_two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+/* ================= Forms ================= */
 
 .ownerdash_form {
   display: flex;
   flex-direction: column;
+  gap: 14px;
+}
+
+.ownerdash_form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 14px;
 }
 
@@ -72,7 +202,7 @@
 }
 
 .ownerdash_form-group label {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
   color: #374151;
 }
@@ -84,47 +214,60 @@
   padding: 12px 14px;
   border: 1px solid #ddd;
   border-radius: 10px;
-  font-size: 15px;
+  font-size: 14px;
   font-family: inherit;
   outline: none;
   box-sizing: border-box;
   background: #fff;
   color: #000;
-  transition: .2s;
+  transition: 0.2s;
 }
 
 .ownerdash_form textarea {
   resize: vertical;
-  min-height: 120px;
+  min-height: 110px;
+}
+
+.ownerdash_form input:hover,
+.ownerdash_form select:hover,
+.ownerdash_form textarea:hover {
+  border-color: var(--od-primary-light);
 }
 
 .ownerdash_form input:focus,
 .ownerdash_form select:focus,
 .ownerdash_form textarea:focus {
-  border-color: #be27ee;
-  box-shadow: 0 0 0 3px rgba(190,39,238,.12);
+  border-color: var(--od-primary);
+  box-shadow: 0 0 0 3px rgba(190, 39, 238, 0.12);
 }
 
 .ownerdash_btn {
   align-self: flex-start;
-  background: #be27ee;
+
+  background: linear-gradient(135deg, var(--od-primary), var(--od-primary-light));
   color: #fff;
   border: none;
+
   padding: 12px 28px;
   border-radius: 10px;
-  font-size: 15px;
+
+  font-size: 14px;
   font-weight: 600;
+
   cursor: pointer;
-  transition: .2s;
+  transition: all 0.2s ease;
 }
 
 .ownerdash_btn:hover {
-  background: #9d18cb;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(190, 39, 238, 0.3);
 }
 
 .ownerdash_btn:disabled {
-  opacity: .6;
+  opacity: 0.6;
   cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
 }
 
 /* ================= Tables Grid ================= */
@@ -135,8 +278,9 @@
   gap: 20px;
   min-width: 0;
 }
+
 .ownerdash_grid > .ownerdash_panel-card {
-  min-width: 0;      /* IMPORTANT: grid item ko shrink hone deta hai */
+  min-width: 0;
 }
 
 .ownerdash_table-wrap {
@@ -146,96 +290,32 @@
 .ownerdash_table {
   width: 100%;
   border-collapse: collapse;
-    min-width: 480px;   /* ye ab wrap ke andar hi rahega, page ko nahi todega */
-
+  min-width: 420px;
 }
 
 .ownerdash_table thead {
-  background: #f8e8fd;
+  background: var(--od-primary-soft);
 }
 
 .ownerdash_table th {
-  color: #be27ee;
+  color: var(--od-primary);
   text-align: left;
-  padding: 14px 16px;
-  font-size: 13px;
-  font-weight: 600;
+  padding: 13px 16px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
   white-space: nowrap;
+}
+
+.ownerdash_table th:first-child {
+  border-radius: 10px 0 0 10px;
+}
+
+.ownerdash_table th:last-child {
+  border-radius: 0 10px 10px 0;
 }
 
 .ownerdash_table td {
   padding: 14px 16px;
-  border-bottom: 1px solid #f0f0f0;
-  color: #4b5563;
-  font-size: 14px;
-}
-
-.ownerdash_table tbody tr:hover {
-  background: #faf5ff;
-}
-
-.ownerdash_empty {
-  text-align: center;
-  color: #9ca3af;
-}
-
-/* ================= Chart ================= */
-
-.ownerdash_chart-wrap {
-  position: relative;
-  height: 320px;
-}
-
-/* ================= Responsive ================= */
-
-@media (max-width: 992px) {
-  .ownerdash_grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 768px) {
-  .ownerdash_wrap {
-    gap: 18px;
-  }
-
-  .ownerdash_cards {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 14px;
-  }
-
-  .ownerdash_card {
-    padding: 18px;
-  }
-
-  .ownerdash_card h2 {
-    font-size: 26px;
-  }
-
-  .ownerdash_panel-card {
-    padding: 18px;
-    border-radius: 14px;
-  }
-
-  .ownerdash_table {
-    min-width: 480px;
-  }
-
-  .ownerdash_chart-wrap {
-    height: 260px;
-  }
-
-  .ownerdash_btn {
-    width: 100%;
-  }
-}
-
-@media (max-width: 480px) {
-  .ownerdash_cards {
-    grid-template-columns: 1fr;
-  }
-
-  .ownerdash_chart-wrap {
-    height: 220px;
-  }
-}
+  border-bottom: 1px

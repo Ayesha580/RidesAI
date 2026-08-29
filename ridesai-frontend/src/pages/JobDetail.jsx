@@ -63,8 +63,8 @@ export default function JobDetail() {
           --jd-body: #57536E;
           --jd-paper: #F6F4FC;
           --jd-card: #FFFFFF;
-          --jd-accent: #be27ee;
-          --jd-accent-dark: #be27ee;
+          --jd-accent: #FF77FF;
+          --jd-accent-dark: #FF77FF;
           --jd-accent-soft: #F1E9FC;
           --jd-success: #158F52;
           --jd-success-soft: #E5F6EC;

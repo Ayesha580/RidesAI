@@ -127,7 +127,7 @@ const saveBtn = {
   padding: "10px 16px",
   borderRadius: "8px",
   border: "none",
-  background: "#2563eb",
+  background: "#FF77FF",
   color: "#000",
   cursor: "pointer",
 };

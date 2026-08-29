@@ -99,7 +99,7 @@ def google_callback(request):
     oauth_state.delete()
 
     return HttpResponseRedirect(
-        "https://ridesai.cloud/owner/settings/mailbox?connected=true"
+        "http://ridesai.cloud/owner/settings/mailbox?connected=true"
     )
 
 

@@ -70,38 +70,48 @@ export default function EmployeeList() {
         <div className="employee-table-card">
           <div className="employee-table-wrap">
             <table className="employee-table">
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Username</th>
-                  <th>Email</th>
-                  <th>Designation</th>
-                  <th>Age</th>
-                  <th>Manager</th>
-                  <th className="employee-table-action-col">Action</th>
-                </tr>
-              </thead>
+             <thead>
+              <tr>
+                <th>Name</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Age</th>
+                <th>Department</th>
+                <th>Role</th>
+                <th>Joining Date</th>
+                <th>Salary</th>
+                <th>Action</th>
+              </tr>
+            </thead>
 
               <tbody>
-                {employees.map((emp) => (
-                  <tr key={emp.id}>
-                    <td>{emp.name}</td>
-                    <td>{emp.username}</td>
-                    <td>{emp.email}</td>
-                    <td>{emp.designation || "-"}</td>
-                    <td>{emp.age || "-"}</td>
-                    <td>{emp.manager || "Not Assigned"}</td>
-                    <td className="employee-table-action-col">
-                      <button
-                        className="remove-btn"
-                        onClick={() => handleRemove(emp.id, emp.name)}
-                      >
-                        Remove
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
+  {employees.map((emp) => (
+    <tr key={emp.id}>
+      <td>{emp.name}</td>
+      <td>{emp.username}</td>
+      <td>{emp.email}</td>
+      <td>{emp.age || "-"}</td>
+      <td>{emp.department || "-"}</td>
+      <td>{emp.custom_role || "-"}</td>
+      <td>
+        {emp.joining_date
+          ? new Date(emp.joining_date).toLocaleDateString("en-GB")
+          : "-"}
+      </td>
+      <td>{emp.salary || "-"}</td>
+      <td>
+        <button
+          className="remove-btn"
+          onClick={() =>
+            handleRemove(emp.id, emp.name)
+          }
+        >
+          Remove
+        </button>
+      </td>
+    </tr>
+  ))}
+</tbody>
             </table>
           </div>
         </div>

@@ -100,7 +100,7 @@
 
 .form-input:focus {
 
-    border-color:#2563eb;
+    border-color:#FF77FF;
 
     outline:none;
 
@@ -188,7 +188,7 @@
 
     padding:14px;
 
-    background:#be27ee;
+    background:#FF77FF;
 
     color:white;
 
@@ -210,7 +210,7 @@
 
 .register-btn:hover {
 
-    background:#be27ee;
+    background:#FF77FF;
 
 }
 
@@ -218,7 +218,7 @@
 
 .register-btn:disabled {
 
-    background:#93c5fd;
+    background:#be2744;
 
     cursor:not-allowed;
 
@@ -348,10 +348,126 @@
     box-sizing:border-box;
     text-align: left;
 }
+/* =========================================
+   REGISTRATION DOCUMENTS
+   Added styles - existing CSS remains intact
+========================================= */
+
+.file-box {
+    margin-top: 20px;
+    margin-bottom: 22px;
+    padding: 18px;
+
+    border: 1px dashed #c4b5fd;
+    border-radius: 10px;
+
+    background: #faf7ff;
+    box-sizing: border-box;
+}
+
+.file-box h4 {
+    margin-top: 0;
+    margin-bottom: 18px;
+    color: #374151;
+    font-size: 17px;
+}
+
+
+/* File field labels */
+
+.file-box .field-label {
+    display: block;
+    margin-top: 12px;
+    margin-bottom: 7px;
+
+    font-weight: 600;
+    color: #374151;
+    font-size: 14px;
+    text-align: left;
+}
+
+
+/* File inputs */
+
+.file-box input[type="file"] {
+    width: 100%;
+    padding: 10px;
+
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+
+    background: #ffffff;
+
+    font-size: 13px;
+    color: #374151;
+
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+
+.file-box input[type="file"]:focus {
+    outline: none;
+    border-color: #FF77FF;
+    box-shadow: 0 0 0 2px rgba(190, 39, 238, 0.12);
+}
+
+
+/* File description */
+
+.file-box small {
+    display: block;
+
+    margin-top: 6px;
+    margin-bottom: 14px;
+
+    color: #6b7280;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+
+/* =========================================
+   REGISTRATION SECTION HEADINGS
+========================================= */
+
+.file-box h4::after {
+    content: "";
+    display: block;
+
+    width: 45px;
+    height: 2px;
+
+    margin-top: 8px;
+
+    background: #FF77FF;
+    border-radius: 5px;
+}
+
+
+/* =========================================
+   DOCUMENT UPLOAD MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+    .file-box {
+        padding: 15px;
+    }
+
+    .file-box h4 {
+        font-size: 16px;
+    }
+
+    .file-box input[type="file"] {
+        font-size: 12px;
+    }
+
+}
 
 .primary-btn{
     width:100%;
-    background:#be27ee;
+    background:#FF77FF;
     color:#fff;
     border:none;
     padding:14px;
@@ -362,5 +478,5 @@
 }
 
 .primary-btn:hover{
-    background:#be27e0;
+    background:#FF77FF;
 }

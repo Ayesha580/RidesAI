@@ -36,6 +36,7 @@ class Application(models.Model):
 
 
 class Employee(models.Model):
+    custom_role = models.CharField(max_length=100, blank=True, null=True)
     home_latitude = models.FloatField(
         null=True,
         blank=True

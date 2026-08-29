@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import logo from "../assets/logo.png";
+import logo from "../assets/logo.jpeg";
 import { hasFeature } from "../utils/planAccess";
 // OwnerSidebar.jsx ke top pe
 import "../components/Sidebar.css";

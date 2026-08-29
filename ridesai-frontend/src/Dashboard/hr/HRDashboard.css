@@ -5,8 +5,8 @@
 }
 
 :root {
-    --primary: #be27ee;
-    --primary-dark: #9d18cb;
+    --primary: #FF77FF;
+    --primary-dark: #FF77FF;
     --primary-light: #f8e7fe;
     --bg: #f8f9fc;
     --white: #ffffff;
@@ -69,7 +69,7 @@ body {
 /* ================= Welcome Card ================= */
 
 .hr-welcome-card {
-    background: linear-gradient(135deg, #BB72BC, #8f1bbc);
+    background: linear-gradient(135deg, #FF77FF, #FF77FF);
     color: #fff;
     border-radius: 18px;
     padding: 35px;
@@ -228,7 +228,7 @@ body {
 }
 
 .add-btn {
-    background: #be27ee;
+    background: #FF77FF;
     color: #fff;
     border: none;
     padding: 12px 22px;
@@ -240,7 +240,7 @@ body {
 }
 
 .add-btn:hover {
-    background: #9d18cb;
+    background: #FF77FF;
     transform: translateY(-2px);
 }
 
@@ -274,7 +274,7 @@ body {
 }
 
 .employee-table th {
-    color: #be27ee;
+    color: #FF77FF;
     text-align: left;
     padding: 18px;
     font-size: 15px;
@@ -379,7 +379,7 @@ body {
 }
 
 .form-group input:focus {
-    border-color: #be27ee;
+    border-color: #FF77FF;
     box-shadow: 0 0 0 4px rgba(190,39,238,.15);
 }
 
@@ -397,12 +397,12 @@ body {
 }
 
 .form-group select:focus {
-    border-color: #be27ee;
+    border-color: #FF77FF;
     box-shadow: 0 0 0 4px rgba(190,39,238,.15);
 }
 
 .form-group select:hover {
-    border-color: #be27ee;
+    border-color: #FF77FF;
 }
 
 .form-group small {
@@ -413,7 +413,7 @@ body {
 
 .submit-btn {
     margin-top: 30px;
-    background: linear-gradient(135deg, #be27ee, #971dc7);
+    background: linear-gradient(135deg, #FF77FF, #971dc7);
     color: #fff;
     border: none;
     padding: 14px 30px;

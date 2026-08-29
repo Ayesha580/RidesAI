@@ -29,7 +29,7 @@
   width: 8px;
   height: 26px;
   border-radius: 4px;
-  background: linear-gradient(180deg, #be27ee, #7c1fb0);
+  background: linear-gradient(180deg, #FF77FF, #7c1fb0);
   display: inline-block;
 }
 
@@ -100,7 +100,7 @@
   border: none;
   padding: 13px 24px;
   border-radius: 10px;
-  background: linear-gradient(135deg, #be27ee, #9333ea);
+  background: linear-gradient(135deg, #FF77FF, #9333ea);
   color: white;
   cursor: pointer;
   font-size: 15px;
@@ -124,7 +124,7 @@
 /* Timer */
 .timer {
   margin: 30px 0;
-  background: linear-gradient(135deg, #be27ee, #7c1fb0);
+  background: linear-gradient(135deg, #FF77FF, #7c1fb0);
   color: white;
   border-radius: 16px;
   padding: 30px;

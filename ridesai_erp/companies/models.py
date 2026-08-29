@@ -52,10 +52,56 @@ class Company(models.Model):
         blank=True,
         null=True
     )
+    # ------------------------
+    # Registration Documents
+    # ------------------------
+
+    is_registered = models.BooleanField(default=False)
+
+    registration_number = models.CharField(
+        max_length=100,
+        blank=True,
+        default=""
+    )
+
+    business_registration_document = models.FileField(
+        upload_to="company/business_registration/",
+        blank=True,
+        null=True
+    )
+
+    cnic = models.CharField(
+        max_length=30,
+        blank=True,
+        default=""
+    )
+
+    cnic_front = models.ImageField(
+        upload_to="company/owner/cnic/front/",
+        blank=True,
+        null=True
+    )
+
+    cnic_back = models.ImageField(
+        upload_to="company/owner/cnic/back/",
+        blank=True,
+        null=True
+    )
+
+    passport_size_photo = models.ImageField(
+        upload_to="company/owner/photo/",
+        blank=True,
+        null=True
+    )
     allowed_ip_addresses = models.TextField(
         blank=True,
         null=True,
         help_text="Comma separated IP addresses allowed for attendance"
+    )
+    logo = models.ImageField(
+        upload_to="company/logos/",
+        blank=True,
+        null=True
     )
 
     STATUS_PENDING = "pending"
@@ -118,23 +164,6 @@ class Company(models.Model):
         default=""
     )
 
-    cnic = models.CharField(
-        max_length=30,
-        blank=True,
-        default=""
-    )
-
-    cnic_front = models.ImageField(
-        upload_to="cnic/front/",
-        blank=True,
-        null=True
-    )
-
-    cnic_back = models.ImageField(
-        upload_to="cnic/back/",
-        blank=True,
-        null=True
-    )
 
     # ------------------------
     # Subscription
@@ -223,19 +252,6 @@ class Company(models.Model):
 
         auto_now=True,
 
-    )
-    is_registered = models.BooleanField(default=False)
-
-    registration_number = models.CharField(
-        max_length=100,
-        blank=True,
-        default=""
-    )
-
-    tax_number = models.CharField(
-        max_length=100,
-        blank=True,
-        default=""
     )
 
     owner_name = models.CharField(

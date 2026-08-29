@@ -1,0 +1,531 @@
+.splash-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  background: #ff77ff;
+
+  color: #fff;
+}
+
+/* =========================
+   MAIN CONTENT
+========================= */
+
+.splash-content {
+  position: relative;
+  z-index: 10;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+
+  animation: splashFade 1s ease;
+}
+
+.splash-logo {
+  width: 125px;
+  height: 125px;
+
+  object-fit: cover;
+
+  border-radius: 50%;
+  background: #fff;
+  padding: 7px;
+
+  box-shadow:
+    0 0 25px rgba(255, 255, 255, 0.45),
+    0 15px 40px rgba(90, 0, 120, 0.25);
+
+  animation: logoPop 1s ease;
+}
+
+.splash-content h1 {
+  margin: 20px 0 0;
+
+  font-size: 36px;
+  font-weight: 800;
+  letter-spacing: -1px;
+
+  text-shadow: 0 5px 15px rgba(100, 0, 130, 0.2);
+}
+
+/* =========================
+   CARTOON CHARACTERS
+========================= */
+
+.cartoon {
+  position: absolute;
+  z-index: 5;
+
+  width: 95px;
+  height: 115px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  animation: characterFloat 3s ease-in-out infinite;
+}
+
+/* Girl / Explorer */
+
+.cartoon-one {
+  left: 14%;
+  top: 28%;
+  transform: rotate(-8deg);
+}
+
+.character-face {
+  width: 72px;
+  height: 72px;
+
+  border-radius: 48% 48% 45% 45%;
+
+  background: #ffd5bd;
+
+  position: relative;
+
+  border: 4px solid #fff;
+
+  box-shadow: 0 8px 20px rgba(90, 0, 120, 0.18);
+}
+
+/* Hair */
+
+.character-face::before {
+  content: "";
+
+  position: absolute;
+
+  width: 78px;
+  height: 38px;
+
+  left: -7px;
+  top: -8px;
+
+  background: #54205f;
+
+  border-radius: 50% 50% 35% 35%;
+}
+
+/* Eyes */
+
+.character-face .eye {
+  position: relative;
+  z-index: 2;
+
+  display: inline-flex;
+
+  margin-top: 36px;
+  margin-left: 14px;
+
+  font-size: 10px;
+
+  color: #301438;
+}
+
+.character-face .smile {
+  position: absolute;
+
+  bottom: 11px;
+  left: 29px;
+
+  font-size: 19px;
+  font-weight: bold;
+
+  color: #b32975;
+}
+
+/* Backpack */
+
+.character-body {
+  margin-top: -2px;
+
+  font-size: 40px;
+
+  filter: drop-shadow(
+    0 8px 8px rgba(80, 0, 110, 0.2)
+  );
+}
+
+/* =========================
+   CUTE ANIMAL
+========================= */
+
+.cartoon-two {
+  right: 14%;
+  top: 27%;
+
+  animation-delay: 0.8s;
+  transform: rotate(8deg);
+}
+
+.animal-face {
+  width: 78px;
+  height: 68px;
+
+  background: #fff;
+
+  border-radius: 48% 48% 45% 45%;
+
+  position: relative;
+
+  border: 4px solid #f2d7fa;
+
+  box-shadow: 0 8px 20px rgba(90, 0, 120, 0.18);
+
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+
+  padding-top: 30px;
+}
+
+.animal-face::before,
+.animal-face::after {
+  content: "";
+
+  position: absolute;
+
+  top: -18px;
+
+  width: 30px;
+  height: 32px;
+
+  background: #fff;
+
+  border: 4px solid #f2d7fa;
+}
+
+.animal-face::before {
+  left: 3px;
+
+  transform: rotate(-28deg);
+
+  border-radius: 70% 20% 50% 20%;
+}
+
+.animal-face::after {
+  right: 3px;
+
+  transform: rotate(28deg);
+
+  border-radius: 20% 70% 20% 50%;
+}
+
+.animal-face span {
+  position: relative;
+  z-index: 2;
+
+  font-size: 10px;
+
+  color: #4a1859;
+}
+
+.animal-face small {
+  position: absolute;
+
+  bottom: 6px;
+  left: 33px;
+
+  font-size: 17px;
+
+  color: #e34a9c;
+}
+
+.animal-body {
+  font-size: 38px;
+
+  margin-top: 2px;
+
+  animation: pawBounce 1s ease-in-out infinite alternate;
+}
+
+/* =========================
+   ROBOT
+========================= */
+
+.cartoon-three {
+  left: 20%;
+  bottom: 23%;
+
+  animation-delay: 1.3s;
+  transform: rotate(5deg);
+}
+
+.robot {
+  width: 75px;
+  height: 65px;
+
+  background: #fff;
+
+  border: 5px solid #ead0f4;
+
+  border-radius: 20px;
+
+  position: relative;
+
+  box-shadow:
+    0 10px 25px rgba(80, 0, 120, 0.2);
+}
+
+.robot::before {
+  content: "";
+
+  position: absolute;
+
+  width: 4px;
+  height: 15px;
+
+  background: #fff;
+
+  top: -20px;
+  left: 31px;
+}
+
+.robot::after {
+  content: "✦";
+
+  position: absolute;
+
+  top: -35px;
+  left: 25px;
+
+  font-size: 17px;
+
+  color: #ffe76b;
+}
+
+.robot-eye {
+  position: relative;
+
+  display: inline-block;
+
+  margin-top: 23px;
+  margin-left: 17px;
+
+  font-size: 9px;
+
+  color: #FF77FF;
+}
+
+.robot-smile {
+  position: absolute;
+
+  bottom: 8px;
+  left: 28px;
+
+  font-size: 18px;
+
+  color: #FF77FF;
+}
+
+/* =========================
+   STARS
+========================= */
+
+.star {
+  position: absolute;
+
+  color: #fff;
+
+  font-size: 30px;
+
+  opacity: 0.8;
+
+  animation: twinkle 1.8s ease-in-out infinite;
+}
+
+.star-one {
+  top: 18%;
+  left: 28%;
+}
+
+.star-two {
+  right: 27%;
+  bottom: 27%;
+
+  font-size: 22px;
+
+  animation-delay: 0.8s;
+}
+
+/* =========================
+   CLOUDS
+========================= */
+
+.cloud {
+  position: absolute;
+
+  color: rgba(255, 255, 255, 0.25);
+
+  font-size: 80px;
+
+  animation: cloudMove 5s ease-in-out infinite;
+}
+
+.cloud-one {
+  top: 10%;
+  left: 5%;
+}
+
+.cloud-two {
+  right: 5%;
+  bottom: 10%;
+
+  font-size: 65px;
+
+  animation-delay: 1.5s;
+}
+
+/* =========================
+   BOTTOM
+========================= */
+
+.splash-bottom {
+  position: absolute;
+
+  bottom: 30px;
+
+  font-size: 25px;
+
+  opacity: 0.85;
+
+  z-index: 10;
+}
+
+.splash-bottom strong {
+  color: #fff;
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes splashFade {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes logoPop {
+  0% {
+    opacity: 0;
+    transform: scale(0.65);
+  }
+
+  70% {
+    transform: scale(1.08);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes characterFloat {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-5deg);
+  }
+
+  50% {
+    transform: translateY(-12px) rotate(5deg);
+  }
+}
+
+@keyframes pawBounce {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: scale(0.8) rotate(0deg);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.2) rotate(20deg);
+  }
+}
+
+@keyframes cloudMove {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(18px);
+  }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 700px) {
+
+  .splash-logo {
+    width: 105px;
+    height: 105px;
+  }
+
+  .splash-content h1 {
+    font-size: 30px;
+  }
+
+  .cartoon-one {
+    left: 4%;
+    top: 25%;
+    transform: scale(0.75);
+  }
+
+  .cartoon-two {
+    right: 3%;
+    top: 25%;
+    transform: scale(0.75);
+  }
+
+  .cartoon-three {
+    left: 7%;
+    bottom: 22%;
+    transform: scale(0.7);
+  }
+
+  .star-one {
+    left: 15%;
+  }
+
+  .star-two {
+    right: 15%;
+  }
+
+  .splash-bottom {
+    bottom: 18px;
+    font-size: 11px;
+  }
+}

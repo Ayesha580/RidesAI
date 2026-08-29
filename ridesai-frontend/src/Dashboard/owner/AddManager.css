@@ -58,7 +58,7 @@
 
 .addmgr_input:focus,
 .addmgr_select:focus {
-  border-color: #be27ee;
+  border-color: #FF77FF;
   box-shadow: 0 0 0 3px rgba(190,39,238,.15);
 }
 
@@ -70,7 +70,7 @@
 }
 
 .addmgr_btn-submit {
-  background: #be27ee;
+  background: #FF77FF;
   color: #fff;
   border: none;
   padding: 14px 28px;

@@ -49,7 +49,7 @@
 
 .task-count{
 
-    background:#be28ee;
+    background:#FF77FF;
 
     color:white;
 
@@ -270,7 +270,7 @@
 
     border-radius:10px;
 
-    background:#be27ee;
+    background:#FF77FF;
 
     color:white;
 
@@ -284,7 +284,7 @@
 
 .complete-btn:hover{
 
-    background:#be27ee;
+    background:#FF77FF;
 
 }
 

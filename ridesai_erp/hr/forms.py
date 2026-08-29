@@ -17,6 +17,7 @@ class HRCreateForm(forms.ModelForm):
 
     designation = forms.CharField(required=False)
     age = forms.IntegerField(required=False)
+    department = forms.CharField(required=False)
 
     class Meta:
         model = User
@@ -26,7 +27,6 @@ class HRCreateForm(forms.ModelForm):
             "username",
             "email",
             "password",
-            "designation"
         ]
 
     def save(self, company):
@@ -87,6 +87,7 @@ class EmployeeCreateForm(forms.Form):
             company=company,
             designation=self.cleaned_data.get("designation", ""),
             age=self.cleaned_data.get("age"),
+            department=self.cleaned_data.get("department", ""),
         )
 
         return user

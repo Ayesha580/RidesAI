@@ -49,6 +49,7 @@ export default function SelectPlan() {
         "Manager Assignment",
         "Manager Dashboard",
         "Task Assignment by Managers",
+         "AI Assistant 'Herry'"
       ],
     },
     {
@@ -80,6 +81,8 @@ export default function SelectPlan() {
         "Screenshot Monitoring",
         "Team Chat",
         "Task Notifications",
+        "AI Assistant 'Herry'"
+
       ],
     },
     {
@@ -107,6 +110,8 @@ export default function SelectPlan() {
         "Notifications",
         "Reports & Analytics",
         "Priority Support",
+        "AI Assistant 'Herry'"
+
       ],
     },
   ];
@@ -142,6 +147,7 @@ export default function SelectPlan() {
         "Manager Assignment",
         "Manager Dashboard",
         "Task Assignment by Managers",
+        "AI Assistant 'Herry'"
       ],
     },
     {
@@ -174,6 +180,7 @@ export default function SelectPlan() {
         "Screenshot Monitoring",
         "Team Chat",
         "Task Notifications",
+        "AI Assistant 'Herry'"
       ],
     },
     {
@@ -202,6 +209,7 @@ export default function SelectPlan() {
         "Notifications",
         "Reports & Analytics",
         "Priority Support",
+        "AI Assistant 'Herry'"
       ],
     },
   ];

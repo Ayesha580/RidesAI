@@ -6,7 +6,7 @@ export default function Footer() {
     <footer className="site-footer">
       <div className="footer-grid">
         <div className="footer-brand">
-          <Link to="/" className="brand" style={{ color: "#fff" }}>
+          <Link to="/" className="brand" style={{ color: "#000" }}>
             <span className="brand-mark" />
             Rides AI
           </Link>
@@ -38,8 +38,10 @@ export default function Footer() {
 
       <div className="footer-bottom">
         <span>© 2026 Rides AI. All rights reserved.</span>
-        <span>Made for businesses that run on more than one spreadsheet.</span>
-      </div>
+        <span>
+            Owned by <strong>Rides Technologies</strong>
+          </span>
+        </div>
     </footer>
   );
 }

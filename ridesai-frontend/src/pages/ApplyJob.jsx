@@ -76,7 +76,7 @@ export default function ApplyJob() {
           --aj-ink: #1B1730;
           --aj-body: #57536E;
           --aj-paper: #F6F4FC;
-          --aj-accent: #be27ee;
+          --aj-accent: #FF77FF;
           --aj-accent-dark: #8B1BB5;
           --aj-accent-soft: #F8EBFC;
           --aj-line: #E7E2F5;

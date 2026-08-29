@@ -4,13 +4,18 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    # path('admin/', admin.site.urls),          # sirf superadmin ke internal use ke liye rakha hai
+    # path('admin/', admin.site.urls),         
     path(
         "api/",
         include("accounts.urls")
     ),
-
+    path(
+            "api/herry/",
+            include("herry.urls")
+        ),
     path('api/dashboard/', include('dashboard.urls')),
+    path('api/support/', include('support.urls')),
+
     path('api/crm/', include('crm.urls')),
     path(
             "api/hr/",

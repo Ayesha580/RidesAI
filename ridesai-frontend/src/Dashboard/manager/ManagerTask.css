@@ -27,7 +27,7 @@
 }
 
 .rideai_mgrtask_createbtn {
-  background: #be27ee;
+  background: #FF77FF;
   color: white;
   border: none;
   padding: 12px 22px;
@@ -99,7 +99,7 @@
 .rideai_mgrtask_formgroup input:focus,
 .rideai_mgrtask_formgroup textarea:focus,
 .rideai_mgrtask_formgroup select:focus {
-  border-color: #be27ee;
+  border-color: #FF77FF;
   box-shadow: 0 0 0 3px rgba(190, 39, 238, 0.15);
 }
 
@@ -117,7 +117,7 @@
   width: 100%;
   padding: 13px;
   border: none;
-  background: #be27ee;
+  background: #FF77FF;
   color: white;
   font-size: 16px;
   font-weight: 600;
@@ -128,7 +128,7 @@
 }
 
 .rideai_mgrtask_assignbtn:hover {
-  background: #a91fd6;
+  background: #FF77FF;
 }
 
 /* ============ TASK LIST / TABLE ============ */

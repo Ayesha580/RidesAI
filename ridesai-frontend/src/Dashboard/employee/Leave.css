@@ -79,7 +79,7 @@
     font-size: 28px;
     line-height: 1;
     font-weight: 700;
-    color: #2563eb;
+    color: #FF77FF;
 }
 
 .summary-card.approved h2 {
@@ -178,12 +178,12 @@
     width: 14px;
     height: 14px;
     margin: 0;
-    accent-color: #2563eb;
+    accent-color: #FF77FF;
     cursor: pointer;
 }
 
 .radio-option input:checked + span {
-    color: #2563eb;
+    color: #FF77FF;
     font-weight: 600;
 }
 
@@ -231,7 +231,7 @@
 }
 
 .date-input input:focus {
-    border-color: #2563eb;
+    border-color: #FF77FF;
     box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.10);
 }
 
@@ -273,7 +273,7 @@
 }
 
 .leave-card textarea:focus {
-    border-color: #2563eb;
+    border-color: #FF77FF;
     box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.10);
 }
 
@@ -312,7 +312,7 @@
     border-radius: 5px;
 
     background: #eff6ff;
-    color: #2563eb;
+    color: #FF77FF;
 
     font-size: 11px;
     font-weight: 600;
@@ -363,12 +363,12 @@
 
 .apply-btn {
     border: 1px solid #9D16C8;
-    background: #be27ee;
+    background: #FF77FF;
     color: #ffffff;
 }
 
 .apply-btn:hover {
-    background: #be27ee;
+    background: #FF77FF;
     border-color: #9D16C8;
     box-shadow: 0 4px 12px rgba(37, 99, 235, 0.20);
 }

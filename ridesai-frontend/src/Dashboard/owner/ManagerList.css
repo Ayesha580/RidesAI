@@ -20,7 +20,7 @@
 }
 
 .mgrlist_add-btn {
-  background: #be27ee;
+  background: #FF77FF;
   color: #fff;
   padding: 10px 18px;
   border-radius: 8px;
@@ -43,7 +43,7 @@
 }
 
 .mgrlist_table th {
-  color: #be27ee;
+  color: #FF77FF;
   text-align: left;
   padding: 16px;
   font-size: 14px;
@@ -86,4 +86,17 @@
 @media (max-width: 768px) {
   .mgrlist_panel { padding: 15px; border-radius: 12px; }
   .mgrlist_table { min-width: 650px; } /* squeeze ki jagah horizontal scroll */
+}
+.mgrlist_edit-btn {
+  background: #FF77FF;
+  color: #fff;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.mgrlist_edit-btn:hover {
+  opacity: 0.9;
 }

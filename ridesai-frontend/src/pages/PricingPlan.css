@@ -83,7 +83,7 @@
   position: absolute;
   top: -14px;
   left: 32px;
-  background: var(--accent);
+  background: #FF77FF;
   color: #fff;
   font-size: 12px;
   font-weight: 600;
@@ -236,7 +236,7 @@
 }
 
 .billing-switch button.active{
-    background:#be27ee;
+    background:#FF77FF;
     color:#fff;
     box-shadow:0 8px 20px rgba(190,39,238,.25);
 }
@@ -256,7 +256,7 @@
     max-width:700px;
     margin:0 auto 45px;
     background:#f7f3ff;
-    border-left:4px solid #be27ee;
+    border-left:4px solid #FF77FF;
     padding:18px 24px;
     border-radius:12px;
     color:#555;

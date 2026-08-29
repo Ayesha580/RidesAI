@@ -9,20 +9,22 @@ import "./Register.css";
 
 const initialState = {
 
-    first_name:"",
-    username:"",
-    email:"",
-    phone:"",
-    cnic:"",
+    first_name: "",
+    username: "",
+    email: "",
+    phone: "",
+    cnic: "",
 
-    business_type:"",
-    business_name:"",
-    business_address:"",
+    business_type: "",
+    business_name: "",
+    business_address: "",
 
-    is_registered:false,
+    is_registered: false,
 
-    password:"",
-    confirm_password:"",
+    registration_number: "",
+
+    password: "",
+    confirm_password: "",
 
 };
 
@@ -43,600 +45,630 @@ function RequiredLabel({ text }) {
 }
 
 
-
-export default function Register(){
-
-
-const [fields,setFields] = useState(initialState);
-
-const [registrationDocs,setRegistrationDocs] = useState(null);
-
-const [errors,setErrors] = useState({});
-
-const [submitting,setSubmitting] = useState(false);
+export default function Register() {
 
 
-const navigate = useNavigate();
+    const [fields, setFields] = useState(initialState);
+
+    const [businessRegistrationDocument, setBusinessRegistrationDocument] = useState(null);
+    const [cnicFront, setCnicFront] = useState(null);
+    const [cnicBack, setCnicBack] = useState(null);
+    const [passportSizePhoto, setPassportSizePhoto] = useState(null);
+
+    const [errors, setErrors] = useState({});
+    const [submitting, setSubmitting] = useState(false);
+
+    const navigate = useNavigate();
 
 
+    function handleChange(e) {
 
-function handleChange(e){
-
-    const {
-        name,
-        value,
-        type,
-        checked
-    } = e.target;
-
-
-    setFields({
-
-        ...fields,
-
-        [name]:
-        type==="checkbox"
-        ?
-        checked
-        :
-        value
-
-    });
-
-}
+        const {
+            name,
+            value,
+            type,
+            checked
+        } = e.target;
 
 
+        setFields({
 
-async function handleSubmit(e){
+            ...fields,
 
-e.preventDefault();
+            [name]:
+                type === "checkbox"
+                    ?
+                    checked
+                    :
+                    value
 
-setErrors({});
-
-// Clear any leftover tokens from a previous session/testing —
-// the account doesn't exist yet at this stage, so no token
-// should be attached to requests until after payment completes.
-localStorage.removeItem("access_token");
-localStorage.removeItem("refresh_token");
-
-
-
-if(fields.password !== fields.confirm_password){
-
-    setErrors({
-
-        confirm_password:
-        "Passwords do not match."
-
-    });
-
-    return;
-
-}
-
-
-
-if(fields.is_registered && !registrationDocs){
-
-    setErrors({
-
-        registration_docs:
-        "Registration documents required."
-
-    });
-
-    return;
-
-}
-
-
-
-setSubmitting(true);
-
-
-
-try{
-
-
-const formData = new FormData();
-
-
-
-Object.entries(fields).forEach(
-([key,value])=>{
-
-    if(key !== "confirm_password"){
-
-        formData.append(
-            key,
-            value
-        );
+        });
 
     }
 
-});
+
+    async function handleSubmit(e) {
+
+        e.preventDefault();
+
+        setErrors({});
 
 
-
-if(registrationDocs){
-
-    formData.append(
-        "registration_docs",
-        registrationDocs
-    );
-
-}
+        // Clear any leftover tokens from a previous session/testing
+        localStorage.removeItem("access_token");
+        localStorage.removeItem("refresh_token");
 
 
+        if (fields.password !== fields.confirm_password) {
 
-await axiosClient.post(
+            setErrors({
 
-    "/register/",
+                confirm_password:
+                    "Passwords do not match."
 
-    formData,
+            });
 
-    {
-        headers:{
-            "Content-Type":
-            "multipart/form-data"
+            return;
+
         }
+
+
+        // Business registration document is required
+        // only when business is registered.
+        if (
+            fields.is_registered &&
+            !businessRegistrationDocument
+        ) {
+
+            setErrors({
+
+                business_registration_document:
+                    "Business registration document is required."
+
+            });
+
+            return;
+
+        }
+
+
+        // CNIC front is required
+        if (!cnicFront) {
+
+            setErrors({
+
+                cnic_front:
+                    "CNIC / ID Card front is required."
+
+            });
+
+            return;
+
+        }
+
+
+        // CNIC back is required
+        if (!cnicBack) {
+
+            setErrors({
+
+                cnic_back:
+                    "CNIC / ID Card back is required."
+
+            });
+
+            return;
+
+        }
+
+
+        // Passport-size photo is required
+        if (!passportSizePhoto) {
+
+            setErrors({
+
+                passport_size_photo:
+                    "Passport-size photo is required."
+
+            });
+
+            return;
+
+        }
+
+
+        setSubmitting(true);
+
+
+        try {
+
+
+            const formData = new FormData();
+
+
+            Object.entries(fields).forEach(
+                ([key, value]) => {
+
+                    if (key !== "confirm_password") {
+
+                        formData.append(
+                            key,
+                            value
+                        );
+
+                    }
+
+                }
+            );
+
+
+            // Business registration document
+            if (businessRegistrationDocument) {
+
+                formData.append(
+                    "business_registration_document",
+                    businessRegistrationDocument
+                );
+
+            }
+
+
+            // CNIC front
+            if (cnicFront) {
+
+                formData.append(
+                    "cnic_front",
+                    cnicFront
+                );
+
+            }
+
+
+            // CNIC back
+            if (cnicBack) {
+
+                formData.append(
+                    "cnic_back",
+                    cnicBack
+                );
+
+            }
+
+
+            // Passport-size photo
+            if (passportSizePhoto) {
+
+                formData.append(
+                    "passport_size_photo",
+                    passportSizePhoto
+                );
+
+            }
+
+
+            await axiosClient.post(
+
+                "/register/",
+
+                formData,
+
+                {
+                    headers: {
+                        "Content-Type":
+                            "multipart/form-data"
+                    }
+                }
+
+            );
+
+
+            // Account is NOT created yet.
+            navigate("/select-plan");
+
+
+        }
+        catch (error) {
+
+
+            console.log(
+                error.response?.data
+            );
+
+
+            setErrors(
+
+                error.response?.data ||
+                {
+                    detail:
+                        "Registration failed."
+                }
+
+            );
+
+
+        }
+        finally {
+
+            setSubmitting(false);
+
+        }
+
     }
 
-);
 
+    return (
 
+        <>
 
-// Account is NOT created yet — details are only saved in the
-// session until payment is completed. No tokens to store here.
 
-navigate("/select-plan");
+            <Header />
 
 
+            <div className="register-page">
 
-}
-catch(error){
 
+                <div className="register-card">
 
-console.log(
-    error.response?.data
-);
 
+                    <h2>
+                        Create Account
+                    </h2>
 
 
-setErrors(
+                    {
+                        Object.keys(errors).length > 0 &&
 
-    error.response?.data ||
-    {
-        detail:
-        "Registration failed."
-    }
+                        <div className="error-box">
 
-);
 
+                            {
+                                Object.entries(errors).map(
+                                    ([key, value]) => (
 
-}
-finally{
+                                        <p key={key}>
 
-setSubmitting(false);
+                                            <strong>
+                                                {key}
+                                            </strong>
+                                            :
+                                            {
+                                                Array.isArray(value)
+                                                    ?
+                                                    value.join(", ")
+                                                    :
+                                                    value
+                                            }
 
-}
+                                        </p>
 
+                                    )
+                                )
 
+                            }
 
-}
 
+                        </div>
 
+                    }
 
 
+                    <form
+                        onSubmit={handleSubmit}
+                        encType="multipart/form-data"
+                    >
 
-return (
 
-<>
+                        <RequiredLabel text="Full Name" />
 
+                        <input
+                            className="form-input"
+                            name="first_name"
+                            placeholder="John Smith"
+                            onChange={handleChange}
+                            required
+                        />
 
-<Header />
 
+                        <RequiredLabel text="Username" />
 
-<div className="register-page">
+                        <input
+                            className="form-input"
+                            name="username"
+                            placeholder="john"
+                            onChange={handleChange}
+                            required
+                        />
 
 
-<div className="register-card">
+                        <RequiredLabel text="Email" />
 
+                        <input
+                            className="form-input"
+                            type="email"
+                            name="email"
+                            placeholder="john12@gmail.com"
+                            onChange={handleChange}
+                            required
+                        />
 
-<h2>
-Create Account
-</h2>
 
+                        <RequiredLabel text="CNIC / ID Card Number" />
 
+                        <input
+                            className="form-input"
+                            name="cnic"
+                            placeholder="35403-9765437-9"
+                            onChange={handleChange}
+                            required
+                        />
 
-{
-Object.keys(errors).length > 0 &&
 
-<div className="error-box">
+                        <RequiredLabel text="Phone Number" />
 
+                        <input
+                            className="form-input"
+                            name="phone"
+                            placeholder="03123456789"
+                            onChange={handleChange}
+                            required
+                        />
 
-{
-Object.entries(errors).map(
-([key,value])=>(
 
-<p key={key}>
+                        <h4>
+                            Business Status
+                        </h4>
 
-<strong>
-{key}
-</strong>
-:
-{
-Array.isArray(value)
-?
-value.join(", ")
-:
-value
-}
 
-</p>
+                        <div className="radio-group">
 
-)
 
-)
+                            <label>
 
-}
+                                <input
+                                    type="radio"
+                                    checked={
+                                        fields.is_registered === true
+                                    }
+                                    onChange={() =>
+                                        setFields({
+                                            ...fields,
+                                            is_registered: true
+                                        })
+                                    }
+                                />
 
+                                Registered Business
 
-</div>
+                            </label>
 
-}
 
+                            <label>
 
+                                <input
+                                    type="radio"
+                                    checked={
+                                        fields.is_registered === false
+                                    }
+                                    onChange={() =>
+                                        setFields({
+                                            ...fields,
+                                            is_registered: false
+                                        })
+                                    }
+                                />
 
+                                Non Registered Business
 
-<form
-onSubmit={handleSubmit}
-encType="multipart/form-data"
->
+                            </label>
 
 
+                        </div>
 
-<RequiredLabel text="Full Name" />
 
-<input
+                        <RequiredLabel text="Business Name" />
 
-className="form-input"
+                        <input
+                            className="form-input"
+                            name="business_name"
+                            placeholder="Business Name"
+                            onChange={handleChange}
+                            required
+                        />
 
-name="first_name"
 
-placeholder="John Smith"
+                        <RequiredLabel text="Business Type" />
 
-onChange={handleChange}
+                        <input
+                            className="form-input"
+                            name="business_type"
+                            placeholder="Business Type"
+                            onChange={handleChange}
+                            required
+                        />
 
-required
 
-/>
+                        <RequiredLabel text="Business Address" />
 
+                        <textarea
+                            className="form-input"
+                            name="business_address"
+                            placeholder="Business Address"
+                            onChange={handleChange}
+                            required
+                        />
 
 
-<RequiredLabel text="Username" />
+                        {/* ================================= */}
+                        {/* BUSINESS REGISTRATION */}
+                        {/* ================================= */}
 
-<input
+                        {
+                            fields.is_registered &&
 
-className="form-input"
+                            <div className="file-box">
 
-name="username"
 
-placeholder="john"
+                                <h4>
+                                    Business Registration
+                                </h4>
 
-onChange={handleChange}
 
-required
+                                <RequiredLabel text="Registration Number" />
 
-/>
+                                <input
+                                    className="form-input"
+                                    name="registration_number"
+                                    placeholder="Business Registration Number"
+                                    onChange={handleChange}
+                                    required
+                                />
 
 
+                                <RequiredLabel text="Business Registration Document" />
 
-<RequiredLabel text="Email" />
+                                <input
+                                    type="file"
+                                    accept="application/pdf,image/*"
+                                    onChange={(e) =>
+                                        setBusinessRegistrationDocument(
+                                            e.target.files[0]
+                                        )
+                                    }
+                                    required
+                                />
 
-<input
 
-className="form-input"
+                            </div>
 
-type="email"
+                        }
 
-name="email"
 
-placeholder="john12@gmail.com"
+                        {/* ================================= */}
+                        {/* OWNER IDENTITY DOCUMENTS */}
+                        {/* ================================= */}
 
-onChange={handleChange}
+                        <div className="file-box">
 
-required
 
-/>
+                            <h4>
+                                Owner Identity Documents
+                            </h4>
 
 
+                            <RequiredLabel text="CNIC / ID Card Front" />
 
-<RequiredLabel text="CNIC / ID Card" />
+                            <input
+                                type="file"
+                                accept="image/*,application/pdf"
+                                onChange={(e) =>
+                                    setCnicFront(
+                                        e.target.files[0]
+                                    )
+                                }
+                                required
+                            />
 
-<input
+                            <RequiredLabel text="CNIC / ID Card Back" />
 
-className="form-input"
+                            <input
+                                type="file"
+                                accept="image/*,application/pdf"
+                                onChange={(e) =>
+                                    setCnicBack(
+                                        e.target.files[0]
+                                    )
+                                }
+                                required
+                            />
 
-name="cnic"
 
-placeholder="35403-9765437-9"
+                            <RequiredLabel text="Passport-size Photo" />
 
-onChange={handleChange}
+                            <input
+                                type="file"
+                                accept="image/*"
+                                onChange={(e) =>
+                                    setPassportSizePhoto(
+                                        e.target.files[0]
+                                    )
+                                }
+                                required
+                            />
 
-required
+                        </div>
 
-/>
 
+                        {/* ================================= */}
+                        {/* PASSWORD */}
+                        {/* ================================= */}
 
+                        <RequiredLabel text="Password" />
 
-<RequiredLabel text="Phone Number" />
+                        <input
+                            className="form-input"
+                            type="password"
+                            name="password"
+                            placeholder="Password"
+                            onChange={handleChange}
+                            required
+                        />
 
-<input
 
-className="form-input"
+                        <RequiredLabel text="Confirm Password" />
 
-name="phone"
+                        <input
+                            className="form-input"
+                            type="password"
+                            name="confirm_password"
+                            placeholder="Confirm Password"
+                            onChange={handleChange}
+                            required
+                        />
 
-placeholder="03123456789"
 
-onChange={handleChange}
+                        <button
+                            className="register-btn"
+                            disabled={submitting}
+                        >
 
-required
+                            {
+                                submitting
+                                    ? "Creating Account..."
+                                    : "Register & Continue"
+                            }
 
-/>
+                        </button>
 
 
+                        <div className="login-link">
 
+                            <br />
 
+                            <span>
+                                Already have an account?
+                            </span>
 
-<h4>
-Business Status
-</h4>
+                            <Link to="/login">
+                                Log In
+                            </Link>
 
+                        </div>
 
 
-<div className="radio-group">
+                    </form>
 
 
-<label>
+                </div>
 
-<input
 
-type="radio"
+            </div>
 
-checked={
-fields.is_registered === true
-}
 
-onChange={()=>setFields({
+            <Footer />
 
-...fields,
 
-is_registered:true
+        </>
 
-})}
-
-/>
-
-Registered Business
-
-</label>
-
-
-
-
-<label>
-
-<input
-
-type="radio"
-
-checked={
-fields.is_registered === false
-}
-
-onChange={()=>setFields({
-
-...fields,
-
-is_registered:false
-
-})}
-
-/>
-
-Non Registered Business
-
-</label>
-
-
-</div>
-
-
-
-
-
-<RequiredLabel text="Business Name" />
-
-<input
-
-className="form-input"
-
-name="business_name"
-
-placeholder="Business Name"
-
-onChange={handleChange}
-
-required
-
-/>
-
-
-
-
-
-<RequiredLabel text="Business Type" />
-
-<input
-
-className="form-input"
-
-name="business_type"
-
-placeholder="Business Type"
-
-onChange={handleChange}
-
-required
-
-/>
-
-
-
-
-
-<RequiredLabel text="Business Address" />
-
-<textarea
-
-className="form-input"
-
-name="business_address"
-
-placeholder="Business Address"
-
-onChange={handleChange}
-
-required
-
-/>
-
-
-
-
-
-
-
-{
-fields.is_registered &&
-
-<div className="file-box">
-
-
-<label>
-
-Registration Documents <span className="required-star">*</span>
-
-</label>
-
-
-
-<input
-
-type="file"
-
-accept="application/pdf,image/*"
-
-onChange={(e)=>
-setRegistrationDocs(
-e.target.files[0]
-)
-}
-
-/>
-
-
-</div>
-
-}
-
-
-
-
-
-
-<RequiredLabel text="Password" />
-
-<input
-
-className="form-input"
-
-type="password"
-
-name="password"
-
-placeholder="Password"
-
-onChange={handleChange}
-
-required
-
-/>
-
-
-
-
-
-
-<RequiredLabel text="Confirm Password" />
-
-<input
-
-className="form-input"
-
-type="password"
-
-name="confirm_password"
-
-placeholder="Confirm Password"
-
-onChange={handleChange}
-
-required
-
-/>
-
-
-
-
-
-
-<button
-  className="register-btn"
-  disabled={submitting}
->
-  {submitting
-    ? "Creating Account..."
-    : "Register & Continue"}
-</button>
-
-<div className="login-link">
-    <br/>
-  <span>Already have an account? </span>
-  <Link to="/login">Log In</Link>
-</div>
-
-
-
-</form>
-
-
-</div>
-
-
-</div>
-
-
-
-<Footer />
-
-
-</>
-
-
-);
-
+    );
 
 }

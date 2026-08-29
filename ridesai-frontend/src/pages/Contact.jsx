@@ -243,7 +243,7 @@ export default function ContactHub() {
           font-weight: 600;
           letter-spacing: 0.14em;
           text-transform: uppercase;
-          color: #be27ee;
+          color: #FF77FF;
           margin: 0 0 14px;
         }
 
@@ -282,7 +282,7 @@ export default function ContactHub() {
         }
 
         .reason-pill--active {
-          background: #be27ee;
+          background: #FF77FF;
           color: #ffffff;
         }
 
@@ -365,7 +365,7 @@ export default function ContactHub() {
         .form-field input:focus,
         .form-field textarea:focus {
           outline: none;
-          border-color: #be27ee;
+          border-color: #FF77FF;
           box-shadow: 0 0 0 3px rgba(190, 39, 238, 0.15);
           background: #ffffff;
         }
@@ -375,7 +375,7 @@ export default function ContactHub() {
           padding: 14px;
           border: none;
           border-radius: 12px;
-          background: #be27ee;
+          background: #FF77FF;
           color: #ffffff;
           font-size: 15px;
           font-weight: 600;
@@ -409,7 +409,7 @@ export default function ContactHub() {
 
         .side-card--chat {
           cursor: pointer;
-          border-color: #be27ee;
+          border-color: #FF77FF;
         }
 
         .side-card:hover {
@@ -423,7 +423,7 @@ export default function ContactHub() {
           min-width: 40px;
           border-radius: 12px;
           background: #f8ecfd;
-          color: #be27ee;
+          color: #FF77FF;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -495,7 +495,7 @@ export default function ContactHub() {
         }
 
         .faq-caret {
-          color: #be27ee;
+          color: #FF77FF;
           display: flex;
           transition: transform 0.2s ease;
         }
@@ -519,7 +519,7 @@ export default function ContactHub() {
           width: 56px;
           height: 56px;
           border-radius: 50%;
-          background: #be27ee;
+          background: #FF77FF;
           color: #ffffff;
           border: none;
           display: flex;
@@ -548,7 +548,7 @@ export default function ContactHub() {
         }
 
         .chat-panel-header {
-          background: #be27ee;
+          background: #FF77FF;
           color: #ffffff;
           padding: 14px 18px;
           font-weight: 600;
@@ -599,11 +599,11 @@ export default function ContactHub() {
 
         .chat-panel-footer input:focus {
           outline: none;
-          border-color: #be27ee;
+          border-color: #FF77FF;
         }
 
         .chat-panel-footer button {
-          background: #be27ee;
+          background: #FF77FF;
           color: #ffffff;
           border: none;
           border-radius: 8px;

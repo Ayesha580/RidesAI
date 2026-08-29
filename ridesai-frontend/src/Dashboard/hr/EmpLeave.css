@@ -34,13 +34,13 @@
 
 
 .leave-table thead{
-    background:#be27ee;
+    background:#FF77FF;
 }
 
 .leave-table th{
     padding:16px;
     text-align:left;
-    color:#be27ee;
+    color:#FFF;
     font-size:14px;
     font-weight:600;
 }
@@ -48,7 +48,7 @@
 .leave-table td{
     padding:16px;
     border-bottom:1px solid #e5e7eb;
-    color:#374151;
+    color:#000;
     font-size:14px;
 }
 
@@ -179,7 +179,7 @@
 }
 
 .submit-btn{
-    background:#be27ee;
+    background:#FF77FF;
     color:#fff;
     border:none;
 }

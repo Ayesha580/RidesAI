@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import logo from "../assets/logo.png";
+import logo from "../assets/logo.jpeg";
 
 const NAV_ITEMS = [
   { to: "/admin/dashboard", label: "Dashboard", icon: "📊" },

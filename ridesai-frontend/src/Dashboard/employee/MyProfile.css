@@ -84,7 +84,7 @@
 .profile-grid select:focus,
 .profile-grid textarea:focus {
     outline: none;
-    border-color: #2563eb;
+    border-color: #FF77FF;
 }
 
 .profile-grid input[readonly] {
@@ -116,7 +116,7 @@
 }
 
 .save-btn:hover {
-    background: #be27ee;
+    background: #FF77FF;
 }
 
 /* ===========================

@@ -1,61 +1,257 @@
+/* ================================
+   HR CREATE / EDIT CARD
+================================ */
+
 .addhr_card {
-  background: #fff;
-  border-radius: 16px;
-  padding: 40px;
-  max-width: 1100px;
-  margin: 0 auto;
-  box-shadow: 0 10px 30px rgba(0,0,0,.08);
-}
-
-.addhr_title { margin-bottom: 8px; font-size: 32px; }
-.addhr_subtitle { color: #6b7280; margin-bottom: 35px; }
-
-.addhr_grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 25px;
-}
-
-.addhr_full-span { grid-column: 1 / span 2; }
-.addhr_field { display: flex; flex-direction: column; }
-.addhr_label { margin-bottom: 8px; font-weight: 600; color: #374151; }
-
-.addhr_input {
   width: 100%;
-  padding: 14px;
-  border-radius: 10px;
-  border: 1px solid #d1d5db;
-  outline: none;
-  font-size: 15px;
+  max-width: 1100px;
+  margin: 30px auto;
+  padding: 40px;
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
   box-sizing: border-box;
 }
 
-.addhr_input:focus {
-  border-color: #be27ee;
-  box-shadow: 0 0 0 3px rgba(190,39,238,.15);
+/* ================================
+   TITLE
+================================ */
+
+.addhr_title {
+  margin: 0 0 8px;
+  font-size: 32px;
+  font-weight: 700;
+  color: #1f2937;
 }
+
+.addhr_subtitle {
+  margin: 0 0 35px;
+  color: #6b7280;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+/* ================================
+   FORM GRID
+================================ */
+
+.addhr_form {
+  width: 100%;
+}
+
+.addhr_grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px 25px;
+}
+
+/* Full width field */
+
+.addhr_full-span {
+  grid-column: 1 / -1;
+}
+
+/* ================================
+   FIELD
+================================ */
+
+.addhr_field {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.addhr_label {
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+}
+
+/* ================================
+   INPUT
+================================ */
+
+.addhr_input {
+  width: 100%;
+  height: 48px;
+  padding: 0 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  outline: none;
+  background: #ffffff;
+  color: #111827;
+  font-size: 15px;
+  box-sizing: border-box;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.addhr_input::placeholder {
+  color: #9ca3af;
+}
+
+.addhr_input:focus {
+  border-color: #ff77ff;
+  box-shadow: 0 0 0 3px rgba(255, 119, 255, 0.15);
+}
+
+/* Remove browser number arrows */
+
+.addhr_input[type="number"]::-webkit-inner-spin-button,
+.addhr_input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.addhr_input[type="number"] {
+  appearance: textfield;
+}
+
+/* ================================
+   DATE INPUT
+================================ */
+
+.addhr_input[type="date"] {
+  cursor: pointer;
+}
+
+/* ================================
+   SELECT
+================================ */
+
+select.addhr_input {
+  cursor: pointer;
+}
+
+/* ================================
+   ACTION BUTTONS
+================================ */
 
 .addhr_actions {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
   gap: 15px;
   margin-top: 35px;
+  padding-top: 25px;
+  border-top: 1px solid #f0f0f0;
+}
+
+.addhr_btn-submit,
+.addhr_btn-cancel {
+  min-width: 130px;
+  height: 48px;
+  padding: 0 25px;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .addhr_btn-submit {
-  background: #be27ee; color: #fff; border: none;
-  padding: 14px 28px; border-radius: 10px;
-  font-size: 15px; font-weight: 600; cursor: pointer;
+  background: #ff77ff;
+  color: #ffffff;
+  box-shadow: 0 5px 15px rgba(255, 119, 255, 0.2);
+}
+
+.addhr_btn-submit:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 7px 18px rgba(255, 119, 255, 0.3);
 }
 
 .addhr_btn-cancel {
-  background: #e5e7eb; color: #374151; border: none;
-  padding: 14px 28px; border-radius: 10px;
-  font-size: 15px; font-weight: 600; cursor: pointer;
+  background: #e5e7eb;
+  color: #374151;
 }
 
+.addhr_btn-cancel:hover {
+  background: #d1d5db;
+}
+
+/* Disabled */
+
+.addhr_btn-submit:disabled,
+.addhr_btn-cancel:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ================================
+   TABLET
+================================ */
+
+@media (max-width: 900px) {
+  .addhr_card {
+    margin: 20px auto;
+    padding: 30px;
+  }
+
+  .addhr_grid {
+    gap: 20px;
+  }
+}
+
+/* ================================
+   MOBILE
+================================ */
+
 @media (max-width: 768px) {
-  .addhr_card { padding: 20px; }
-  .addhr_grid { grid-template-columns: 1fr; }
-  .addhr_full-span { grid-column: 1; }
+  .addhr_card {
+    margin: 15px auto;
+    padding: 22px;
+    border-radius: 14px;
+  }
+
+  .addhr_title {
+    font-size: 26px;
+  }
+
+  .addhr_subtitle {
+    margin-bottom: 25px;
+  }
+
+  .addhr_grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .addhr_full-span {
+    grid-column: 1;
+  }
+
+  .addhr_actions {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+
+  .addhr_btn-submit,
+  .addhr_btn-cancel {
+    width: 100%;
+  }
+}
+
+/* ================================
+   SMALL MOBILE
+================================ */
+
+@media (max-width: 480px) {
+  .addhr_card {
+    padding: 18px;
+  }
+
+  .addhr_title {
+    font-size: 23px;
+  }
+
+  .addhr_input {
+    height: 46px;
+  }
 }

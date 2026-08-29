@@ -39,7 +39,7 @@
 }
 
 .upload-close:hover{
-    color:#BE27EE;
+    color:#FF77FF;
 }
 
 .upload-hint{
@@ -65,7 +65,7 @@
 }
 
 .upload-dropzone:hover{
-    border-color:#BE27EE;
+    border-color:#FF77FF;
     background:#fdf1ff;
 }
 
@@ -102,7 +102,7 @@
 .btn-submit{
     padding:9px 18px;
     border:none;
-    background:linear-gradient(135deg,#e79bff,#BE27EE);
+    background:linear-gradient(135deg,#e79bff,#FF77FF);
     color:white;
     border-radius:10px;
     cursor:pointer;

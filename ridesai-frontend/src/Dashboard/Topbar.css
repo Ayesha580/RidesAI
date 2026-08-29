@@ -24,7 +24,7 @@
 
 .ri_company-badge {
   background: #E8DAFA;
-  color: #BE27EE;
+  color: #FF77FF;
   padding: 10px 18px;
   border-radius: 30px;
   font-weight: 600;
@@ -51,7 +51,7 @@
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background: #BE27EE;
+  background: #FF77FF;
   color: #fff;
   display: flex;
   align-items: center;

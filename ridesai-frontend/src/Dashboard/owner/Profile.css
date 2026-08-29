@@ -28,7 +28,7 @@
 }
 
 .form-group input:focus {
-  border-color: #be27ee;
+  border-color: #FF77FF;
   box-shadow: 0 0 0 3px rgba(190,39,238,.12);
 }
 
@@ -84,7 +84,7 @@
 
 .profile-form > button[type="submit"] {
   align-self: flex-start;
-  background: #be27ee;
+  background: #FF77FF;
   color: #fff;
   border: none;
   padding: 12px 28px;
@@ -96,7 +96,7 @@
 }
 
 .profile-form > button[type="submit"]:hover {
-  background: #9d18cb;
+  background: #FF77FF;
 }
 
 .profile-form > button[type="submit"]:disabled {

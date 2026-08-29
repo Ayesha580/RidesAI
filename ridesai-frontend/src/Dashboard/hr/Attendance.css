@@ -49,7 +49,7 @@
 .hratt_present { background: #16a34a; }
 .hratt_absent  { background: #dc2626; }
 .hratt_late    { background: #f59e0b; }
-.hratt_break   { background: #2563eb; }
+.hratt_break   { background: #FF77FF; }
 
 /* ================= Table ================= */
 
@@ -106,7 +106,7 @@
 
 .hratt_status-late     { background: #f59e0b; }
 .hratt_status-ontime   { background: #16a34a; }
-.hratt_status-onbreak  { background: #2563eb; }
+.hratt_status-onbreak  { background: #FF77FF; }
 
 /* ================= Responsive ================= */
 

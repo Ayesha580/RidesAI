@@ -1,135 +1,136 @@
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
+.rideai_ownemp_page {
+  padding: 25px;
 }
 
-.rideai_ownemp_page {
-  padding: 30px;
-  background: #f8fafc;
-  min-height: 100vh;
-  width: 100%;
-  max-width: 100%;
+.rideai_ownemp_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
 .rideai_ownemp_title {
-  font-size: 28px;
-  color: #0f172a;
-  margin-bottom: 25px;
+  font-size: 20px;
+  color: #1F1F1F;
+  margin: 0;
 }
 
-.rideai_ownemp_loading {
-  color: #64748b;
-  padding: 20px 0;
+.rideai_ownemp_addbtn {
+  background: #FF77FF;
+  color: #fff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity 0.2s ease;
+}
+
+.rideai_ownemp_addbtn:hover {
+  opacity: 0.9;
 }
 
 .rideai_ownemp_tablecard {
-  background: white;
-  padding: 20px;
-  border-radius: 15px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+  background: #fff;
+  border-radius: 18px;
+  padding: 25px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, .08);
   overflow-x: auto;
-  width: 100%;
-  max-width: 100%;
+}
+
+.rideai_ownemp_loading {
+  text-align: center;
+  color: #6b7280;
+  padding: 30px;
+  font-size: 14px;
 }
 
 .rideai_ownemp_table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 600px;
+}
+
+.rideai_ownemp_table thead {
+  background: #f8e8fd;
 }
 
 .rideai_ownemp_table th {
-  background: #be28ee;
-  color: white;
-  padding: 14px;
+  color: #FF77FF;
   text-align: left;
+  padding: 16px;
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
 }
 
 .rideai_ownemp_table td {
-  padding: 14px;
-  border-bottom: 1px solid #e5e7eb;
-  color: #334155;
+  padding: 16px;
+  border-bottom: 1px solid #f0f0f0;
+  color: #4b5563;
+  font-size: 14px;
+  white-space: nowrap;
 }
 
-.rideai_ownemp_table tr:hover {
-  background: #f8fafc;
+.rideai_ownemp_table tbody tr:hover {
+  background: #faf5ff;
 }
 
 .rideai_ownemp_empty {
   text-align: center;
-  color: #64748b;
+  color: #6b7280;
+  padding: 30px;
+  font-style: italic;
 }
 
-/* ============ RESPONSIVE ============ */
+.rideai_ownemp_delbtn {
+  background: #ef4444;
+  color: #fff;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+}
 
-@media (max-width: 992px) {
-  .rideai_ownemp_page {
-    padding: 20px;
-  }
+.rideai_ownemp_delbtn:hover {
+  opacity: 0.9;
+}
+
+.rideai_ownemp_delbtn:disabled {
+  cursor: not-allowed;
+  opacity: .6;
 }
 
 @media (max-width: 768px) {
   .rideai_ownemp_page {
-    padding-top: 80px; /* space for fixed mobile hamburger button */
-  }
-}
-
-@media (max-width: 600px) {
-  .rideai_ownemp_page {
-    padding: 75px 12px 20px;
-  }
-
-  .rideai_ownemp_title {
-    font-size: 22px;
+    padding: 15px;
   }
 
   .rideai_ownemp_tablecard {
-    padding: 12px;
+    padding: 15px;
+    border-radius: 12px;
   }
 
-  /* Card-style table on very small screens */
-  .rideai_ownemp_table thead {
-    display: none;
+  .rideai_ownemp_table {
+    min-width: 650px;
   }
+}
+.rideai_ownemp_editbtn {
+  background: #FF77FF;
+  color: #fff;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+}
 
-  .rideai_ownemp_table,
-  .rideai_ownemp_table tbody,
-  .rideai_ownemp_table tr,
-  .rideai_ownemp_table td {
-    display: block;
-    width: 100%;
-    min-width: 0;
-  }
-
-  .rideai_ownemp_table tr {
-    margin-bottom: 15px;
-    border: 1px solid #e5e7eb;
-    border-radius: 10px;
-    overflow: hidden;
-  }
-
-  .rideai_ownemp_table td {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    text-align: right;
-    padding: 10px 14px;
-    border-bottom: 1px solid #f1f5f9;
-  }
-
-  .rideai_ownemp_table td:last-child {
-    border-bottom: none;
-  }
-
-  .rideai_ownemp_table td::before {
-    content: attr(data-label);
-    font-weight: 600;
-    color: #64748b;
-    text-align: left;
-  }
-
-  .rideai_ownemp_table .rideai_ownemp_empty::before {
-    content: "";
-  }
+.rideai_ownemp_editbtn:hover {
+  opacity: 0.9;
 }

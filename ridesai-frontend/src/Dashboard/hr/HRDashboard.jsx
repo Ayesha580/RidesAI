@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axiosClient from "../../api/axiosClient";
 import "./HRDashboard.css";
+import Herry from "../components/Herry";
 
 export default function HRDashboard() {
   const [data, setData] = useState(null);
@@ -74,20 +75,19 @@ export default function HRDashboard() {
             <thead>
               <tr>
                 <th>Name</th>
-                <th>Designation</th>
               </tr>
             </thead>
             <tbody>
               {data.recent_employees.map((emp) => (
                 <tr key={emp.id}>
                   <td>{emp.name}</td>
-                  <td>{emp.designation || "-"}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         )}
       </div>
+      <Herry />
     </div>
   );
 }

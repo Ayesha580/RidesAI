@@ -1,0 +1,504 @@
+/* =========================================================
+   RIDES AI SUPPORT WIDGET
+   ========================================================= */
+
+.ridesai-support-widget-button {
+    position: fixed;
+
+    right: 24px;
+    bottom: 24px;
+
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    border: none;
+
+    padding: 11px 17px 11px 11px;
+
+    border-radius: 30px;
+
+    background: #ff77ff;
+    color: #fff;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 10px 30px rgba(255, 119, 255, 0.35);
+
+    transition: all 0.25s ease;
+}
+
+.ridesai-support-widget-button:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 14px 35px rgba(255, 119, 255, 0.45);
+}
+
+
+/* =========================================================
+   FLOATING BUTTON ICON
+   ========================================================= */
+
+.ridesai-support-widget-icon {
+    width: 32px;
+    height: 32px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #fff;
+    color: #ff77ff;
+
+    font-size: 17px;
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   CHAT WINDOW
+   ========================================================= */
+
+.ridesai-support-widget {
+    position: fixed;
+
+    right: 24px;
+    bottom: 24px;
+
+    width: 390px;
+    max-width: calc(100vw - 30px);
+
+    height: 600px;
+    max-height: calc(100vh - 45px);
+
+    z-index: 9999;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
+
+    background: #fff;
+
+    border: 1px solid #eee3ef;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 18px 60px rgba(42, 18, 48, 0.18);
+
+    animation: ridesaiSupportOpen 0.22s ease;
+}
+
+@keyframes ridesaiSupportOpen {
+    from {
+        opacity: 0;
+        transform: translateY(15px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.ridesai-support-widget-header {
+    min-height: 70px;
+
+    padding: 0 16px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background: #ff77ff;
+
+    color: #fff;
+}
+
+.ridesai-support-widget-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.ridesai-support-widget-avatar {
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #fff;
+
+    color: #ff77ff;
+
+    font-size: 19px;
+    font-weight: 800;
+}
+
+.ridesai-support-widget-profile h3 {
+    margin: 0;
+
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.ridesai-support-widget-online {
+    display: flex;
+    align-items: center;
+
+    gap: 5px;
+
+    margin-top: 3px;
+
+    font-size: 11px;
+
+    opacity: 0.9;
+}
+
+.ridesai-support-widget-online span {
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: #baffc6;
+}
+
+.ridesai-support-widget-close {
+    width: 32px;
+    height: 32px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+
+    background: rgba(255, 255, 255, 0.16);
+
+    color: #fff;
+
+    border-radius: 8px;
+
+    font-size: 24px;
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.ridesai-support-widget-close:hover {
+    background: rgba(255, 255, 255, 0.28);
+}
+
+
+/* =========================================================
+   BODY
+   ========================================================= */
+
+.ridesai-support-widget-body {
+    flex: 1;
+
+    overflow-y: auto;
+
+    padding: 17px;
+
+    background: #fff;
+}
+
+.ridesai-support-widget-body::-webkit-scrollbar {
+    width: 5px;
+}
+
+.ridesai-support-widget-body::-webkit-scrollbar-thumb {
+    background: #ead8ea;
+
+    border-radius: 10px;
+}
+
+
+/* =========================================================
+   BOT / USER ROWS
+   ========================================================= */
+
+.ridesai-support-widget-bot-row {
+    display: flex;
+
+    align-items: flex-end;
+
+    gap: 8px;
+
+    margin-bottom: 14px;
+}
+
+.ridesai-support-widget-user-row {
+    display: flex;
+
+    justify-content: flex-end;
+
+    margin-bottom: 14px;
+}
+
+
+/* =========================================================
+   BOT AVATAR
+   ========================================================= */
+
+.ridesai-support-widget-small-avatar {
+    width: 27px;
+    height: 27px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #ff77ff;
+
+    color: #fff;
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   MESSAGE BUBBLES
+   ========================================================= */
+
+.ridesai-support-widget-bot-message {
+    max-width: 80%;
+
+    padding: 11px 13px;
+
+    background: #f6f3f6;
+
+    color: #433a45;
+
+    border-radius: 14px;
+
+    border-bottom-left-radius: 4px;
+
+    font-size: 12px;
+
+    line-height: 1.55;
+}
+
+.ridesai-support-widget-user-message {
+    max-width: 80%;
+
+    padding: 11px 13px;
+
+    background: #ff77ff;
+
+    color: #fff;
+
+    border-radius: 14px;
+
+    border-bottom-right-radius: 4px;
+
+    font-size: 12px;
+
+    line-height: 1.55;
+
+    box-shadow:
+        0 5px 14px rgba(255, 119, 255, 0.18);
+}
+
+
+/* =========================================================
+   QUESTIONS
+   ========================================================= */
+
+.ridesai-support-widget-question-section {
+    margin-top: 20px;
+}
+
+.ridesai-support-widget-question-title {
+    margin-bottom: 9px;
+
+    color: #716874;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.5px;
+}
+
+.ridesai-support-widget-question {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+
+    gap: 9px;
+
+    margin-bottom: 7px;
+
+    padding: 10px;
+
+    border: 1px solid #eee6ef;
+
+    border-radius: 10px;
+
+    background: #fff;
+
+    color: #443b46;
+
+    text-align: left;
+
+    font-size: 11.5px;
+
+    line-height: 1.4;
+
+    cursor: pointer;
+
+    transition: all 0.18s ease;
+}
+
+.ridesai-support-widget-question:hover {
+    border-color: #ff77ff;
+
+    background: #fff7ff;
+
+    color: #dc54dc;
+}
+
+.ridesai-support-widget-question-mark {
+    width: 23px;
+    height: 23px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 7px;
+
+    background: #fff0ff;
+
+    color: #ff77ff;
+
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.ridesai-support-widget-arrow {
+    margin-left: auto;
+
+    color: #aaa0ac;
+
+    font-size: 18px;
+}
+
+.ridesai-support-widget-loading {
+    padding: 15px;
+
+    text-align: center;
+
+    color: #99909b;
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.ridesai-support-widget-footer {
+    min-height: 48px;
+
+    padding: 0 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+
+    border-top: 1px solid #eee7ef;
+
+    color: #9a919d;
+
+    font-size: 10px;
+}
+
+.ridesai-support-widget-clear {
+    position: absolute;
+
+    left: 15px;
+
+    border: none;
+
+    background: transparent;
+
+    color: #ff77ff;
+
+    font-size: 10px;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.ridesai-support-widget-clear:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    .ridesai-support-widget-button {
+        right: 16px;
+        bottom: 16px;
+
+        padding: 10px 14px 10px 10px;
+    }
+
+    .ridesai-support-widget {
+        right: 10px;
+        bottom: 10px;
+
+        width: calc(100vw - 20px);
+
+        height: calc(100vh - 20px);
+
+        max-height: none;
+
+        border-radius: 16px;
+    }
+
+    .ridesai-support-widget-body {
+        padding: 14px;
+    }
+}

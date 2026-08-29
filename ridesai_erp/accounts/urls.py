@@ -10,6 +10,7 @@ urlpatterns = [
         name="api-register"
     ),
     path("complete-registration/", views.CompleteRegistrationAPIView.as_view()),
+    path("admin-login/", views.AdminLoginAPIView.as_view(), name="admin-login"),
     path(
     "payment-success/",
     views.PaymentSuccessAPIView.as_view()

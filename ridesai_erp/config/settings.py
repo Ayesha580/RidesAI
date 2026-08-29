@@ -11,8 +11,6 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 import os
 from pathlib import Path
-import os
-from pathlib import Path
 from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -56,9 +54,12 @@ INSTALLED_APPS = [
     'employees',
     'chat.apps.ChatConfig',
     'channels',
-    'integrations'
+    'integrations',
+    'herry',
+    'support'
 
 ]
+
 ASGI_APPLICATION = "config.asgi.application"
 CHANNEL_LAYERS = {
 
@@ -83,6 +84,7 @@ REST_FRAMEWORK = {
         "rest_framework.permissions.IsAuthenticated",
     ),
 }
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 POLAR_API_URL = "https://api.polar.sh"
 POLAR_ACCESS_TOKEN = os.getenv("POLAR_ACCESS_TOKEN")
 POLAR_PRODUCTS = {
@@ -123,7 +125,7 @@ GOOGLE_CLIENT_ID = os.getenv("GOOGLE_CLIENT_ID")
 GOOGLE_CLIENT_SECRET = os.getenv("GOOGLE_CLIENT_SECRET")
 GOOGLE_REDIRECT_URI = os.getenv("GOOGLE_REDIRECT_URI")
 
-SITE_URL = os.environ.get('SITE_URL', 'https://ridesai.cloud')
+SITE_URL = os.environ.get('SITE_URL', 'http://127.0.0.1:8000')
 
 ROOT_URLCONF = 'config.urls'
 
@@ -205,16 +207,17 @@ ALLOWED_HOSTS = [
     "127.0.0.1"
 ]
 CSRF_TRUSTED_ORIGINS = [
-    "https://ridesai.cloud",
+    "http://127.0.0.1:8000",
     "https://www.ridesai.cloud",
+"http://www.ridesai.cloud",
     "http://localhost:5173",
-"http://127.0.0.1:5173",
-
+    "http://127.0.0.1:5173",
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    "https://ridesai.cloud",
+    "http://127.0.0.1:8000",
     "https://www.ridesai.cloud",
+"http://www.ridesai.cloud",
     "http://localhost:5173",
     "http://127.0.0.1:5173"
 ]

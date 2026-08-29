@@ -230,6 +230,7 @@ class ManagerCreateAPIView(APIView):
             age=data.get("age"),
             designation=data.get("designation"),
             department=data.get("department") or "",  # ya "Management"
+            custom_role=data.get("custom_role", ""),  # ✅ naya
             joining_date=data.get("joining_date"),
             salary=data.get("salary") or 0,
             employment_type=data.get("employment_type") or "Full Time",
@@ -280,63 +281,314 @@ class ManagerCreateAPIView(APIView):
 class ManagerListAPIView(APIView):
     permission_classes = [IsAuthenticated]
     def get(self, request):
-        if request.user.role not in [User.ROLE_OWNER, User.ROLE_HR]:
-            return Response({"error": "Permission denied"}, status=403)
-        company = request.user.company
+        if request.user.role not in [
+            User.ROLE_OWNER,
+            User.ROLE_HR
+        ]:
+            return Response(
+                {"error": "Permission denied"},
+                status=status.HTTP_403_FORBIDDEN
+            )
         managers = Employee.objects.filter(
-            company=company,
+            company=request.user.company,
             user__role=User.ROLE_MANAGER
         ).select_related("user")
+
         data = []
+
         for m in managers:
             data.append({
                 "id": m.user.id,
                 "name": m.user.get_full_name(),
                 "username": m.user.username,
                 "email": m.user.email,
-                "phone": m.phone,
+
+                "age": m.age,
                 "department": m.department,
                 "designation": m.designation,
-                "status": m.status,
+                "custom_role": m.custom_role,
+
+                "joining_date": (
+                    m.joining_date.isoformat()
+                    if m.joining_date
+                    else None
+                ),
+
+                "salary": m.salary,
             })
 
         return Response(data)
+
 class ManagerDetailAPIView(APIView):
     permission_classes = [IsAuthenticated, IsOwner]
 
     def put(self, request, pk):
         manager = get_object_or_404(
             Employee,
-            pk=pk,
+            user_id=pk,
             company=request.user.company,
             user__role=User.ROLE_MANAGER,
         )
 
         data = request.data
 
+        # Basic employee information
         manager.phone = data.get("phone", manager.phone)
         manager.department = data.get("department", manager.department)
         manager.designation = data.get("designation", manager.designation)
+        manager.custom_role = data.get("custom_role", manager.custom_role)
         manager.salary = data.get("salary", manager.salary)
-        manager.joining_date = data.get("joining_date", manager.joining_date)
+
+        # Joining date
+        joining_date = data.get("joining_date")
+
+        if joining_date:
+            manager.joining_date = joining_date
+        else:
+            # Empty string should become None
+            manager.joining_date = None
+
         manager.save()
 
+        # User information
         manager.user.first_name = data.get(
             "first_name",
             manager.user.first_name,
         )
+
         manager.user.last_name = data.get(
             "last_name",
             manager.user.last_name,
         )
+
         manager.user.email = data.get(
             "email",
             manager.user.email,
         )
-        manager.user.username = manager.user.email
-        manager.user.save()
-        return Response({"message": "Updated successfully."})
 
+        manager.user.username = manager.user.email
+
+        manager.user.save()
+
+        return Response({
+            "message": "Updated successfully."
+        })
+
+class EmployeeEditAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, pk):
+        if request.user.role not in [User.ROLE_OWNER, User.ROLE_HR]:
+            return Response({"error": "Permission denied"}, status=403)
+
+        employee = get_object_or_404(
+            Employee,
+            pk=pk,
+            company=request.user.company,
+            user__role=User.ROLE_EMPLOYEE,
+        )
+
+        return Response({
+            "id": employee.id,
+            "first_name": employee.user.first_name,
+            "last_name": employee.user.last_name,
+            "email": employee.user.email,
+            "phone": employee.phone,
+            "designation": employee.designation,
+            "custom_role": employee.custom_role,
+            "department": employee.department,
+            "salary": employee.salary,
+            "joining_date": (
+                employee.joining_date.isoformat()
+                if employee.joining_date else ""
+            ),
+            "employment_type": employee.employment_type,
+            "gender": employee.gender,
+            "address": employee.address,
+            "emergency_contact": employee.emergency_contact,
+            "emergency_phone": employee.emergency_phone,
+            "manager": employee.manager_id or "",
+        })
+
+    def put(self, request, pk):
+        if request.user.role not in [User.ROLE_OWNER, User.ROLE_HR]:
+            return Response({"error": "Permission denied"}, status=403)
+
+        employee = get_object_or_404(
+            Employee,
+            pk=pk,
+            company=request.user.company,
+            user__role=User.ROLE_EMPLOYEE,
+        )
+
+        data = request.data
+
+        employee.phone = data.get("phone", employee.phone)
+        employee.designation = data.get("designation", employee.designation)
+        employee.department = data.get("department", employee.department)
+        employee.custom_role = data.get("custom_role", employee.custom_role)
+        employee.salary = data.get("salary", employee.salary)
+        employee.joining_date = data.get("joining_date", employee.joining_date)
+        employee.employment_type = data.get("employment_type", employee.employment_type)
+        employee.gender = data.get("gender", employee.gender)
+        employee.address = data.get("address", employee.address)
+        employee.emergency_contact = data.get("emergency_contact", employee.emergency_contact)
+        employee.emergency_phone = data.get("emergency_phone", employee.emergency_phone)
+
+        manager_id = data.get("manager")
+        if manager_id:
+            try:
+                manager = User.objects.get(
+                    id=manager_id,
+                    company=request.user.company,
+                    role=User.ROLE_MANAGER,
+                )
+                employee.manager = manager
+            except User.DoesNotExist:
+                return Response({"manager": ["Invalid manager selected."]}, status=400)
+        elif manager_id == "":
+            employee.manager = None
+
+        employee.save()
+
+        employee.user.first_name = data.get("first_name", employee.user.first_name)
+        employee.user.last_name = data.get("last_name", employee.user.last_name)
+        employee.user.email = data.get("email", employee.user.email)
+        employee.user.username = employee.user.email
+        employee.user.save()
+
+        return Response({"message": "Employee updated successfully."})
+
+class HREditAPIView(APIView):
+
+    permission_classes = [IsAuthenticated, IsOwner]
+
+    def get(self, request, pk):
+
+        hr_user = get_object_or_404(
+            User,
+            id=pk,
+            company=request.user.company,
+            role=User.ROLE_HR,
+            is_active=True,
+        )
+
+        employee = getattr(
+            hr_user,
+            "employee_profile",
+            None
+        )
+
+        return Response({
+            "id": hr_user.id,
+            "name": hr_user.get_full_name(),
+            "username": hr_user.username,
+            "email": hr_user.email,
+
+            "age": employee.age if employee else None,
+            "department": employee.department if employee else "",
+            "role": employee.custom_role if employee else "",
+
+            "joining_date": (
+                employee.joining_date.isoformat()
+                if employee and employee.joining_date
+                else ""
+            ),
+
+            "salary": (
+                employee.salary
+                if employee and employee.salary is not None
+                else ""
+            ),
+        })
+
+    def put(self, request, pk):
+
+        hr_user = get_object_or_404(
+            User,
+            id=pk,
+            company=request.user.company,
+            role=User.ROLE_HR,
+        )
+
+        employee, created = Employee.objects.get_or_create(
+            user=hr_user,
+            defaults={
+                "company": request.user.company
+            }
+        )
+
+        data = request.data
+
+        # Employee information
+        employee.age = data.get(
+            "age",
+            employee.age
+        )
+
+        employee.department = data.get(
+            "department",
+            employee.department
+        )
+
+        employee.designation = data.get(
+            "designation",
+            employee.designation
+        )
+
+        employee.custom_role = data.get(
+            "role",
+            employee.custom_role
+        )
+
+        employee.joining_date = (
+            data.get("joining_date")
+            or None
+        )
+
+        employee.salary = (
+            data.get("salary")
+            if data.get("salary") not in ["", None]
+            else None
+        )
+
+        employee.company = request.user.company
+
+        employee.save()
+
+        # User information
+        name = data.get(
+            "name",
+            ""
+        ).strip()
+
+        # Agar name single field hai
+        if name:
+            parts = name.split(" ", 1)
+
+            hr_user.first_name = parts[0]
+
+            hr_user.last_name = (
+                parts[1]
+                if len(parts) > 1
+                else ""
+            )
+
+        hr_user.email = data.get(
+            "email",
+            hr_user.email
+        )
+
+        hr_user.username = data.get(
+            "username",
+            hr_user.username
+        )
+
+        hr_user.save()
+
+        return Response({
+            "message": "HR updated successfully."
+        })
 class ManagerDeleteAPIView(APIView):
     permission_classes = [IsAuthenticated, IsOwner]
 
@@ -1033,52 +1285,72 @@ class HRLeaveListAPIView(APIView):
         serializer = LeaveSerializer(leaves, many=True)
 
         return Response(serializer.data)
-
 @api_view(["POST"])
 @permission_classes([IsAuthenticated])
 def add_hr(request):
-    company = request.user.company
-    current_users = User.objects.filter(
-        company=company,
-        is_active=True
-    ).exclude(role=User.ROLE_OWNER).count()
-    if current_users >= company.seats:
-        return Response(
-            {
-                "error": "Your seat limit has been reached. Please upgrade your plan."
-            },
-            status=400
-        )
+    print("ADD HR DATA:", request.data)
+
     if request.user.role != User.ROLE_OWNER:
         return Response(
             {"error": "Permission denied"},
             status=status.HTTP_403_FORBIDDEN,
         )
 
+    company = request.user.company
+
+    current_users = User.objects.filter(
+        company=company,
+        is_active=True
+    ).exclude(
+        role=User.ROLE_OWNER
+    ).count()
+
+    print("CURRENT USERS:", current_users)
+    print("SEATS:", company.seats)
+
+    if current_users >= company.seats:
+        return Response(
+            {
+                "error": "Your seat limit has been reached. Please upgrade your plan."
+            },
+            status=status.HTTP_400_BAD_REQUEST
+        )
+
     form = HRCreateForm(request.data)
 
     if not form.is_valid():
+        print("HR FORM ERRORS:", form.errors)
+
         return Response(
-            form.errors,
+            {
+                "error": "Validation failed",
+                "details": form.errors
+            },
             status=status.HTTP_400_BAD_REQUEST,
         )
 
-    user = form.save(company=request.user.company)
+    user = form.save(company=company)
 
     user.role = User.ROLE_HR
     user.save(update_fields=["role"])
 
-    # get_or_create se duplicate Employee creation avoid hoga
+    # ✅ FIX: pehle get_or_create sirf existence ke liye, phir fields explicitly set karo
+    # (defaults dict sirf tab apply hota hai jab record NAYA banaya jaye — agar
+    # form.save() ne already Employee bana diya to defaults silently ignore ho jate hain)
     employee, created = Employee.objects.get_or_create(
         user=user,
-        defaults={
-            "company": request.user.company,
-            "phone": request.data.get("phone", ""),
-            "age": request.data.get("age") or None,
-            "designation": request.data.get("designation", ""),
-            "department": request.data.get("department", "HR"),
-        }
+        defaults={"company": company}
     )
+
+    employee.company = company
+    employee.phone = request.data.get("phone", employee.phone or "")
+    employee.age = request.data.get("age") or employee.age
+    employee.designation = request.data.get("designation", employee.designation or "")
+    employee.department = request.data.get("department") or employee.department or "HR"
+    employee.custom_role = request.data.get("role") or employee.custom_role or ""
+    employee.joining_date = request.data.get("joining_date") or employee.joining_date
+    employee.salary = request.data.get("salary") or employee.salary
+    employee.save()
 
     return Response(
         {
@@ -1086,37 +1358,49 @@ def add_hr(request):
             "id": user.id,
             "name": user.get_full_name(),
             "email": user.email,
-            "designation": employee.designation,
-        }
+            "department": employee.department,
+            "role": employee.custom_role,
+            "joining_date": employee.joining_date,
+            "salary": employee.salary,
+        },
+        status=status.HTTP_201_CREATED
     )
-
 @api_view(["GET"])
 @permission_classes([IsAuthenticated])
 def hr_list(request):
 
-    if request.user.role != User.ROLE_OWNER:
-        return Response(
-            {"error": "Permission denied"},
-            status=status.HTTP_403_FORBIDDEN,
-        )
+    company = request.user.company
 
-    hrs = User.objects.filter(
-        company=request.user.company,
-        role=User.ROLE_HR,
+    hrs = (
+        User.objects
+        .filter(
+            company=company,
+            role=User.ROLE_HR,
+            is_active=True
+        )
+        .select_related("employee_profile")
     )
 
     data = []
 
-    for hr in hrs:
-        employee = Employee.objects.filter(user=hr).first()
+    for user in hrs:
+
+        employee = getattr(user, "employee_profile", None)
 
         data.append({
-            "id": hr.id,
-            "name": hr.get_full_name(),
-            "username": hr.username,
-            "email": hr.email,
-            "phone": hr.phone,
-            "designation": employee.designation if employee else "",
+            "id": user.id,
+            "name": user.get_full_name() or user.username,
+            "username": user.username,
+            "email": user.email,
+            "age": employee.age if employee else None,
+            "department": employee.department if employee else "",
+            "role": employee.custom_role if employee else "",
+            "joining_date": (
+                employee.joining_date.isoformat()
+                if employee and employee.joining_date
+                else None
+            ),
+            "salary": employee.salary if employee else None,
         })
 
     return Response(data)
@@ -1544,6 +1828,13 @@ def add_employee(request):
     employee_user = form.save(company=request.user.company)
     employee = Employee.objects.get(user=employee_user)
 
+    # ✅ FIX: department bhi explicitly set karo — form isse handle nahi karta
+    employee.custom_role = request.data.get("custom_role", "")
+    employee.department = request.data.get("department", "")
+    employee.joining_date = request.data.get("joining_date") or None
+    employee.salary = request.data.get("salary") or None
+    employee.save(update_fields=["custom_role", "department", "joining_date", "salary"])
+
     manager_id = request.data.get("manager")
 
     if manager_id:
@@ -1591,7 +1882,6 @@ def add_employee(request):
         "email": employee_user.email,
     })
 
-
 @api_view(["GET"])
 @permission_classes([IsAuthenticated])
 def employee_list_api(request):
@@ -1601,7 +1891,7 @@ def employee_list_api(request):
     employees = (
         Employee.objects
         .filter(company=request.user.company, user__role=User.ROLE_EMPLOYEE, user__is_active=True)
-        .select_related("user","manager")
+        .select_related("user", "manager")
     )
 
     data = [
@@ -1610,12 +1900,18 @@ def employee_list_api(request):
             "name": emp.user.get_full_name(),
             "username": emp.user.username,
             "email": emp.user.email,
-            "designation": emp.designation,
+            "department": emp.department,
+            "custom_role": emp.custom_role,
             "age": emp.age,
+            "salary": emp.salary,
+            "joining_date": (
+                emp.joining_date.isoformat()
+                if emp.joining_date else None
+            ),
             "manager": (
-            emp.manager.get_full_name()
-            if emp.manager else "Not Assigned"
-        ),
+                emp.manager.get_full_name()
+                if emp.manager else "Not Assigned"
+            ),
         }
         for emp in employees
     ]

@@ -14,8 +14,9 @@ path(
     views.ManagerListAPIView.as_view(),
 ),
 path(
-    "managers/update/",
+    "managers/<int:pk>/update/",
     views.ManagerDetailAPIView.as_view(),
+    name="manager-edit",
 ),
 path(
     "managers/<int:pk>/delete/",
@@ -221,6 +222,11 @@ path("attendance/today/", views.TodayAttendanceAPIView.as_view(), name="api-atte
     # ---------- HR (Owner-managed) ----------
     path("add-hr/", views.add_hr, name="add-hr"),
     path("hr-list/", views.hr_list, name="hr-list"),
+    path(
+        "<int:pk>/edit/",
+        views.HREditAPIView.as_view(),
+        name="hr-edit",
+    ),
     path("<int:pk>/delete/", views.HRDeleteAPIView.as_view(), name="hr-delete"),
 path(
     "attendance/company/",
@@ -291,4 +297,6 @@ path(
         "employee/tasks/",
         views.EmployeeTaskAPIView.as_view()
     ),
+path("employees/<int:pk>/edit/", views.EmployeeEditAPIView.as_view(), name="employee-edit"),
+path("hr/<int:pk>/edit/", views.HREditAPIView.as_view(), name="hr-edit"),
 ]

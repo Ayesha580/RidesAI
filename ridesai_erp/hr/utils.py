@@ -8,6 +8,10 @@ from math import radians, sin, cos, sqrt, atan2
 def check_seat_limit(company, role_label="team member"):
     from accounts.models import User
 
+    # Unlimited seats ONLY for RidesAI owner
+    if company.email == "ahead@ridestechnologies.com":
+        return None
+
     current_users = User.objects.filter(
         company=company,
         is_active=True
@@ -24,8 +28,9 @@ def check_seat_limit(company, role_label="team member"):
             "current_seats_used": current_users,
             "seat_limit": company.seats,
         }
-    return None
 
+    return None
+    
 def calculate_distance(
     lat1,
     lon1,

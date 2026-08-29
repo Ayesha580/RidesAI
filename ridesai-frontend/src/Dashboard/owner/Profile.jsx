@@ -5,6 +5,7 @@ import "./Profile.css";
 const IMAGE_EXTENSIONS = ["jpg", "jpeg", "png", "gif", "webp"];
 
 export default function Profile() {
+
   const [form, setForm] = useState({
     first_name: "",
     last_name: "",
@@ -12,27 +13,56 @@ export default function Profile() {
     email: "",
     phone: "",
     cnic: "",
+
     business_name: "",
     business_type: "",
     business_address: "",
+
+    is_registered: false,
+    registration_number: "",
   });
 
-  const [docUrl, setDocUrl] = useState(null);
-  const [docName, setDocName] = useState("");
-  const [newDocFile, setNewDocFile] = useState(null);
-  const [newDocPreview, setNewDocPreview] = useState(null);
+
+  const [documents, setDocuments] = useState({
+    business_registration_document: null,
+    cnic_front: null,
+    cnic_back: null,
+    passport_size_photo: null,
+  });
+
+
+  const [newDocuments, setNewDocuments] = useState({
+    business_registration_document: null,
+    cnic_front: null,
+    cnic_back: null,
+    passport_size_photo: null,
+  });
+
+
+  const [previews, setPreviews] = useState({
+    business_registration_document: null,
+    cnic_front: null,
+    cnic_back: null,
+    passport_size_photo: null,
+  });
+
 
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState("");
 
+
   useEffect(() => {
     loadProfile();
   }, []);
 
+
   async function loadProfile() {
+
     try {
+
       const res = await axiosClient.get("/owner/profile/");
+
       setForm({
         first_name: res.data.first_name || "",
         last_name: res.data.last_name || "",
@@ -40,169 +70,608 @@ export default function Profile() {
         email: res.data.email || "",
         phone: res.data.phone || "",
         cnic: res.data.cnic || "",
+
         business_name: res.data.business_name || "",
         business_type: res.data.business_type || "",
         business_address: res.data.business_address || "",
+
+        is_registered: res.data.is_registered || false,
+        registration_number: res.data.registration_number || "",
       });
-      setDocUrl(res.data.registration_docs_url);
-      setDocName(res.data.registration_docs_name);
+
+
+      setDocuments({
+
+        business_registration_document:
+          res.data.business_registration_document_url || null,
+
+        cnic_front:
+          res.data.cnic_front_url || null,
+
+        cnic_back:
+          res.data.cnic_back_url || null,
+
+        passport_size_photo:
+          res.data.passport_size_photo_url || null,
+
+      });
+
+
     } catch (err) {
+
       console.log(err);
+
       setMessage("Failed to load profile.");
+
     } finally {
+
       setLoading(false);
+
     }
+
   }
 
+
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value
+    });
+
   };
 
-  const handleFileChange = (e) => {
+
+  const handleFileChange = (e, fieldName) => {
+
     const file = e.target.files[0];
+
     if (!file) return;
 
-    setNewDocFile(file);
 
-    const ext = file.name.split(".").pop().toLowerCase();
+    setNewDocuments({
+      ...newDocuments,
+      [fieldName]: file
+    });
+
+
+    const ext = file.name
+      .split(".")
+      .pop()
+      .toLowerCase();
+
+
     if (IMAGE_EXTENSIONS.includes(ext)) {
-      setNewDocPreview(URL.createObjectURL(file));
+
+      setPreviews({
+        ...previews,
+        [fieldName]: URL.createObjectURL(file)
+      });
+
     } else {
-      setNewDocPreview(null);
+
+      setPreviews({
+        ...previews,
+        [fieldName]: null
+      });
+
     }
+
   };
 
-  const isImage = (name) => {
-    if (!name) return false;
-    const ext = name.split(".").pop().toLowerCase();
+
+  const isImage = (url) => {
+
+    if (!url) return false;
+
+    const ext = url
+      .split("?")[0]
+      .split(".")
+      .pop()
+      .toLowerCase();
+
     return IMAGE_EXTENSIONS.includes(ext);
+
   };
+
+
+  const renderDocument = (
+    label,
+    fieldName
+  ) => {
+
+    const currentUrl = documents[fieldName];
+
+    const newFile = newDocuments[fieldName];
+
+    const preview = previews[fieldName];
+
+
+    return (
+
+      <div className="form-group">
+
+        <label>
+          {label}
+        </label>
+
+
+        {/* Current document */}
+
+        {currentUrl && !preview && (
+
+          <div className="doc-preview-wrap">
+
+            {isImage(currentUrl) ? (
+
+              <img
+                src={currentUrl}
+                alt={label}
+                className="doc-preview-img"
+              />
+
+            ) : (
+
+              <p className="doc-name">
+                📄 Current document
+              </p>
+
+            )}
+
+
+            <a
+              href={currentUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              View Current Document
+            </a>
+
+          </div>
+
+        )}
+
+
+        {/* New image preview */}
+
+        {preview && (
+
+          <div className="doc-preview-wrap">
+
+            <p>
+              New preview:
+            </p>
+
+            <img
+              src={preview}
+              alt={`New ${label}`}
+              className="doc-preview-img"
+            />
+
+          </div>
+
+        )}
+
+
+        {/* New PDF / non-image */}
+
+        {newFile && !preview && (
+
+          <p className="doc-name">
+            📄 Selected: {newFile.name}
+          </p>
+
+        )}
+
+
+        {/* No document */}
+
+        {!currentUrl && !newFile && (
+
+          <p className="doc-empty">
+            No document uploaded yet.
+          </p>
+
+        )}
+
+
+        <input
+          type="file"
+          accept={
+            fieldName === "passport_size_photo"
+              ? "image/*"
+              : "image/*,.pdf"
+          }
+          onChange={(e) =>
+            handleFileChange(
+              e,
+              fieldName
+            )
+          }
+        />
+
+      </div>
+
+    );
+
+  };
+
 
   const handleSubmit = async (e) => {
+
     e.preventDefault();
+
     setSaving(true);
     setMessage("");
 
+
     try {
+
       const payload = new FormData();
-      Object.entries(form).forEach(([key, value]) => {
-        if (key !== "username") payload.append(key, value);
-      });
-      if (newDocFile) {
-        payload.append("registration_docs", newDocFile);
-      }
 
-      await axiosClient.put("/owner/profile/", payload, {
-        headers: { "Content-Type": "multipart/form-data" },
+
+      // User + company fields
+
+      Object.entries(form).forEach(
+        ([key, value]) => {
+
+          if (key !== "username") {
+
+            payload.append(
+              key,
+              value
+            );
+
+          }
+
+        }
+      );
+
+
+      // Documents
+
+      Object.entries(newDocuments).forEach(
+        ([key, file]) => {
+
+          if (file) {
+
+            payload.append(
+              key,
+              file
+            );
+
+          }
+
+        }
+      );
+
+
+      await axiosClient.put(
+        "/owner/profile/",
+        payload,
+        {
+          headers: {
+            "Content-Type":
+              "multipart/form-data",
+          },
+        }
+      );
+
+
+      setMessage(
+        "Profile updated successfully."
+      );
+
+
+      // Reload current documents
+
+      await loadProfile();
+
+
+      setNewDocuments({
+        business_registration_document: null,
+        cnic_front: null,
+        cnic_back: null,
+        passport_size_photo: null,
       });
 
-      setMessage("Profile updated successfully.");
-      loadProfile();
-      setNewDocFile(null);
-      setNewDocPreview(null);
+
+      setPreviews({
+        business_registration_document: null,
+        cnic_front: null,
+        cnic_back: null,
+        passport_size_photo: null,
+      });
+
+
     } catch (err) {
-      setMessage(err.response?.data?.error || "Failed to update profile.");
+
+      console.log(err);
+
+      setMessage(
+        err.response?.data?.error ||
+        "Failed to update profile."
+      );
+
     } finally {
+
       setSaving(false);
+
     }
+
   };
 
+
   if (loading) {
+
     return (
+
       <div className="profile-form">
-        <p>Loading profile...</p>
+
+        <p>
+          Loading profile...
+        </p>
+
       </div>
+
     );
+
   }
 
+
   return (
-    <form className="profile-form" onSubmit={handleSubmit}>
-      <div className="form-group">
-        <label>First Name</label>
-        <input name="first_name" value={form.first_name} onChange={handleChange} />
-      </div>
+
+    <form
+      className="profile-form"
+      onSubmit={handleSubmit}
+    >
+
+
+      {/* =================================
+          PERSONAL INFORMATION
+      ================================= */}
 
       <div className="form-group">
-        <label>Last Name</label>
-        <input name="last_name" value={form.last_name} onChange={handleChange} />
+
+        <label>
+          First Name
+        </label>
+
+        <input
+          name="first_name"
+          value={form.first_name}
+          onChange={handleChange}
+        />
+
       </div>
 
-      <div className="form-group">
-        <label>Username</label>
-        <input name="username" value={form.username} disabled />
-      </div>
 
       <div className="form-group">
-        <label>Email</label>
-        <input type="email" name="email" value={form.email} onChange={handleChange} />
+
+        <label>
+          Last Name
+        </label>
+
+        <input
+          name="last_name"
+          value={form.last_name}
+          onChange={handleChange}
+        />
+
       </div>
 
-      <div className="form-group">
-        <label>Phone</label>
-        <input name="phone" value={form.phone} onChange={handleChange} />
-      </div>
 
       <div className="form-group">
-        <label>CNIC</label>
-        <input name="cnic" value={form.cnic} onChange={handleChange} />
+
+        <label>
+          Username
+        </label>
+
+        <input
+          name="username"
+          value={form.username}
+          disabled
+        />
+
       </div>
+
+
+      <div className="form-group">
+
+        <label>
+          Email
+        </label>
+
+        <input
+          type="email"
+          name="email"
+          value={form.email}
+          onChange={handleChange}
+        />
+
+      </div>
+
+
+      <div className="form-group">
+
+        <label>
+          Phone
+        </label>
+
+        <input
+          name="phone"
+          value={form.phone}
+          onChange={handleChange}
+        />
+
+      </div>
+
+
+      <div className="form-group">
+
+        <label>
+          CNIC
+        </label>
+
+        <input
+          name="cnic"
+          value={form.cnic}
+          onChange={handleChange}
+        />
+
+      </div>
+
 
       <hr />
 
+
+      {/* =================================
+          BUSINESS INFORMATION
+      ================================= */}
+
       <div className="form-group">
-        <label>Business Name</label>
-        <input name="business_name" value={form.business_name} onChange={handleChange} />
+
+        <label>
+          Business Name
+        </label>
+
+        <input
+          name="business_name"
+          value={form.business_name}
+          onChange={handleChange}
+        />
+
       </div>
 
+
       <div className="form-group">
-        <label>Business Type</label>
-        <input name="business_type" value={form.business_type} onChange={handleChange} />
+
+        <label>
+          Business Type
+        </label>
+
+        <input
+          name="business_type"
+          value={form.business_type}
+          onChange={handleChange}
+        />
+
       </div>
 
+
       <div className="form-group">
-        <label>Business Address</label>
-        <input name="business_address" value={form.business_address} onChange={handleChange} />
+
+        <label>
+          Business Address
+        </label>
+
+        <input
+          name="business_address"
+          value={form.business_address}
+          onChange={handleChange}
+        />
+
       </div>
 
-      <div className="form-group">
-        <label>Registration Document</label>
 
-        {docUrl && !newDocPreview && (
-          <div className="doc-preview-wrap">
-            {isImage(docName) ? (
-              <img src={docUrl} alt="Registration Document" className="doc-preview-img" />
-            ) : (
-              <p className="doc-name">📄 {docName}</p>
+      {/* =================================
+          BUSINESS REGISTRATION
+      ================================= */}
+
+      {
+        form.is_registered && (
+
+          <>
+
+            <div className="form-group">
+
+              <label>
+                Registration Number
+              </label>
+
+              <input
+                name="registration_number"
+                value={form.registration_number}
+                onChange={handleChange}
+              />
+
+            </div>
+
+
+            {renderDocument(
+              "Business Registration Document",
+              "business_registration_document"
             )}
-            <a href={docUrl} target="_blank" rel="noopener noreferrer">
-              View Current Document
-            </a>
-          </div>
-        )}
 
-        {newDocPreview && (
-          <div className="doc-preview-wrap">
-            <p>New preview:</p>
-            <img src={newDocPreview} alt="New Document Preview" className="doc-preview-img" />
-          </div>
-        )}
+          </>
 
-        {newDocFile && !newDocPreview && (
-          <p className="doc-name">📄 Selected: {newDocFile.name}</p>
-        )}
+        )
+      }
 
-        {!docUrl && !newDocFile && (
-          <p className="doc-empty">No document uploaded yet.</p>
-        )}
 
-        <input type="file" accept="image/*,.pdf" onChange={handleFileChange} />
-      </div>
+      {/* =================================
+          OWNER DOCUMENTS
+      ================================= */}
 
-      {message && <p className="form-message">{message}</p>}
+      <hr />
 
-      <button type="submit" disabled={saving}>
-        {saving ? "Saving..." : "Save Changes"}
+
+      <h4>
+        Owner Documents
+      </h4>
+
+
+      {renderDocument(
+        "CNIC / ID Card Front",
+        "cnic_front"
+      )}
+
+
+      {renderDocument(
+        "CNIC / ID Card Back",
+        "cnic_back"
+      )}
+
+
+      {renderDocument(
+        "Passport-size Photo",
+        "passport_size_photo"
+      )}
+
+
+      {/* =================================
+          MESSAGE
+      ================================= */}
+
+      {message && (
+
+        <p className="form-message">
+          {message}
+        </p>
+
+      )}
+
+
+      {/* =================================
+          SAVE
+      ================================= */}
+
+      <button
+        type="submit"
+        disabled={saving}
+      >
+
+        {
+          saving
+            ? "Saving..."
+            : "Save Changes"
+        }
+
       </button>
+
+
     </form>
+
   );
+
 }

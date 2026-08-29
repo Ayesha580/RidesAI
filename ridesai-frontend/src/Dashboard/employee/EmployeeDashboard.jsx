@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./EmployeeDashboard.css";
 import axiosClient from "../../api/axiosClient";
+import Herry from "../components/Herry";
+
 
 export default function EmployeeDashboard() {
     const [dashboard, setDashboard] = useState(null);
@@ -153,6 +155,7 @@ export default function EmployeeDashboard() {
                     </div>
                 </div>
             </div>
+            <Herry />
         </div>
     );
 }

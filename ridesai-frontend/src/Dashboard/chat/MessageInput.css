@@ -19,7 +19,7 @@
 }
 
 .chat-icon-btn:hover{
-    color:#BE27EE;
+    color:#FF77FF;
 }
 
 .message-input-container textarea{
@@ -39,7 +39,7 @@
 }
 
 .message-input-container textarea:focus{
-    border-color:#BE27EE;
+    border-color:#FF77FF;
     box-shadow:0 0 0 2px rgba(190,39,238,.15);
 }
 
@@ -48,7 +48,7 @@
     height:48px;
     border:none;
     border-radius:50%;
-    background:linear-gradient(135deg,#e79bff,#BE27EE);
+    background:linear-gradient(135deg,#e79bff,#FF77FF);
     color:white;
     cursor:pointer;
     font-size:18px;

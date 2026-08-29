@@ -39,6 +39,7 @@ const [billing, setBilling] = useState("monthly");
       "Manager Assignment",
       "Manager Dashboard",
       "Task Assignment by Managers",
+      "AI Assistant 'Herry'"
     ],
   },
 
@@ -71,6 +72,7 @@ const [billing, setBilling] = useState("monthly");
       "Screenshot Monitoring",
       "Team Chat",
       "Task Notifications",
+      "AI Assistant 'Herry'"
     ],
   },
 
@@ -99,6 +101,7 @@ const [billing, setBilling] = useState("monthly");
       "Notifications",
       "Reports & Analytics",
       "Priority Support",
+      "AI Assistant 'Herry'"
     ],
   },
 ];
@@ -133,6 +136,7 @@ const yearlyPlans = [
       "Manager Assignment",
       "Manager Dashboard",
       "Task Assignment by Managers",
+      "AI Assistant 'Herry'"
     ],
   },
 
@@ -166,6 +170,7 @@ const yearlyPlans = [
       "Screenshot Monitoring",
       "Team Chat",
       "Task Notifications",
+      "AI Assistant 'Herry'"
     ],
   },
 
@@ -195,6 +200,7 @@ const yearlyPlans = [
       "Notifications",
       "Reports & Analytics",
       "Priority Support",
+      "AI Assistant 'Herry'"
     ],
   },
 ];

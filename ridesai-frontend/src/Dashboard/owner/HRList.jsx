@@ -1,98 +1,210 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axiosClient from "../../api/axiosClient";
-import { Link } from "react-router-dom";
 import "./HRList.css";
 
 export default function HRList() {
+  const navigate = useNavigate();
+
   const [hrs, setHrs] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [deletingId, setDeletingId] = useState(null);
 
   useEffect(() => {
-    loadHRs();
+    fetchHRs();
   }, []);
 
-  async function loadHRs() {
+  const fetchHRs = async () => {
     try {
-      const res = await axiosClient.get("/hr/hr-list/");
-      setHrs(res.data);
+      setLoading(true);
+
+      const response = await axiosClient.get("/hr/hr-list/");
+
+      setHrs(response.data || []);
     } catch (err) {
-      console.log(err);
-      setHrs([]);
+      alert(
+        err.response?.data?.error ||
+          "Unable to load HR list."
+      );
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
-  }
+  };
 
-  async function handleDelete(id, name) {
-    const confirmed = window.confirm(
-      `Are you sure you want to delete "${name}"?`
-    );
-    if (!confirmed) return;
+  const deleteHR = async (id) => {
+    if (!window.confirm("Are you sure you want to delete this HR?")) {
+      return;
+    }
 
-    setDeletingId(id);
     try {
       await axiosClient.delete(`/hr/${id}/delete/`);
-      setHrs((prev) => prev.filter((hr) => hr.id !== id));
+
+      alert("✅ HR deleted successfully.");
+
+      fetchHRs();
     } catch (err) {
-      console.log(err);
-      alert(err.response?.data?.error || "Failed to delete HR.");
-    } finally {
-      setDeletingId(null);
+      alert(
+        err.response?.data?.error ||
+          "Unable to delete HR."
+      );
     }
+  };
+
+  if (loading) {
+    return (
+      <div className="hrlist_wrap">
+        <div className="hrlist_panel">
+          <p className="hrlist_loading">Loading HRs...</p>
+        </div>
+      </div>
+    );
   }
 
-  if (loading) return <h2>Loading HR List...</h2>;
-
   return (
-    <div className="hrlist_panel">
-      <div className="hrlist_header">
-        <h2>HR List</h2>
-        <Link to="/owner/hr/create" className="hrlist_add-btn">
-          + Create HR
-        </Link>
-      </div>
+    <div className="hrlist_wrap">
 
-      <div className="hrlist_table-wrap">
-        <table className="hrlist_table">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Name</th>
-              <th>Username</th>
-              <th>Email</th>
-              <th>Designation</th>
-              <th>Action</th>
-            </tr>
-          </thead>
+      <div className="hrlist_panel">
 
-          <tbody>
-            {hrs.length === 0 ? (
-              <tr>
-                <td colSpan="6" className="hrlist_empty">No HR Found</td>
-              </tr>
-            ) : (
-              hrs.map((hr, index) => (
-                <tr key={hr.id}>
-                  <td>{index + 1}</td>
-                  <td>{hr.name}</td>
-                  <td>{hr.username}</td>
-                  <td>{hr.email}</td>
-                  <td>{hr.designation}</td>
-                  <td>
-                    <button
-                      onClick={() => handleDelete(hr.id, hr.name)}
-                      disabled={deletingId === hr.id}
-                      className="hrlist_delete-btn"
-                    >
-                      {deletingId === hr.id ? "Deleting..." : "Delete"}
-                    </button>
-                  </td>
+        {/* Header */}
+        <div className="hrlist_header">
+
+          <div>
+            <h1 className="hrlist_title">
+              HR List
+            </h1>
+
+            <p className="hrlist_subtitle">
+              Manage HR accounts.
+            </p>
+          </div>
+
+          <button
+            type="button"
+            className="hrlist_add_btn"
+            onClick={() =>
+              navigate("/owner/hr/create")
+            }
+          >
+            + Create HR
+          </button>
+
+        </div>
+
+        {/* Empty */}
+        {hrs.length === 0 ? (
+
+          <div className="hrlist_empty">
+            <h3>No HR Found</h3>
+
+            <p>
+              There are currently no HR accounts.
+            </p>
+          </div>
+
+        ) : (
+
+          /* Table */
+          <div className="hrlist_table_wrapper">
+
+            <table className="hrlist_table">
+
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Username</th>
+                  <th>Email</th>
+                  <th>Age</th>
+                  <th>Department</th>
+                  <th>Role</th>
+                  <th>Joining Date</th>
+                  <th>Salary</th>
+                  <th>Actions</th>
                 </tr>
-              ))
-            )}
-          </tbody>
-        </table>
+              </thead>
+
+              <tbody>
+
+                {hrs.map((hr) => (
+
+                  <tr key={hr.id}>
+
+                    <td>
+                      {hr.name || "-"}
+                    </td>
+
+                    <td>
+                      {hr.username || "-"}
+                    </td>
+
+                    <td>
+                      {hr.email || "-"}
+                    </td>
+
+                    <td>
+                      {hr.age || "-"}
+                    </td>
+
+                    <td>
+                      {hr.department || "-"}
+                    </td>
+
+                    <td>
+                      {hr.role || "-"}
+                    </td>
+
+                    <td>
+                      {hr.joining_date || "-"}
+                    </td>
+
+                    <td>
+                      {hr.salary !== null &&
+                      hr.salary !== undefined &&
+                      hr.salary !== ""
+                        ? hr.salary
+                        : "-"}
+                    </td>
+
+                    <td>
+                      <div className="hrlist_actions">
+
+                        <button
+                          type="button"
+                          className="hrlist_edit_btn"
+                          onClick={() =>
+                            navigate(
+                              `/owner/hr/edit/${hr.id}`
+                            )
+                          }
+                        >
+                          Edit
+                        </button>
+
+                        <button
+                          type="button"
+                          className="hrlist_delete_btn"
+                          onClick={() =>
+                            deleteHR(hr.id)
+                          }
+                        >
+                          Delete
+                        </button>
+
+                      </div>
+                    </td>
+
+                  </tr>
+
+                ))}
+
+              </tbody>
+
+            </table>
+
+          </div>
+
+        )}
+
       </div>
+
     </div>
   );
 }

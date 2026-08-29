@@ -91,7 +91,7 @@ outline:none;
 .offer-group input:focus,
 .offer-group select:focus{
 
-border-color:#be27ee;
+border-color:#FF77FF;
 
 box-shadow:
 0 0 0 4px rgba(190,39,238,.15);
@@ -106,7 +106,7 @@ margin-top:30px;
 
 background:linear-gradient(
 135deg,
-#be27ee,
+#FF77FF,
 #971dc7
 );
 

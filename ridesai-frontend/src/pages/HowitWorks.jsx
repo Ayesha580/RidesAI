@@ -168,7 +168,7 @@ export default function HowItWorks() {
           font-weight: 600;
           letter-spacing: 0.14em;
           text-transform: uppercase;
-          color: #be27ee;
+          color: #FF77FF;
           margin: 0 0 14px;
         }
 
@@ -200,7 +200,7 @@ export default function HowItWorks() {
           bottom: 0;
           left: 50%;
           width: 2px;
-          background: linear-gradient(180deg, #ece0f5 0%, #be27ee 50%, #ece0f5 100%);
+          background: linear-gradient(180deg, #ece0f5 0%, #FF77FF 50%, #ece0f5 100%);
           transform: translateX(-50%);
         }
 
@@ -234,7 +234,7 @@ export default function HowItWorks() {
           font-family: "JetBrains Mono", monospace;
           font-size: 14px;
           font-weight: 600;
-          color: #be27ee;
+          color: #FF77FF;
           letter-spacing: 0.05em;
         }
 
@@ -262,7 +262,7 @@ export default function HowItWorks() {
           width: 16px;
           height: 16px;
           border-radius: 50%;
-          background: #be27ee;
+          background: #FF77FF;
           box-shadow: 0 0 0 6px #f8ecfd;
           z-index: 2;
         }
@@ -290,7 +290,7 @@ export default function HowItWorks() {
         .visual-signup { display: flex; flex-direction: column; gap: 12px; }
         .v-line-title { width: 55%; height: 10px; border-radius: 4px; background: #ece0f5; }
         .v-field { height: 30px; border-radius: 8px; background: #faf7fc; border: 1px solid #ece0f5; }
-        .v-button { height: 32px; border-radius: 8px; background: #be27ee; margin-top: 4px; }
+        .v-button { height: 32px; border-radius: 8px; background: #FF77FF; margin-top: 4px; }
 
         .visual-team {
           display: flex;
@@ -301,7 +301,7 @@ export default function HowItWorks() {
           height: 44px;
           border-radius: 50%;
           background: #f8ecfd;
-          color: #be27ee;
+          color: #FF77FF;
           font-family: "Manrope", sans-serif;
           font-weight: 700;
           font-size: 14px;
@@ -317,8 +317,8 @@ export default function HowItWorks() {
           height: 44px;
           border-radius: 50%;
           background: #ffffff;
-          border: 2px dashed #be27ee;
-          color: #be27ee;
+          border: 2px dashed #FF77FF;
+          color: #FF77FF;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -343,7 +343,7 @@ export default function HowItWorks() {
           font-weight: 600;
           color: #4a3a56;
         }
-        .v-node--accent { background: #be27ee; color: #ffffff; border-color: #be27ee; }
+        .v-node--accent { background: #FF77FF; color: #ffffff; border-color: #FF77FF; }
         .v-connector { width: 2px; height: 14px; background: #ece0f5; }
 
         .visual-insight {
@@ -355,7 +355,7 @@ export default function HowItWorks() {
         .v-bar {
           flex: 1;
           border-radius: 6px 6px 0 0;
-          background: linear-gradient(180deg, #be27ee 0%, #f0c6fb 100%);
+          background: linear-gradient(180deg, #FF77FF 0%, #f0c6fb 100%);
         }
 
         .hiw-cta {
@@ -384,7 +384,7 @@ export default function HowItWorks() {
 
         .cta-button {
           border: none;
-          background: #be27ee;
+          background: #FF77FF;
           color: #ffffff;
           font-size: 15px;
           font-weight: 600;

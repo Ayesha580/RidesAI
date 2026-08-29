@@ -1,0 +1,83 @@
+.addemp_card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 28px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  max-width: 900px;
+  margin: 24px auto;
+}
+
+.addemp_title {
+  margin: 0 0 4px;
+}
+
+.addemp_subtitle {
+  color: #64748b;
+  margin: 0 0 20px;
+}
+
+.addemp_grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.addemp_field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.addemp_full-span {
+  grid-column: 1 / -1;
+}
+
+.addemp_label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #334155;
+}
+
+.addemp_input,
+.addemp_select {
+  padding: 10px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.addemp_actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.addemp_btn-cancel {
+  background: #e2e8f0;
+  color: #0f172a;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.addemp_btn-submit {
+  background: #ff77ff;
+  color: #fff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.addemp_btn-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@media (max-width: 640px) {
+  .addemp_grid {
+    grid-template-columns: 1fr;
+  }
+}
