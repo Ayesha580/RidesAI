@@ -18,7 +18,7 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import SelectPlan from "./pages/SelectPlan";
 import Checkout from "./pages/checkout";
-import Dashboard from "./pages/dashboard";
+import Dashboard from "./pages/Dashboard";
 import PaymentSuccess from "./pages/PaymentSuccess";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import RefundPolicy from "./pages/RefundPolicy";
